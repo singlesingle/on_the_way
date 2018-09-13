@@ -5,7 +5,7 @@ return [
         'class' => 'yii\db\Connection',
         'dsn' => 'mysql:host=127.0.0.1:3306;dbname=on_the_way',
         'username' => 'root',
-        'password' => '123qwe',
+        'password' => '1g8Uh66BgbgK',
         'charset' => 'utf8',
     ],
     'redis' => [

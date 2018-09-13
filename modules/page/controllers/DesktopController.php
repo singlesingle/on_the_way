@@ -16,7 +16,7 @@ class DesktopController extends BaseController
      * 首页
      * @return string
      */
-    public function actionIndex()
+    public function actionInfo()
     {
         $this->data['page_topo'] = 'desktop';
         return $this->render('info.tpl', $this->data);

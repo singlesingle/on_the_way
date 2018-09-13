@@ -2,7 +2,7 @@
 return [
     
     //相关页面url
-    '/' => 'page/welcome/index',
+    '/' => 'page/desktop/info',
     'page/desktop/info' => 'page/desktop/info',
     'page/user/list' => 'page/user/list',
     /////// page url rules end
