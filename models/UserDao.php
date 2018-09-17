@@ -85,17 +85,24 @@ class UserDao extends ActiveRecord{
         return $ret;
     }
 
-    /**
-     * 查询用户
-     * @param $id
-     * @return array|false
-     * @throws \yii\db\Exception
-     */
+    //查询用户
     public function queryById($id) {
         $sql=sprintf('SELECT * FROM %s WHERE id = :id', self::tableName());
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
+
+    //根据手机号查询用户信息
+    public function queryByPhone($phone) {
+        $sql=sprintf('SELECT * FROM %s WHERE phone = :phone and status != :status', self::tableName());
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':phone', $phone, \PDO::PARAM_STR);
+        $stmt->bindParam(':status', self::$status['删除'], \PDO::PARAM_INT);
         $stmt->execute();
         $ret = $stmt->queryOne();
         return $ret;
@@ -121,10 +128,20 @@ class UserDao extends ActiveRecord{
         return $ret;
     }
 
-    //删除用户
+    //禁用用户
     public function disableUser($id) {
-        $sql = sprintf('UPDATE %s SET status = %d WHERE id = %d',
+        $sql = sprintf('UPDATE %s SET status = %d, lock_total = 0 WHERE id = %d',
             self::tableName(), self::$status['禁用'], $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //启用用户
+    public function enableUser($id) {
+        $sql = sprintf('UPDATE %s SET status = %d WHERE id = %d',
+            self::tableName(), self::$status['正常'], $id);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $ret = $stmt->execute();
@@ -135,6 +152,16 @@ class UserDao extends ActiveRecord{
     public function transferUser($userId, $leaderUserId) {
         $sql = sprintf('UPDATE %s SET fid = %d WHERE id = %d',
             self::tableName(), $leaderUserId, $userId);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //用户密码错误数累计
+    public function countError($id) {
+        $sql = sprintf('UPDATE %s SET lock_total = lock_total + 1 WHERE id = %d',
+            self::tableName(), $id);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $ret = $stmt->execute();

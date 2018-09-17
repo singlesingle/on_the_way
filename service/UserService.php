@@ -24,6 +24,11 @@ class UserService
         }
         foreach ($userList as &$user) {
             unset($user['pwd']);
+            if ($user['status'] == UserDao::$status['禁用']) {
+                $user['status'] = '禁用';
+            }else {
+                $user['status'] = '正常';
+            }
             if ($user['role'] == UserDao::$role['文案人员']) {
                 $user['leader'] = isset($managerList[$userp['id']]) ? $managerList[$user['id']]['name'] : '未知';
             }
@@ -55,6 +60,14 @@ class UserService
         return $ret;
     }
 
+    //启用用户
+    public function enableUser($userId)
+    {
+        $userDao = new UserDao();
+        $ret = $userDao->enableUser($userId);
+        return $ret;
+    }
+
     //用户转岗
     public function transferUser($userId, $leaderUserId)
     {
@@ -64,6 +77,22 @@ class UserService
             return false;
         }
         $ret = $userDao->transferUser($userId, $leaderUserId);
+        return $ret;
+    }
+
+    //查询用户信息
+    public function userInfo($phone)
+    {
+        $userDao = new UserDao();
+        $userInfo = $userDao->queryByPhone($phone);
+        return $userInfo;
+    }
+
+    //累计用户密码错误次数
+    public function countError($id)
+    {
+        $userDao = new UserDao();
+        $ret = $userDao->countError($id);
         return $ret;
     }
 }

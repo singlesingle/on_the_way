@@ -17,43 +17,39 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            用户列表
-            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">创建</a>
+            我的案例
+            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">新增</a>
         </header>
         <div class="panel-body">
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
-                        <th>用户名</th>
-                        <th>联系方式</th>
-                        <th>岗位</th>
-                        <th>上级</th>
-                        <th>状态</th>
+                        <th>标题</th>
+                        <th>学生姓名</th>
+                        <th>申请国家</th>
+                        <th>申请项目</th>
+                        <th>申请学校</th>
                         <th>创建时间</th>
+                        <th>审核通过时间</th>
+                        <th>案例状态</th>
+                        <th>审核备注</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {foreach $user_list as $one}
+                    {foreach $case_list as $one}
                         <tr>
+                            <td>{$one['title']}</td>
                             <td>{$one['name']}</td>
-                            <td>{$one['phone']}</td>
-                            <td>{$one['role']}</td>
-                            <td>{$one['leader']}</td>
-                            <td>{$one['status']}</td>
+                            <td>{$one['apply_country']}</td>
+                            <td>{$one['apply_project']}</td>
+                            <td>{$one['admission_school']}</td>
                             <td>{$one['create_time']}</td>
+                            <td>{$one['check_pass_time']}</td>
+                            <td>{$one['close_case_status']}</td>
+                            <td>{$one['summary']}</td>
                             <td>
-                                {if $one['role'] != '管理员' and $one['role'] == '文案人员'}
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transfer_position">调岗</a>nbsp
-                                {/if}
-                                {if $one['role'] != '管理员' and $one['status'] == '禁用'}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="enable_user('{$one['id']}')">启用</a>&nbsp&nbsp
-                                {else}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="disable_user('{$one['id']}')">禁用</a>&nbsp&nbsp
-                                {/if}
-                                {if $one['role'] != '管理员'}
-                                <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">删除</a>
-                                {/if}
+                                <a type="button" class="btn btn-sm btn-info" onclick="enable_user('{$one['id']}')">修改</a>&nbsp&nbsp
                             </td>
                         </tr>
                     {/foreach}
@@ -71,7 +67,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    创建用户
+                    创建案例
                 </h4>
             </div>
             <div class="modal-body">
@@ -117,7 +113,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    调转岗位
+                    修改案例
                 </h4>
             </div>
             <div class="modal-body">

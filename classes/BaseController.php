@@ -13,10 +13,10 @@ class BaseController extends Controller {
     protected $requestCookie;
     protected $responseCookie;
     protected $data = [
-        'user_id'     => 0,
-        'role'        => 0,
-        'loginuser'   => '',
-        'loginphoto'  => '',
+        'user_id' => 0,
+        'role'    => 0,
+        'name'    => '',
+        'photo'   => '',
     ];
     protected $method;
     protected $defineMethod = 'GET';
@@ -78,27 +78,24 @@ class BaseController extends Controller {
      */
     public function beforeAction($action) {
         $this->beginTime = microtime(true);
+        session_start();
+
+        $url = Yii::$app->request->url;
+        if ($url == '/user/login') {
+            return parent::beforeAction( $action );
+        }
 
         // 检测用户是否登录
-//        $cookieSig = $this->requestCookie->get( 'sig' );
-//        if ($cookieSig == null) {
-//            $this->redirectToSso();
-//            return;
-//        }
-
-        // 查询用户信息
-//        $userInfo = ''; //从session中读取用户信息
-//        if ($userInfo) {
-//            $this->data['userid'] = $userInfo['id'];
-//            $this->data['loginuser'] = $userInfo['name'];
-//            $this->data['logincnname'] = $userInfo['cnname'];
-//            $this->data['phone'] = $userInfo['phone'];
-//        }else {
-//            $this->redirectToSso();
-//            return;
-//        }
+        if (isset($_SESSION['is_login']) && $_SESSION['is_login'] === true) {
+            $this->data['user_id'] = $_SESSION['user_id'];
+            $this->data['name'] = $_SESSION['name'];
+            $this->data['role'] = $_SESSION['role'];
+        }else {
+            $this->redirectToSso();
+            return;
+        }
         //处理photo
-        $this->data['loginphoto'] = ".jpg.29x29.jpg";
+        $this->data['photo'] = ".jpg.29x29.jpg";
 
         return parent::beforeAction( $action );
     }
@@ -114,15 +111,7 @@ class BaseController extends Controller {
      * 重定向到登陆页面
      */
     protected function redirectToSso() {
-        $sigUrl = Yii::$app->params['uic'] . "/sso/sig";
-        $curl = new Curl();
-        $response = $curl->get( $sigUrl );
-        $this->responseCookie->add( new Cookie( [
-                'name' => 'sig',
-                'value' => $response 
-        ] ) );
-        $loginUrl = 'hostname/login?sig=' . $response . '&callback=' . Yii::$app->request->absoluteUrl;
-        Yii::$app->response->redirect( $loginUrl, 302 )->send();
+        Yii::$app->response->redirect('/user/login', 302 )->send();
     }
 
     /**

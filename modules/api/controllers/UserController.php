@@ -11,6 +11,60 @@ use Yii;
 
 class UserController extends BaseController
 {
+
+    //用户登陆
+    public function actionLogin()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'phone' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'pwd' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $phone = $this->getParam('phone', '');
+        $pwd = $this->getParam('pwd', '');
+        $pwd = Util::gen_pwd($pwd);
+
+        $userService = new UserService();
+        $userInfo = $userService->userInfo($phone);
+        if (!$userInfo) {
+            $error = ErrorDict::getError(ErrorDict::G_PARAM, '', 'sorry, phone or password error.');
+            $ret = $this->outputJson('', $error);
+            return $ret;
+        }
+        if ($userInfo['status'] == UserDao::$status['禁用']) {
+            $error = ErrorDict::getError(ErrorDict::G_PARAM, '', 'warn, your accout is lock!!!');
+            $ret = $this->outputJson('', $error);
+            return $ret;
+        }
+        if ($pwd != $userInfo['pwd']) {
+            if ($userInfo['lock_total'] >= 20) {
+                $userService->disableUser($userInfo['id']);
+            }else {
+                $userService->countError($userInfo['id']);
+            }
+            $error = ErrorDict::getError(ErrorDict::G_PARAM, '', 'sorry, phone or password error.');
+            $ret = $this->outputJson('', $error);
+            return $ret;
+        }
+        $_SESSION['is_login'] = true;
+        $_SESSION['user_id'] = $userInfo['id'];
+        $_SESSION['role'] = $userInfo['role'];
+        $_SESSION['name'] = $userInfo['name'];
+        $error = ErrorDict::getError(ErrorDict::SUCCESS);
+        $ret = $this->outputJson('', $error);
+        return $ret;
+    }
+
     //创建用户
     public function actionAdduser()
     {
@@ -100,6 +154,34 @@ class UserController extends BaseController
         $userId = $this->getParam('user_id', '');
         $userService = new UserService();
         $ret = $userService->disableUser($userId);
+        $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
+    }
+
+    //解禁用户
+    public function actionEnableuser()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'user_id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            )
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $userId = $this->getParam('user_id', '');
+        $userService = new UserService();
+        $ret = $userService->enableUser($userId);
         $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);

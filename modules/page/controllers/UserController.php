@@ -3,19 +3,15 @@
 namespace app\modules\page\controllers;
 
 use app\classes\BaseController;
+use app\models\UserDao;
 use app\service\UserService;
 
 class UserController extends BaseController
 {
 
-    /**
-     * 业务方登陆
-     * @return string
-     */
+    //用户登陆
     public function actionLogin()
     {
-        $this->data['page_topo'] = 'config_admin';
-        $this->data['active_page'] = 'login';
         return $this->render('login.tpl', $this->data);
     }
 
@@ -24,9 +20,9 @@ class UserController extends BaseController
     {
         $this->defineMethod = 'GET';
         $role = $this->data['role'];
-//        if ($role != UserDao::$role['管理员']) {
-//            $this->redirect('error/403.tpl');
-//        }
+        if ($role != UserDao::$role['管理员']) {
+            $this->redirect('error/403.tpl');
+        }
         $userService = new UserService();
         $userList = $userService->userList();
         $this->data['page_topo'] = 'user_admin';

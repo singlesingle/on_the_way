@@ -25,4 +25,10 @@ class Util{
         $time = time();
         return str_pad($time, 13, 0);
     }
+
+    //加密生成密码
+    public static function gen_pwd($source) {
+        $pwd = md5(hash("sha256", $source . 'it is not my fault'));
+        return $pwd;
+    }
 } 

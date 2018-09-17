@@ -5,6 +5,8 @@ return [
     '/' => 'page/desktop/info',
     'page/desktop/info' => 'page/desktop/info',
     'page/user/list' => 'page/user/list',
+    'page/case/my' => 'page/case/my',
+    'page/case/inner' => 'page/case/inner',
     /////// page url rules end
 
     /////// api url rules begin

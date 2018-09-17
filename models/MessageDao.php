@@ -21,40 +21,33 @@ class MessageDao extends ActiveRecord{
         "删除" => 1
     ];
 
-    /**
-     * 添加消息
-     * @param $type
-     * @param $title
-     * @param $content
-     * @param $announcer
-     * @return int
-     * @throws \yii\db\Exception
-     */
-    public function addMessage($type, $title, $content, $announcer) {
+    public static $type = [
+        "系统消息" => 1,
+        "进度消息" => 2
+    ];
+
+    //添加消息
+    public function addMessage($type, $title, $content, $userId) {
         $curTime = date('Y-m-d H:i:s');
-        $sql = sprintf('INSERT INTO %s (type, title, content, announcer, status, update_time, create_time)
+        $sql = sprintf('INSERT INTO %s (type, title, content, user_id, status, update_time, create_time)
             values (%d, %s, %s, %s, %d, %s, %s)',
-            self::tableName(), $type, $title, $content, $announcer, self::$status['正常'], $curTime, $curTime
+            self::tableName(), $type, $title, $content, $userId, self::$status['正常'], $curTime, $curTime
         );
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
-        $ret = $stmt->execute();
-        return $ret;
+        $stmt->execute();
+        $id = $stmt->lastInsertId;
+        return $id;
     }
 
-    /**
-     * 查询用户
-     * @param $id
-     * @return array|false
-     * @throws \yii\db\Exception
-     */
-    public function queryById($id) {
-        $sql=sprintf('SELECT * FROM %s WHERE id = :id', self::tableName());
+    //系统消息列表
+    public function systemMessageList() {
+        $sql=sprintf('SELECT * FROM %s WHERE status = :status', self::tableName());
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindParam(':status', self::$status['正常'], \PDO::PARAM_INT);
         $stmt->execute();
-        $ret = $stmt->queryOne();
+        $ret = $stmt->queryAll();
         return $ret;
     }
 }

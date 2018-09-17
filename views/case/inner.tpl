@@ -17,43 +17,44 @@
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
-            用户列表
+            内部案例库
             <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">创建</a>
         </header>
         <div class="panel-body">
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
-                        <th>用户名</th>
-                        <th>联系方式</th>
-                        <th>岗位</th>
-                        <th>上级</th>
-                        <th>状态</th>
-                        <th>创建时间</th>
+                        <th>学生姓名</th>
+                        <th>申请国家</th>
+                        <th>申请项目</th>
+                        <th>录取学校</th>
+                        <th>学校排名</th>
+                        <th>录取专业</th>
+                        <th>录取结果</th>
+                        <th>入读时间</th>
+                        <th>就读/毕业院校</th>
+                        <th>干货总结</th>
+                        <th>审核通过时间信息</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {foreach $user_list as $one}
+                    {foreach $case_list as $one}
                         <tr>
                             <td>{$one['name']}</td>
-                            <td>{$one['phone']}</td>
-                            <td>{$one['role']}</td>
-                            <td>{$one['leader']}</td>
-                            <td>{$one['status']}</td>
-                            <td>{$one['create_time']}</td>
+                            <td>{$one['apply_country']}</td>
+                            <td>{$one['apply_project']}</td>
+                            <td>{$one['admission_school']}</td>
+                            <td>{$one['rank']}</td>
+                            <td>{$one['profession']}</td>
+                            <td>{$one['result']}</td>
+                            <td>{$one['entry_time']}</td>
+                            <td>{$one['graduated_school']}</td>
+                            <td>{$one['summary']}</td>
+                            <td>{$one['check_pass_time']}</td>
+
                             <td>
-                                {if $one['role'] != '管理员' and $one['role'] == '文案人员'}
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transfer_position">调岗</a>nbsp
-                                {/if}
-                                {if $one['role'] != '管理员' and $one['status'] == '禁用'}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="enable_user('{$one['id']}')">启用</a>&nbsp&nbsp
-                                {else}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="disable_user('{$one['id']}')">禁用</a>&nbsp&nbsp
-                                {/if}
-                                {if $one['role'] != '管理员'}
-                                <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">删除</a>
-                                {/if}
+                                <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">查看</a>
                             </td>
                         </tr>
                     {/foreach}
@@ -61,52 +62,6 @@
                 </table>
         </div>
     </section>
-</div>
-
-<div class="modal fade" id="add_user_portal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title">
-                    创建用户
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">用户名：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="service_name">
-                        </div>
-                        <span class="text-danger mt5 fl">*</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">手机号：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
-                        </div>
-                        <span class="text-danger mt5 fl">*</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">岗位：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" onclick="create_user()">
-                    创建
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
 </div>
 
 <div class="modal fade" id="transfer_position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -117,7 +72,7 @@
                     &times;
                 </button>
                 <h4 class="modal-title">
-                    调转岗位
+                    案例详情
                 </h4>
             </div>
             <div class="modal-body">
