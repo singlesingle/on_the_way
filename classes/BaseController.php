@@ -1,7 +1,7 @@
 <?php
 namespace app\classes;
 
-use app\service\db\ActionlogService;
+use app\service\ActionlogService;
 use Yii;
 use yii\web\Controller;
 use yii\base\Exception;
@@ -143,7 +143,7 @@ class BaseController extends Controller {
      * @throws Exception
      */
     protected function actionLog($optype, $opresult, $oplog ) {
-        $username = $this->data['loginuser'];
+        $username = $this->data['name'];
         $ip = Yii::$app->request->userIP;
         $url = Yii::$app->request->url;
         $nowtime = date('Y-m-d H:i:s');

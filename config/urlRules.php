@@ -14,6 +14,7 @@ return [
     'api/user/login' => 'api/user/login',
     'api/user/adduser' => 'api/user/adduser',
     'api/user/deleteuser' => 'api/user/deleteuser',
+    'api/user/enableuser' => 'api/user/enableuser',
     'api/user/disuser' => 'api/user/disuser',
     'api/user/transfer' => 'api/user/transfer',
 

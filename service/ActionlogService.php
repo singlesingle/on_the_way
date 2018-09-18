@@ -1,6 +1,6 @@
 <?php
 
-namespace app\service\db;
+namespace app\service;
 
 use Yii;
 use app\models\ActionLogDao;

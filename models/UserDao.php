@@ -27,6 +27,12 @@ class UserDao extends ActiveRecord{
         "总监" => 2,
         "文案人员" => 3,
     ];
+  
+    public static $role_name = [
+        1 => "管理员",
+        2 => "总监",
+        3 => "文案人员",
+    ];
 
     /**
      * 新增用户

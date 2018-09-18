@@ -2,6 +2,7 @@
 
 namespace app\service;
 
+use app\classes\Util;
 use app\classes\Log;
 use app\models\UserDao;
 use Yii;
@@ -32,6 +33,7 @@ class UserService
             if ($user['role'] == UserDao::$role['文案人员']) {
                 $user['leader'] = isset($managerList[$userp['id']]) ? $managerList[$user['id']]['name'] : '未知';
             }
+	    $user['role'] = UserDao::$role_name[$user['role']];
         }
         return $userList;
     }
@@ -39,8 +41,9 @@ class UserService
     //创建用户
     public function addUser($name, $phone, $role)
     {
+	$pwd = Util::gen_pwd($phone);
         $userDao = new UserDao();
-        $ret = $userDao->addUser(0, $name, $role, $phone, $phone, '无');
+        $ret = $userDao->addUser(0, $name, $role, $phone, $pwd, '无');
         return $ret;
     }
 
