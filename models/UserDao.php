@@ -40,8 +40,7 @@ class UserDao extends ActiveRecord{
      * @throws \yii\db\Exception
      */
     public function addUser($fid, $name, $role, $pwd, $phone, $introduce) {
-        $sql = sprintf('INSERT INTO %s (fid, name, role, pwd, phone, introduce)
-            values (%d, %s, %d, %s, %s, %s)',
+        $sql = sprintf('INSERT INTO %s (fid, name, role, pwd, phone, introduce) values (%d, %s, %d, %s, %s, %s)',
             self::tableName(), $fid, $name, $role, $pwd, $phone, $introduce
         );
         $stmt = self::getDb()->createCommand($sql);

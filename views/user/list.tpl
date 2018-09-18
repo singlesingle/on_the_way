@@ -18,7 +18,7 @@
     <section class="panel">
         <header class="panel-heading">
             用户列表
-            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">创建</a>
+            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addUserPortal">创建</a>
         </header>
         <div class="panel-body">
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
@@ -63,7 +63,7 @@
     </section>
 </div>
 
-<div class="modal fade" id="add_user_portal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addUserPortal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
@@ -79,21 +79,21 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">用户名：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="service_name">
+                            <input type="text" class="form-control" id="add_user_name">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">手机号：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
+                            <input type="text" class="form-control" id="add_phone" placeholder="多个域名以“,”分割">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">岗位：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
+                            <input type="text" class="form-control" id="add_role">
                         </div>
                     </div>
                 </form>
@@ -168,9 +168,9 @@
     });
 
     function create_user() {
-        var name = '';
-        var phone = '';
-        var role = '';
+        var name = $('#add_user_name').val().trim();;
+        var phone = $('#add_phone').val().trim();;
+        var role = $('#add_role').val().trim();;
         if(confirm('确定要创建此用户吗?')) {
             $.ajax({
                 url: '/api/user/adduser',

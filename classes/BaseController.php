@@ -81,7 +81,7 @@ class BaseController extends Controller {
         session_start();
 
         $url = Yii::$app->request->url;
-        if ($url == '/user/login') {
+        if ($url == '/page/user/login' || $url == '/api/user/login') {
             return parent::beforeAction( $action );
         }
 
@@ -111,7 +111,7 @@ class BaseController extends Controller {
      * 重定向到登陆页面
      */
     protected function redirectToSso() {
-        Yii::$app->response->redirect('/user/login', 302 )->send();
+        Yii::$app->response->redirect('/page/user/login', 302 )->send();
     }
 
     /**

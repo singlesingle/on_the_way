@@ -23,6 +23,7 @@
 <!-- Custom styles for this template -->
 <link href="/static/css/style.css" rel="stylesheet">
 <link href="/static/css/style-responsive.css" rel="stylesheet"/>
+<script src="/static/js/jquery.js"></script>
 </head>
 <body>
 <section id="container">

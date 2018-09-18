@@ -40,7 +40,7 @@ class UserService
     public function addUser($name, $phone, $role)
     {
         $userDao = new UserDao();
-        $ret = $userDao->addUser(0, $name, $role, $phone, $phone, '');
+        $ret = $userDao->addUser(0, $name, $role, $phone, $phone, '无');
         return $ret;
     }
 

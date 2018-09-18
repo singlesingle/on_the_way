@@ -11,13 +11,13 @@
     <title>Login</title>
 
     <!--Core CSS -->
-    <link href="bs3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="/static/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style-responsive.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -33,17 +33,17 @@
 
 <div class="container">
 
-    <form class="form-signin" action="index.html">
+    <form class="form-signin">
         <h2 class="form-signin-heading">sign in now</h2>
         <div class="login-wrap">
             <div class="user-login-info">
-                <input type="text" class="form-control" placeholder="User ID" autofocus>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="text" id="phone" class="form-control" placeholder="Phone" autofocus>
+                <input type="password" id="password" class="form-control" placeholder="Password">
             </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
-            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-login btn-block" type="button" onclick="login();">Sign in</button>
 
             <div class="registration">
                 Don't have an account yet? Forgot Password?
@@ -62,8 +62,42 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 
 <!--Core js-->
-<script src="js/jquery.js"></script>
-<script src="bs3/js/bootstrap.min.js"></script>
+<script>
+ function login() {
+        phone = $('#phone').val().trim();
+        password = $('#password').val().trim();
+
+        if(phone == "") {
+            alert("Phone is null");
+            return;
+        }
+	if(password == "") {
+	    alert("Password is null");
+	}
+        $.ajax({
+            url: '/api/user/login',
+            dataType: "json",
+            type:"POST",
+            data:{
+                phone: phone,
+                pwd: password
+            },
+            success: function(jsonobject) {
+                if (jsonobject.error.returnCode == 0) {
+                    var url = '/page/user/list';
+                    window.location.href=url;
+                }else {
+                    alert(jsonobject.error.returnUserMessage);
+                }
+            },
+            error: function() {
+                alert('login exception, please contact administrator!');
+            },
+        });
+    }
+</script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/bs3/js/bootstrap.min.js"></script>
 
 </body>
 </html>
