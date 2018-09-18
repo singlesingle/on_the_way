@@ -35,11 +35,17 @@ class DocumentDao extends ActiveRecord{
     public function addDocument($customerId, $name, $rank, $profession, $type, $annex) {
         $curTime = date("Y-m-d H:i:s");
         $sql = sprintf('INSERT INTO %s (customer_id, name, rank, profession, type, annex, status, update_time, create_time)
-            values (%d, %s, %s, %s, %d, %s, %d, %s, %s)',
-            self::tableName(), $customerId, $name, $rank, $profession, $type, $annex, self::$status['正常'], $curTime, $curTime
+            values (%d, :name, :rank, :profession, %d, :annex, %d, :update_time, :create_time)',
+            self::tableName(), $customerId, $type, self::$status['正常']
         );
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
+        $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+        $stmt->bindParam(':rank', $rank, \PDO::PARAM_STR);
+        $stmt->bindParam(':profession', $profession, \PDO::PARAM_STR);
+        $stmt->bindParam(':annex', $annex, \PDO::PARAM_STR);
+        $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
+        $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
         $ret = $stmt->execute();
         return $ret;
     }

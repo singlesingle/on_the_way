@@ -19,14 +19,22 @@ class CaseDao extends ActiveRecord{
     //新增案例
     public function addCase($customerId, $title, $admissionSchool, $rank, $profession, $result, $entryTime, $graduatedSchool, $summary) {
         $curTime = date('Y-m-d H:i:s');
-        $sql = sprintf('INSERT INTO %s (customer_id, title, admission_school, rank, profession, result, entry_time,
+        $sql = sprintf("INSERT INTO %s (customer_id, title, admission_school, rank, profession, result, entry_time,
               graduated_school, summary, check_pass_time, update_time, create_time)
-            values (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-            self::tableName(), $customerId, $title, $admissionSchool, $rank, $profession, $result, $entryTime, $graduatedSchool,
-            $summary, '0000-00-00 00:00:00', $curTime, $curTime
+            values (%d, :title, :admission_school, :rank, :profession, %d, :entry_time, :graduated_school, :summary, '0000-00-00 00:00:00', :update_time, :create_time)",
+            self::tableName(), $customerId, $result
         );
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
+        $stmt->bindParam(':title', $title, \PDO::PARAM_STR);
+        $stmt->bindParam(':admission_school', $admissionSchool, \PDO::PARAM_STR);
+        $stmt->bindParam(':rank', $rank, \PDO::PARAM_STR);
+        $stmt->bindParam(':profession', $profession, \PDO::PARAM_STR);
+        $stmt->bindParam(':entry_time', $entryTime, \PDO::PARAM_STR);
+        $stmt->bindParam(':graduated_school', $graduatedSchool, \PDO::PARAM_STR);
+        $stmt->bindParam(':summary', $summary, \PDO::PARAM_STR);
+        $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
+        $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
         $ret = $stmt->execute();
         return $ret;
     }

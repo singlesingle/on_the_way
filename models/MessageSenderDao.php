@@ -30,10 +30,12 @@ class MessageSenderDao extends ActiveRecord{
      */
     public function addMessageSender($messageId, $acceptUserId) {
         $curTime = date('Y-m-d H:i:s');
-        $sql = sprintf('INSERT INTO %s (message_id, accept_user_id, is_read, update_time, create_time) values (%d, %d, %d, %s, %s)',
-            self::tableName(), $messageId, $acceptUserId, self::$isRead['未读'], $curTime, $curTime);
+        $sql = sprintf('INSERT INTO %s (message_id, accept_user_id, is_read, update_time, create_time) values (%d, %d, %d, :update_time, :create_time)',
+            self::tableName(), $messageId, $acceptUserId, self::$isRead['未读']);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
+        $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
+        $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
         $ret = $stmt->execute();
         return $ret;
     }
