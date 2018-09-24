@@ -84,7 +84,7 @@
             },
             success: function(jsonobject) {
                 if (jsonobject.error.returnCode == 0) {
-                    var url = '/page/user/list';
+                    var url = '/page/desktop/info';
                     window.location.href=url;
                 }else {
                     alert(jsonobject.error.returnUserMessage);

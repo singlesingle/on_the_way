@@ -18,6 +18,7 @@ class ErrorDict
     const G_NO_LOGIN            = 10003; // 用户未登录
     const G_SEARCH              = 10006; // 查询失败
     const G_UPDATE              = 10009; // 更新失败
+    const G_POWER               = 10010; // 无权限
 
     // 错误信息
     protected static $returnMessage = array(
@@ -31,6 +32,7 @@ class ErrorDict
         self::G_NO_LOGIN           => '用户未登录',
         self::G_SEARCH             => '查询失败',
         self::G_UPDATE             => '更新失败',
+        self::G_POWER              => '无权限',
     );
 
     // 返回给用户的错误信息
@@ -45,6 +47,7 @@ class ErrorDict
         self::G_NO_LOGIN           => '未登录或登录过期，请重新登录后再试',
         self::G_SEARCH             => '查询失败，请稍后重试',
         self::G_UPDATE             => '更新失败，请稍后重试',
+        self::G_POWER              => '无权限',
     );
 
     protected static $defaultMsg        = '未知错误';

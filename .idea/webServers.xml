@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0bf9ba3e-9820-498e-96e1-eecb4006be1a" name="on_the_way" url="http://154.8.211.123">
+        <fileTransfer host="154.8.211.123" port="22" rootFolder="/data0/www/htdocs/on_the_way" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

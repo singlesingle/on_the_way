@@ -6,8 +6,13 @@ return [
     'page/desktop/info' => 'page/desktop/info',
     'page/user/list' => 'page/user/list',
     'page/user/login' => 'page/user/login',
+    'page/user/info' => 'page/user/info',
     'page/case/my' => 'page/case/my',
     'page/case/inner' => 'page/case/inner',
+    'page/customer/list' => 'page/customer/list',
+    'page/customer/info' => 'page/customer/info',
+    'page/document/list' => 'page/document/list',
+    'page/message/list' => 'page/message/list',
     /////// page url rules end
 
     /////// api url rules begin
@@ -17,6 +22,19 @@ return [
     'api/user/enableuser' => 'api/user/enableuser',
     'api/user/disuser' => 'api/user/disuser',
     'api/user/transfer' => 'api/user/transfer',
+    'api/user/manager' => 'api/user/manager',
+    'api/user/update' => 'api/user/update',
+    'api/user/pwd' => 'api/user/pwd',
+    'api/case/add' => 'api/case/add',
+    'api/case/update' => 'api/case/update',
+    'api/customer/add' => 'api/customer/add',
+    'api/customer/update' => 'api/customer/update',
+    'api/customer/list' => 'api/customer/list',
+    'api/document/add' => 'api/document/add',
+    'api/message/add' => 'api/message/add',
+    'api/message/release' => 'api/message/release',
+    'api/message/delete' => 'api/message/delete',
+    'api/message/mylist' => 'api/message/mylist',
 
     /////// api url rules end
 

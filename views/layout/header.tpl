@@ -32,13 +32,60 @@
         <!--logo start-->
         <div class="brand">
 
-            <a href="/page/welcome/index.html" class="logo">
+            <a href="/page/desktop/info" class="logo">
                 在途客户管理系统
             </a>
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars"></div>
             </div>
         </div>
+
+        <div class="nav notify-row" id="top_menu">
+            <!--  notification start -->
+            <ul class="nav top-menu">
+                <!-- notification dropdown start-->
+                <li id="header_notification_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge bg-warning">4</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <li>
+                            <p>Notifications</p>
+                        </li>
+                        <li>
+                            <div class="alert alert-info clearfix">
+                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                <div class="noti-info">
+                                    <a href="#"> Server #1 overloaded.</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="alert alert-danger clearfix">
+                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                <div class="noti-info">
+                                    <a href="#"> Server #2 overloaded.</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="alert alert-success clearfix">
+                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                <div class="noti-info">
+                                    <a href="#"> Server #3 overloaded.</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </li>
+                <!-- notification dropdown end -->
+            </ul>
+            <!--  notification end -->
+        </div>
+
         <!--logo end-->
         <div class="top-nav clearfix">
             <!--search & user info start-->
@@ -46,13 +93,13 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="{$loginuser}" src="{if $loginphoto eq ".jpg.29x29.jpg"}/static/img/avatar1_small.jpg{else}{$loginphoto}{/if}">
-                    <span class="username">{$logincnname}</span>
+                    <img alt="{$name}" src="/static/img/avatar1_small.jpg">
+                    <span class="username">{$name}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
-                    <li><a href="{$uic_addr}/me/profile"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="{$uic_addr}/me/logout"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><a href="/page/user/info"><i class="fa fa-suitcase"></i>个人信息</a></li>
+                    <li><a href="/page/user/login"><i class="fa fa-key"></i> 退出登陆</a></li>
                 </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -67,17 +114,23 @@
             <!-- sidebar menu start-->
             <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a {if $active_page eq "desktop"}class="active"{/if} href="/page/desktop/info">
-                            <i class="fa fa-bar-chart-o"></i>
-                            <span>我的办公桌</span>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="active">
+                            <i class="fa fa-home"></i>
+                            <span>首页</span>
                         </a>
+                        <ul class="sub">
+                            <li {if $page_topo eq "desktop"}class="active"{/if}><a href="/page/desktop/info">我的办公桌</a></li>
+                        </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="/page/cron/project" class="{if $page_topo eq "cron"}active{/if}">
-                            <i class="fa fa-eye"></i>
-                            <span>在办客户管理</span>
+                        <a href="javascript:;" class="active">
+                            <i class="fa fa-users"></i>
+                            <span>CRM</span>
                         </a>
+                        <ul class="sub">
+                            <li {if $page_topo eq "customer_admin"}class="active"{/if}><a href="/page/customer/list">在办客户管理</a></li>
+                        </ul>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;" class="active">
@@ -85,24 +138,30 @@
                             <span>案例库</span>
                         </a>
                         <ul class="sub">
-                            <li {if $active_page eq "monitorlist"}class="active"{/if}><a href="/page/monitorportal/monitorlist">内部案例库</a></li>
-                            <li {if $active_page eq "monitorlist"}class="active"{/if}><a href="/page/monitorportal/monitorlist">我的案例</a></li>
+                            <li {if $active_page eq "inner"}class="active"{/if}><a href="/page/case/inner">内部案例库</a></li>
+                            <li {if $active_page eq "my"}class="active"{/if}><a href="/page/case/my">我的案例</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
                         <a href="javascript:;" class="active">
-                            <i class="fa fa-fire"></i>
+                            <i class="fa fa-file-text"></i>
                             <span>文书库</span>
                         </a>
                         <ul class="sub">
-                            <li {if $active_page eq "monitorlist"}class="active"{/if}><a href="/page/monitorportal/monitorlist">文书范例</a></li>
+                            <li {if $active_page eq "document_list"}class="active"{/if}><a href="/page/document/list">文书范例</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="/page/user/list" class="{if $page_topo eq "user_admin"}active{/if}">
-                            <i class="fa fa-eye"></i>
-                            <span>用户管理</span>
+                        <a href="javascript:;" class="active">
+                            <i class="fa fa-sitemap"></i>
+                            <span>管理</span>
                         </a>
+                        <ul class="sub">
+                            <li {if $page_topo eq "user_admin"}class="active"{/if}><a href="/page/user/list">用户</a></li>
+                        </ul>
+                        <ul class="sub">
+                            <li {if $page_topo eq "message_admin"}class="active"{/if}><a href="/page/message/list">消息</a></li>
+                        </ul>
                     </li>
 
                 </ul>

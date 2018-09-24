@@ -225,4 +225,94 @@ class UserController extends BaseController
         }
         return $ret;
     }
+
+    //总监列表
+    public function actionManager() {
+        $this->defineMethod = 'GET';
+        $userService = new UserService();
+        $ret = $userService->managerList();
+        $list = [];
+        foreach ($ret as $one) {
+            $manager = [];
+            $manager['id'] = $one['id'];
+            $manager['text'] = $one['name'];
+            $list[] = $manager;
+        }
+        $data['results'] = $list;
+        $error = ErrorDict::getError(ErrorDict::SUCCESS);
+        $ret = $this->outputJson($data, $error);
+        return $ret;
+    }
+
+    //更新用户信息
+    public function actionUpdate()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'user_id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'name' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'phone' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'introduce' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $userId = $this->getParam('user_id', '');
+        $name = $this->getParam('name', '');
+        $phone = $this->getParam('phone', '');
+        $introduce = $this->getParam('introduce', '');
+        $userService = new UserService();
+        $ret = $userService->updateUser($userId, $name, $phone, $introduce, '');
+        $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
+    }
+
+    //更新密码
+    public function actionPwd()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'pwd' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $pwd = $this->getParam('pwd', '');
+        $userId = $this->data['user_id'];
+        $userService = new UserService();
+        $ret = $userService->updateUser($userId, '', '', '', $pwd);
+        $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
+    }
 }

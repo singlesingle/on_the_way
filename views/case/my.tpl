@@ -2,18 +2,8 @@
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/jquery.dataTables.js"></script>
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/dataTables.bootstrap.js"></script>
 <script src="/static/js/select2/select2.js"></script>
-<link href="/static/js/select2/select2.css" rel="stylesheet">
-<style>
-    pre { outline: 0px solid #f0f0f0; padding: 5px; margin: 5px; background-color:#ffffff; color: #9b9b9b
-    }
-    .row {
-        margin-left: 0px;
-    }
-    .form-control {
-        border: 1px solid #9b9b9b;
-        color: #1a2226;
-    }
-</style>
+<link href="/static/select2/select2.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/select2-bootstrap.css" rel="stylesheet" type="text/css" />
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
@@ -49,7 +39,9 @@
                             <td>{$one['close_case_status']}</td>
                             <td>{$one['summary']}</td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-info" onclick="enable_user('{$one['id']}')">修改</a>&nbsp&nbsp
+                                <a type="button" class="btn btn-sm btn-danger" onclick="">预览</a>
+                                <a type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#update_case_portal"
+                                   onclick="update_case_page('{$one['id']}','{$one['title']}','{$one['admission_school']}','{$one['rank']}','{$one['profession']}','{$one['result']}','{$one['entry_time']}','{$one['graduated_school']}','{$one['summary']}')">编辑</a>&nbsp&nbsp
                             </td>
                         </tr>
                     {/foreach}
@@ -73,39 +65,84 @@
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">用户名：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="service_name">
+                        <label class="col-sm-3 control-label">客户：</label>
+                        <div id="add_customer_id" class="col-sm-6">
+                            <input type="hidden" class="select2_box" id="customer_id" style="width:260px;">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">手机号：</label>
+                        <label class="col-sm-3 control-label">标题：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
+                            <input type="text" class="form-control" id="add_title">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">岗位：</label>
+                        <label class="col-sm-3 control-label">申请学校：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
+                            <input type="text" class="form-control" id="add_admission_school">
                         </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">学校排名：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="add_rank">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">录取专业：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="add_profession">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">录取结果：</label>
+                        <select id="add_result" class="col-sm-6">
+                            <option value=""></option>
+                            <option value="1">录取</option>
+                            <option value="2">未录取</option>
+                        </select>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">入读时间：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="add_entry_time">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">就读/毕业院校：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="add_graduated_school">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">干货总结：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="add_summary">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" onclick="create_user()">
-                    创建
+                <button type="button" class="btn btn-primary" onclick="create_case()">
+                    新增
                 </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 
-<div class="modal fade" id="transfer_position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="update_case_portal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
@@ -118,32 +155,72 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
+                    <input type="hidden" class="form-control" id="update_case_id">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">用户名：</label>
+                        <label class="col-sm-3 control-label">标题：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="user_name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">原上级领导：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
+                            <input type="text" class="form-control" id="update_title">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">新上级领导：</label>
+                        <label class="col-sm-3 control-label">申请学校：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
+                            <input type="text" class="form-control" id="update_admission_school">
                         </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">学校排名：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="update_rank">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">录取专业：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="update_profession">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">录取结果：</label>
+                        <select id="update_result" class="col-sm-6">
+                            <option value=""></option>
+                            <option value="1">录取</option>
+                            <option value="2">未录取</option>
+                        </select>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">入读时间：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="update_entry_time">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">就读/毕业院校：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="update_graduated_school">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">干货总结：</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="update_summary">
+                        </div>
+                        <span class="text-danger mt5 fl">*</span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" onclick="transfer_user()">
-                    确认
+                <button type="button" class="btn btn-primary" onclick="update_case()">
+                    修改
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -151,6 +228,23 @@
 </div>
 
 <script type="text/javascript">
+    $("#add_customer_id .select2_box").select2({
+        ajax: {
+            url: "/api/customer/list",
+            dataType: "json",
+            data: function(params){
+                return {
+                    // city_name : params//此处是最终传递给API的参数
+                }
+            },
+            //对返回的数据进行处理
+            results: function(data){
+                var json = eval(data);
+                return json.data;
+            }
+        }
+    });
+
     $('#member_list').DataTable({
         "displayLength": 25,
         "order": [],
@@ -163,134 +257,97 @@
         }
     });
 
-    function create_user() {
-        var name = '';
-        var phone = '';
-        var role = '';
-        if(confirm('确定要创建此用户吗?')) {
+    function create_case() {
+        var customer_id = $("#customer_id").val();
+        var title = $('#add_title').val().trim();
+        var admission_school = $('#add_admission_school').val().trim();
+        var rank = $('#add_rank').val().trim();
+        var profession = $('#add_profession').val().trim();
+        var result = $('#add_result').val().trim();
+        var entry_time = $('#add_entry_time').val().trim();
+        var graduated_school = $('#add_graduated_school').val().trim();
+        var summary = $('#add_summary').val().trim();
+        if(confirm('确定要新增此案例吗?')) {
             $.ajax({
-                url: '/api/user/adduser',
+                url: '/api/case/add',
                 type: "POST",
                 data: {
-                    'name': name,
-                    'phone': phone,
-                    'role': role,
+                    'customer_id': customer_id,
+                    'title': title,
+                    'admission_school': admission_school,
+                    'rank': rank,
+                    'profession': profession,
+                    'result': result,
+                    'entry_time': entry_time,
+                    'graduated_school': graduated_school,
+                    'summary': summary,
                 },
                 dataType: "json",
                 async: false,
                 success: function (data) {
                     if (data.error.returnCode == 0) {
-                        alert('创建用户成功！');
+                        alert('创建案例成功！');
                         window.location.reload();
                     }else {
-                        alert('创建用户失败！');
+                        alert('创建案例失败！');
                     }
                 },
                 error: function (data) {
-                    alert('创建用户异常！');
+                    alert('创建案例异常！');
                 }
             });
         }
     }
-
-    function disable_user(id) {
-        if(confirm('确定要禁用此用户吗?')) {
-            $.ajax({
-                url: '/api/user/disuser',
-                type: "POST",
-                data: {
-                    'user_id': id,
-                },
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    if (data.error.returnCode == 0) {
-                        alert('禁用成功！');
-                        window.location.reload();
-                    }else {
-                        alert('禁用失败！');
-                    }
-                },
-                error: function (data) {
-                    alert('禁用异常！');
-                }
-            });
-        }
+    
+    function update_case_page(id, title, admission_school, rank, profession, result, entry_time, graduated_school, summary) {
+        $('#update_case_id').val(id);
+        $('#update_title').val(title);
+        $('#update_admission_school').val(admission_school);
+        $('#update_rank').val(rank);
+        $('#update_profession').val(profession);
+        $('#update_result').val(result);
+        $('#update_entry_time').val(entry_time);
+        $('#update_graduated_school').val(graduated_school);
+        $('#update_summary').val(summary);
     }
 
-    function enable_user(id) {
-        if(confirm('确定要启用此用户吗?')) {
+    function update_case() {
+        var case_id = $('#update_case_id').val().trim();
+        var title = $('#update_title').val().trim();
+        var admission_school = $('#update_admission_school').val().trim();
+        var rank = $('#update_rank').val().trim();
+        var profession = $('#update_profession').val().trim();
+        var result = $('#update_result').val().trim();
+        var entry_time = $('#update_entry_time').val().trim();
+        var graduated_school = $('#update_graduated_school').val().trim();
+        var summary = $('#update_summary').val().trim();
+        if(confirm('确定要修改此案例吗?')) {
             $.ajax({
-                url: '/api/user/disuser',
+                url: '/api/case/update',
                 type: "POST",
                 data: {
-                    'user_id': id,
+                    'case_id': case_id,
+                    'title': title,
+                    'admission_school': admission_school,
+                    'rank': rank,
+                    'profession': profession,
+                    'result': result,
+                    'entry_time': entry_time,
+                    'graduated_school': graduated_school,
+                    'summary': summary,
                 },
                 dataType: "json",
                 async: false,
                 success: function (data) {
                     if (data.error.returnCode == 0) {
-                        alert('启用成功！');
+                        alert('修改案例成功！');
                         window.location.reload();
                     }else {
-                        alert('启用失败！');
+                        alert('修改案例失败！');
                     }
                 },
                 error: function (data) {
-                    alert('启用异常！');
-                }
-            });
-        }
-    }
-
-    function delete_user(id) {
-        if(confirm('确定要删除此用户吗?')) {
-            $.ajax({
-                url: '/api/user/deleteuser',
-                type: "POST",
-                data: {
-                    'user_id': id,
-                },
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    if (data.error.returnCode == 0) {
-                        alert('删除成功！');
-                        window.location.reload();
-                    }else {
-                        alert('删除失败！');
-                    }
-                },
-                error: function (data) {
-                    alert('删除异常！');
-                }
-            });
-        }
-    }
-
-    function transfer_user() {
-        user_id = '';
-        leader_user_id = '';
-        if(confirm('确定要将此用户转岗吗?')) {
-            $.ajax({
-                url: '/api/user/transfer',
-                type: "POST",
-                data: {
-                    'user_id': user_id,
-                    'leader_user_id': leader_user_id,
-                },
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    if (data.error.returnCode == 0) {
-                        alert('转岗成功！');
-                        window.location.reload();
-                    }else {
-                        alert('转岗失败！');
-                    }
-                },
-                error: function (data) {
-                    alert('转岗异常！');
+                    alert('修改案例异常！');
                 }
             });
         }

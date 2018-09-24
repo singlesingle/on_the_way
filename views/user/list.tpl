@@ -2,7 +2,8 @@
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/jquery.dataTables.js"></script>
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/dataTables.bootstrap.js"></script>
 <script src="/static/js/select2/select2.js"></script>
-<link href="/static/js/select2/select2.css" rel="stylesheet">
+<link href="/static/select2/select2.css" rel="stylesheet" type="text/css" />
+<link href="/static/css/select2-bootstrap.css" rel="stylesheet" type="text/css" />
 <style>
     pre { outline: 0px solid #f0f0f0; padding: 5px; margin: 5px; background-color:#ffffff; color: #9b9b9b
     }
@@ -51,8 +52,9 @@
                                 {if $one['role'] != '管理员'}
                                 <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">删除</a>
                                 {/if}
-				{if $one['role'] != '管理员' and $one['role'] == '文案人员'}
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transfer_position">调岗</a>&nbsp
+				                {if $one['role'] != '管理员' and $one['role'] == '文案人员'}
+                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transfer_position"
+                                       onclick="transfer_page('{$one['id']}','{$one['name']}')">调岗</a>&nbsp
                                 {/if}
                             </td>
                         </tr>
@@ -86,15 +88,18 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">手机号：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="add_phone" placeholder="多个域名以“,”分割">
+                            <input type="text" class="form-control" id="add_phone">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">岗位：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="add_role">
-                        </div>
+                        <select id="add_role" class="col-sm-6">
+                            <option value=""></option>
+                            <option value="1">管理员</option>
+                            <option value="2">总监</option>
+                            <option value="3">文案人员</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -125,20 +130,14 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">用户名：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="user_name">
+                            <input type="text" disabled="disabled" class="form-control" id="user_name">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">原上级领导：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
-                        </div>
-                        <span class="text-danger mt5 fl">*</span>
-                    </div>
+                    <input type="hidden" id="user_id">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">新上级领导：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
+                        <div id="add_new_leader" class="col-sm-6">
+                            <input type="hidden" class="select2_box" id="new_leader" style="width:260px;">
                         </div>
                     </div>
                 </form>
@@ -168,9 +167,9 @@
     });
 
     function create_user() {
-        var name = $('#add_user_name').val().trim();;
-        var phone = $('#add_phone').val().trim();;
-        var role = $('#add_role').val().trim();;
+        var name = $('#add_user_name').val().trim();
+        var phone = $('#add_phone').val().trim();
+        var role = $('#add_role').val().trim();
         if(confirm('确定要创建此用户吗?')) {
             $.ajax({
                 url: '/api/user/adduser',
@@ -272,9 +271,30 @@
         }
     }
 
+    $("#add_new_leader .select2_box").select2({
+        ajax: {
+            url: "/api/user/manager",
+            dataType: "json",
+            data: function(params){
+                return {
+                }
+            },
+            //对返回的数据进行处理
+            results: function(data){
+                var json = eval(data);
+                return json.data;
+            }
+        }
+    });
+
+    function transfer_page(user_id, user_name) {
+        $('#user_id').val(user_id);
+        $('#user_name').val(user_name);
+    }
+
     function transfer_user() {
-        user_id = '';
-        leader_user_id = '';
+        var user_id = $('#user_id').val().trim();
+        var leader_user_id = $('#new_leader').val().trim();
         if(confirm('确定要将此用户转岗吗?')) {
             $.ajax({
                 url: '/api/user/transfer',

@@ -276,7 +276,7 @@ ul.sidebar-menu li a {
 }
 ul.sidebar-menu li a.active,ul.sidebar-menu li a:hover,ul.sidebar-menu li a:focus {
     background:#28282e;
-    color:#1FB5AD;
+    /*color:#1FB5AD;*/
     display:block;
     -webkit-transition:all 0.3s ease;
     -moz-transition:all 0.3s ease;
@@ -292,7 +292,7 @@ ul.sidebar-menu li a:hover i,ul.sidebar-menu li a:focus i {
     color:#1fb5ad;
 }
 ul.sidebar-menu li a.active i {
-    color:#1fb5ad;
+    /*color:#1fb5ad;*/
 }
 .mail-info,.mail-info:hover {
     margin:-3px 6px 0 0;

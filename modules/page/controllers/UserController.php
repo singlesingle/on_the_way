@@ -30,5 +30,18 @@ class UserController extends BaseController
         $this->data['user_list'] = $userList;
         return $this->render('list.tpl', $this->data);
     }
+
+    //用户信息
+    public function actionInfo()
+    {
+        $this->defineMethod = 'GET';
+        $userId = $this->data['user_id'];
+        $userService = new UserService();
+        $userInfo = $userService->userInfoById($userId);
+        $this->data['page_topo'] = 'user_admin';
+        $this->data['active_page'] = 'info';
+        $this->data['user_info'] = $userInfo;
+        return $this->render('info.tpl', $this->data);
+    }
     
 }

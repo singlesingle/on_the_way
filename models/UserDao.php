@@ -45,7 +45,7 @@ class UserDao extends ActiveRecord{
      * @return int
      * @throws \yii\db\Exception
      */
-    public function addUser($fid, $name, $role, $pwd, $phone, $introduce) {
+    public function addUser($fid, $name, $role, $phone, $pwd, $introduce) {
         $sql = sprintf('INSERT INTO %s (fid, name, role, pwd, phone, introduce) values (:fid, :name, :role, :pwd, :phone, :introduce)',
             self::tableName()
         );
@@ -61,29 +61,27 @@ class UserDao extends ActiveRecord{
         return $ret;
     }
 
-    /**
-     * 更新用户信息
-     * @param $id
-     * @param $name
-     * @param $pwd
-     * @param $phone
-     * @param $introduce
-     * @return bool|int
-     * @throws \yii\db\Exception
-     */
-    public function updateUserInfo($id, $name, $pwd, $phone, $introduce) {
+    //更新用户信息
+    public function updateUserInfo($id, $name, $phone, $pwd, $introduce, $status = -1, $role = -1) {
         $update_filed = [];
         if ($name != '') {
-            $update_filed[] = 'name = ' . $name;
+
+            $update_filed[] = 'name = :name';
         }
         if ($pwd != '') {
-            $update_filed[] = 'pwd = ' . $pwd;
+            $update_filed[] = 'pwd = :pwd';
         }
         if ($phone != '') {
-            $update_filed[] = 'phone = ' . $phone;
+            $update_filed[] = 'phone = :phone';
         }
         if ($introduce != '') {
-            $update_filed[] = 'introduce = ' . $introduce;
+            $update_filed[] = 'introduce = :introduce';
+        }
+        if ($status != -1) {
+            $update_filed[] = 'status = ' . $status;
+        }
+        if ($role != -1) {
+            $update_filed[] = 'role = ' . $role;
         }
         if (count($update_filed) == 0) {
             return false;
@@ -92,6 +90,18 @@ class UserDao extends ActiveRecord{
             self::tableName(), implode(',', $update_filed), $id);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
+        if ($name != '') {
+            $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+        }
+        if ($pwd != '') {
+            $stmt->bindParam(':pwd', $pwd, \PDO::PARAM_STR);
+        }
+        if ($phone != '') {
+            $stmt->bindParam(':phone', $phone, \PDO::PARAM_STR);
+        }
+        if ($introduce != '') {
+            $stmt->bindParam(':introduce', $introduce, \PDO::PARAM_STR);
+        }
         $ret = $stmt->execute();
         return $ret;
     }
@@ -119,11 +129,33 @@ class UserDao extends ActiveRecord{
         return $ret;
     }
 
+    //根据手机号查询用户信息(包括删除的)
+    public function queryAllByPhone($phone) {
+        $sql=sprintf('SELECT * FROM %s WHERE phone = :phone', self::tableName());
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':phone', $phone, \PDO::PARAM_STR);
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
+
     //查询用户列表
     public function userList() {
         $sql=sprintf('SELECT * FROM %s WHERE status != %d', self::tableName(), self::$status['删除']);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
+        $stmt->execute();
+        $ret = $stmt->queryAll();
+        return $ret;
+    }
+
+    //查询上级为某用户的列表
+    public function queryByLeader($fid) {
+        $sql=sprintf('SELECT * FROM %s WHERE status != %d AND fid = :fid', self::tableName(), self::$status['删除']);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':fid', $fid, \PDO::PARAM_INT);
         $stmt->execute();
         $ret = $stmt->queryAll();
         return $ret;
@@ -176,6 +208,17 @@ class UserDao extends ActiveRecord{
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //查询总监列表
+    public function managerList() {
+        $sql=sprintf('SELECT * FROM %s WHERE status != %d AND role = :role', self::tableName(), self::$status['删除']);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':role', self::$role['总监'], \PDO::PARAM_INT);
+        $stmt->execute();
+        $ret = $stmt->queryAll();
         return $ret;
     }
 }

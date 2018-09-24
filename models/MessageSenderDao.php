@@ -90,4 +90,15 @@ class MessageSenderDao extends ActiveRecord{
         $ret = $stmt->queryOne();
         return $ret;
     }
+
+    //查询用户消息列表
+    public function queryUserMessageList($userId, $iDisplayStart, $iDisplayLength) {
+        $sql=sprintf('SELECT * FROM %s as a INNER JOIN %s as b ON a.message_id = b.id WHERE accept_user_id = %d and status != %d limit %d,%d',
+            self::tableName(), 'message', $userId, MessageDao::$status['删除'], $iDisplayStart, $iDisplayLength);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->execute();
+        $ret = $stmt->queryAll();
+        return $ret;
+    }
 }

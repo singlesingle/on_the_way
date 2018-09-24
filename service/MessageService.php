@@ -11,47 +11,63 @@ use app\models\UserDao;
 class MessageService
 {
     //发布消息
-    public function release($title, $content, $userId)
+    public function add($title, $content, $userId)
     {
         $messageDao = new MessageDao();
-        $messageSenderDao = new MessageSenderDao();
-        //todo增加事务机制
-        $messageId = $messageDao->addMessage(MessageDao::$type['系统消息'], $title, $content, $userId);
-        $userDao = new UserDao();
-        $userList = $userDao->userList();
-        foreach ($userList as $user) {
-            $messageSenderDao->addMessageSender($messageId, $user['id']);
-        }
-        return true;
+        $ret = $messageDao->addMessage(MessageDao::$type['系统消息'], $title, $content, $userId);
+        return $ret;
     }
+
+    //发布消息
+    public function release($id)
+    {
+        $messageDao = new MessageDao();
+        $info = $messageDao->queryById($id);
+        //todo 增加事务
+        if ($info && $info['status'] == MessageDao::$status['未发布'] && $info['type'] == MessageDao::$type['系统消息']) {
+            $userDao = new UserDao();
+            $messageSenderDao = new MessageSenderDao();
+            $userList = $userDao->userList();
+            foreach ($userList as $user) {
+                $messageSenderDao->addMessageSender($id, $user['id']);
+            }
+            $ret = $messageDao->updateStatusById($id, MessageDao::$status['发布']);
+            if ($ret)
+                return true;
+            else
+                return false;
+        }else
+            return false;
+    }
+
+    //删除消息
+    public function delete($id)
+    {
+        $messageDao = new MessageDao();
+        $ret = $messageDao->deleteById($id);
+        return $ret;
+    }
+
 
     //系统消息列表
     public function systemMessageList()
     {
         $messageDao = new MessageDao();
         $list = $messageDao->systemMessageList();
+        foreach ($list as &$one) {
+            if ($one['status'] == MessageDao::$status['发布'])
+                $one['status'] = '是';
+            else
+                $one['status'] = '否';
+        }
         return $list;
     }
 
     //我的消息列表
-    public function myMessage($userId)
+    public function myMessage($userId, $iDisplayStart, $iDisplayLength)
     {
         $messageSenderDao = new MessageSenderDao();
-    }
-
-    //内部案例列表
-    public function innerList()
-    {
-        $caseDao = new CaseDao();
-        $caseList = $caseDao->queryAllCase();
-        return $caseList;
-    }
-
-    //删除案例
-    public function deleteCase($id)
-    {
-        $caseDao = new CaseDao();
-        $deleteRet = $caseDao->deleteCase($id);
-        return $deleteRet;
+        $messageList = $messageSenderDao->queryUserMessageList($userId, $iDisplayStart, $iDisplayLength);
+        return $messageList;
     }
 }

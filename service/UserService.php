@@ -20,7 +20,7 @@ class UserService
         $managerList = [];
         foreach ($userList as $user) {
             if ($user['role'] == UserDao::$role['总监']) {
-                $managerList[$user['id']] = $user;
+                $managerList[$user['id']] = $user['name'];
             }
         }
         foreach ($userList as &$user) {
@@ -31,9 +31,9 @@ class UserService
                 $user['status'] = '正常';
             }
             if ($user['role'] == UserDao::$role['文案人员']) {
-                $user['leader'] = isset($managerList[$userp['id']]) ? $managerList[$user['id']]['name'] : '未知';
+                $user['leader'] = isset($managerList[$user['fid']]) ? $managerList[$user['fid']] : '';
             }
-	    $user['role'] = UserDao::$role_name[$user['role']];
+	        $user['role'] = UserDao::$role_name[$user['role']];
         }
         return $userList;
     }
@@ -41,9 +41,18 @@ class UserService
     //创建用户
     public function addUser($name, $phone, $role)
     {
-	$pwd = Util::gen_pwd($phone);
+	    $pwd = Util::gen_pwd($phone);
         $userDao = new UserDao();
-        $ret = $userDao->addUser(0, $name, $role, $phone, $pwd, '无');
+        $userInfo = $userDao->queryAllByPhone($phone);
+        if ($userInfo) {
+            if ($userInfo['status'] == UserDao::$status['删除']) {
+                $ret = $userDao->updateUserInfo($userInfo['id'], $name, $phone, $pwd, '', UserDao::$status['正常'], $role);
+            }else {
+                return false;
+            }
+        }else{
+            $ret = $userDao->addUser(0, $name, $role, $phone, $pwd, '无');
+        }
         return $ret;
     }
 
@@ -96,6 +105,43 @@ class UserService
     {
         $userDao = new UserDao();
         $ret = $userDao->countError($id);
+        return $ret;
+    }
+
+    //总监列表
+    public function managerList()
+    {
+        $userDao = new UserDao();
+        $ret = $userDao->managerList();
+        return $ret;
+    }
+
+    //查询用户信息
+    public function userInfoById($userId)
+    {
+        $userDao = new UserDao();
+        $userInfo = $userDao->queryById($userId);
+        if ($userInfo['role'] == UserDao::$role['文案人员']) {
+            $userList = $userDao->managerList();
+            $managerList = [];
+            foreach ($userList as $user) {
+                $managerList[$user['id']] = $user['name'];
+            }
+            $userInfo['leader'] = isset($managerList[$userInfo['fid']]) ? $managerList[$userInfo['fid']] : '';
+        }
+
+        $userInfo['role'] = isset(UserDao::$role_name[$userInfo['role']]) ? UserDao::$role_name[$userInfo['role']] : '';
+        return $userInfo;
+    }
+
+    //更新用户信息
+    public function updateUser($id, $name, $phone, $introduce, $pwd)
+    {
+        if ($pwd != '') {
+            $pwd = Util::gen_pwd($pwd);
+        }
+        $userDao = new UserDao();
+        $ret = $userDao->updateUserInfo($id, $name, $phone, $pwd, $introduce);
         return $ret;
     }
 }

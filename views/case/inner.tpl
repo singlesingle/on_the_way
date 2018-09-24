@@ -3,22 +3,10 @@
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/dataTables.bootstrap.js"></script>
 <script src="/static/js/select2/select2.js"></script>
 <link href="/static/js/select2/select2.css" rel="stylesheet">
-<style>
-    pre { outline: 0px solid #f0f0f0; padding: 5px; margin: 5px; background-color:#ffffff; color: #9b9b9b
-    }
-    .row {
-        margin-left: 0px;
-    }
-    .form-control {
-        border: 1px solid #9b9b9b;
-        color: #1a2226;
-    }
-</style>
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
             内部案例库
-            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">创建</a>
         </header>
         <div class="panel-body">
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
@@ -54,7 +42,7 @@
                             <td>{$one['check_pass_time']}</td>
 
                             <td>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">查看</a>
+                                <a type="button" class="btn btn-sm btn-danger" onclick="">查看</a>
                             </td>
                         </tr>
                     {/foreach}

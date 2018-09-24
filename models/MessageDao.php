@@ -17,8 +17,9 @@ class MessageDao extends ActiveRecord{
     }
 
     public static $status = [
-        "正常" => 0,
-        "删除" => 1
+        "未发布" => 0,
+        "删除" => 1,
+        "发布" => 2
     ];
 
     public static $type = [
@@ -39,19 +40,48 @@ class MessageDao extends ActiveRecord{
         $stmt->bindParam(':content', $content, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
-        $stmt->execute();
-        $id = $stmt->lastInsertId();
-        return $id;
+        $ret = $stmt->execute();
+        return $ret;
     }
 
     //系统消息列表
     public function systemMessageList() {
-        $sql=sprintf('SELECT * FROM %s WHERE status = :status', self::tableName());
+        $sql=sprintf('SELECT * FROM %s WHERE status != :status AND type = %d', self::tableName(), self::$type['系统消息']);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
-        $stmt->bindParam(':status', self::$status['正常'], \PDO::PARAM_INT);
+        $stmt->bindParam(':status', self::$status['删除'], \PDO::PARAM_INT);
         $stmt->execute();
         $ret = $stmt->queryAll();
+        return $ret;
+    }
+
+    //系统消息列表
+    public function queryById($id) {
+        $sql=sprintf('SELECT * FROM %s WHERE status != :status AND id = %d', self::tableName(), $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':status', self::$status['删除'], \PDO::PARAM_INT);
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
+
+    //删除消息
+    public function deleteById($id) {
+        $sql=sprintf('UPDATE %s SET status = :status WHERE id = %d', self::tableName(), $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':status', self::$status['删除'], \PDO::PARAM_INT);
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //更新消息状态
+    public function updateStatusById($id, $status) {
+        $sql=sprintf('UPDATE %s SET status = %d WHERE id = %d', self::tableName(), $status, $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
         return $ret;
     }
 }
