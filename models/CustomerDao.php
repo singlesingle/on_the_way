@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\classes\Log;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -21,6 +22,7 @@ class CustomerDao extends ActiveRecord{
         "删除" => 1,
     ];
 
+    //废弃
     public static $progress = [
         1 => '已签约',
     ];
@@ -29,6 +31,7 @@ class CustomerDao extends ActiveRecord{
         '已签约' => 1,
     ];
 
+    //废弃
     public static $bindWechat = [
         0 => '未绑定',
         1 => '已绑定',
@@ -40,47 +43,94 @@ class CustomerDao extends ActiveRecord{
     ];
 
     public static $serviceType = [
-        1 => '全程服务',
-        2 => '签证',
+        1 => '单文书',
+        2 => '全程服务',
+        3 => '单申请',
+        4 => '签证',
     ];
 
     public static $serviceTypeDict = [
-        '全程服务' => 1,
-        '签证' => 2,
+        '单文书'   => 1,
+        '全程服务' => 2,
+        '单申请'   => 3,
+        '签证'     => 4,
     ];
 
+    //废弃
     public static $selectCheck = [
-        1 => '已确认',
+        1 => '已提交',
+        2 => '已通过',
+        3 => '已确认',
     ];
 
     public static $selectCheckDict = [
-        '已确认' => 1,
+        '已提交' => 1,
+        '已通过' => 2,
+        '已确认' => 3,
+    ];
+
+    //废弃
+    public static $applyStage = [
+        0 => "待投递",
+        1 => "申请材料递出",
+        2 => "投递跟进",
+        3 => "基础材料齐全",
+        4 => "录取结果跟进",
+        5 => "已拒录",
+        6 => "已录取",
+        7 => "已放弃",
+        8 => "确认入读",
+    ];
+
+    public static $applyStageDict = [
+        "待投递" => 0,
+        "申请材料递出" => 1,
+        "投递跟进" => 2,
+        "基础材料齐全" => 3,
+        "录取结果跟进" => 4,
+        "已拒录" => 5,
+        "已录取" => 6,
+        "已放弃" => 7,
+        "确认入读" => 8,
     ];
 
     public static $applyStatus = [
-        0 => "申请中",
+        0 => "未开始",
+        1 => "申请中",
+        2 => "已完成",
     ];
 
     public static $applyStatusDict = [
-        "申请中" => 0,
+        "未开始" => 0,
+        "申请中" => 1,
+        "已完成" => 2,
     ];
 
     public static $visaStatus = [
         0 => "待申请",
+        1 => "签证递交",
+        2 => "获签",
+        3 => "拒签",
     ];
 
     public static $visaStatusDict = [
         "待申请" => 0,
+        "签证递交" => 1,
+        "获签" => 2,
+        "拒签" => 3,
     ];
 
     public static $closeCaseStatus = [
-        1 => "未提交"
+        1 => "未结案",
+        2 => "已结案",
     ];
 
     public static $closeCaseStatusDict = [
-        "未提交" => 1
+        "未结案" => 1,
+        "已结案" => 2,
     ];
 
+    //废弃
     public static $closeCaseType = [
 
     ];
@@ -90,39 +140,58 @@ class CustomerDao extends ActiveRecord{
     ];
 
     public static $applyProject = [
-        1 => '硕士',
-        2 => '硕士预科',
-        3 => '单签证'
+        1 => '初中',
+        2 => '高中',
+        3 => '本科',
+        4 => '硕士',
     ];
 
     public static $applyProjectDict = [
-        '硕士' => 1,
-        '硕士预科' => 2,
-        '单签证' => 3
+        '初中' => 1,
+        '高中' => 2,
+        '本科' => 3,
+        '硕士' => 4,
+    ];
+
+    public static $applyCountry = [
+        1 => '英国',
+        2 => '加拿大',
+        3 => '澳大利亚',
+        4 => '欧洲',
+        5 => '新西兰',
+        6 => '爱尔兰',
+        7 => '香港',
+    ];
+
+    public static $applyCountryDict = [
+        '英国'     => 1,
+        '加拿大'   => 2,
+        '澳大利亚' => 3,
+        '欧洲'     => 4,
+        '新西兰'   => 5,
+        '爱尔兰'   => 6,
+        '香港'     => 7,
     ];
 
     //新增客户
-    public function addCustomer($userId, $name, $contractId, $phone, $progress, $wechat, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $lineBusiness,
-                                $selectCheck, $applyStatus, $visaStatus, $closeCaseStatus, $closeCaseType) {
+    public function addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry, $applyProject, $serviceType, $goAbroadYear,
+            $applyStatus, $visaStatus, $closeCaseStatus) {
         $curTime = date("Y-m-d H:i:s");
-        $sql = sprintf('INSERT INTO %s (user_id, name, contract_id, phone, progress, wechat, apply_country, apply_project, service_type, go_abroad_year,
-            line_business, select_check, apply_status, visa_status, close_case_status, close_case_type, update_time, create_time)
-            values (%d, :name, :contract_id, :phone, :progress, :wechat, :apply_country, :apply_project, %d, :go_abroad_year,
-            :line_business, :select_check, %d, %d, %d, %d, :update_time, :create_time)',
-            self::tableName(), $userId, $serviceType, $goAbroadYear, $lineBusiness,
-            $selectCheck, $applyStatus, $visaStatus, $closeCaseStatus, $closeCaseType);
+        $sql = sprintf('INSERT INTO %s (user_id, name, contract_id, phone, wechat, apply_country, apply_project, service_type, go_abroad_year,
+              apply_status, visa_status, close_case_status, update_time, create_time)
+              values (%d, :name, :contract_id, :phone, :wechat, :apply_country, :apply_project, %d, :go_abroad_year,
+              %d, %d, %d, :update_time, :create_time)',
+            self::tableName(), $userId, $serviceType, $goAbroadYear,
+            $applyStatus, $visaStatus, $closeCaseStatus);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
         $stmt->bindParam(':contract_id', $contractId, \PDO::PARAM_STR);
         $stmt->bindParam(':phone', $phone, \PDO::PARAM_STR);
-        $stmt->bindParam(':progress', $progress, \PDO::PARAM_STR);
         $stmt->bindParam(':wechat', $wechat, \PDO::PARAM_STR);
-        $stmt->bindParam(':apply_country', $applyCountry, \PDO::PARAM_STR);
+        $stmt->bindParam(':apply_country', $applyCountry, \PDO::PARAM_INT);
         $stmt->bindParam(':apply_project', $applyProject, \PDO::PARAM_STR);
         $stmt->bindParam(':go_abroad_year', $goAbroadYear, \PDO::PARAM_STR);
-        $stmt->bindParam(':line_business', $lineBusiness, \PDO::PARAM_STR);
-        $stmt->bindParam(':select_check', $selectCheck, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
         $ret = $stmt->execute();
@@ -185,6 +254,45 @@ class CustomerDao extends ActiveRecord{
         $stmt->bindParam(':communication', $communication, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $ret = $stmt->execute();
+        return $ret;
+    }
+
+
+    //根据条件查询客户列表
+    public function listByCondition($applyCountry, $applyProject, $serviceType, $goAbroadYear, $applyStatus, $visaStatus,
+                                    $closeCaseStatus, $iDisplayStart, $iDisplayLength, $userId) {
+        $search_filed = [];
+        if ($applyCountry !== '') {
+            $search_filed[] = 'apply_country = ' . $applyCountry;
+        }
+        if ($applyProject !== '') {
+            $search_filed[] = 'apply_project = ' . $applyProject;
+        }
+        if ($serviceType !== '') {
+            $search_filed[] = 'service_type = ' . $serviceType;
+        }
+        if ($goAbroadYear !== '') {
+            $search_filed[] = 'go_abroad_year = ' . $goAbroadYear;
+        }
+        if ($applyStatus !== '') {
+            $search_filed[] = 'apply_status = ' . $applyStatus;
+        }
+        if ($visaStatus !== '') {
+            $search_filed[] = 'visa_status = ' . $visaStatus;
+        }
+        if ($closeCaseStatus !== '') {
+            $search_filed[] = 'close_case_status = ' . $closeCaseStatus;
+        }
+        if (count($userId) > 0) {
+            $search_filed[] = 'user_id in (' . implode(',', $userId) . ')';
+        }
+        $search_filed[] = 'status = ' . self::$status['正常'];
+        $sql = sprintf('SELECT * FROM %s WHERE %s LIMIT %d,%d',
+            self::tableName(), implode(' AND ', $search_filed), $iDisplayStart, $iDisplayLength);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->execute();
+        $ret = $stmt->queryAll();
         return $ret;
     }
 }

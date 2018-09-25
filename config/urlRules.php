@@ -30,6 +30,7 @@ return [
     'api/customer/add' => 'api/customer/add',
     'api/customer/update' => 'api/customer/update',
     'api/customer/list' => 'api/customer/list',
+    'api/customer/searchlist' => 'api/customer/searchlist',
     'api/document/add' => 'api/document/add',
     'api/message/add' => 'api/message/add',
     'api/message/release' => 'api/message/release',
