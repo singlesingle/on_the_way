@@ -12,7 +12,8 @@ class CustomerService
     public function addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat) {
         $customerDao = new CustomerDao();
         $ret = $customerDao->addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry,
-            $applyProject, $serviceType, $goAbroadYear, CustomerDao::$applyStatusDict['未开始'], CustomerDao::$visaStatusDict['待申请'], CustomerDao::$closeCaseStatusDict['未结案']);
+            $applyProject, $serviceType, $goAbroadYear, CustomerDao::$applyStatusDict['未开始'],
+            CustomerDao::$visaStatusDict['待申请'], CustomerDao::$closeCaseStatusDict['未结案']);
         return $ret;
     }
 

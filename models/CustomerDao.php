@@ -177,11 +177,11 @@ class CustomerDao extends ActiveRecord{
     public function addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry, $applyProject, $serviceType, $goAbroadYear,
             $applyStatus, $visaStatus, $closeCaseStatus) {
         $curTime = date("Y-m-d H:i:s");
-        $sql = sprintf('INSERT INTO %s (user_id, name, contract_id, phone, wechat, apply_country, apply_project, service_type, go_abroad_year,
-              apply_status, visa_status, close_case_status, update_time, create_time)
-              values (%d, :name, :contract_id, :phone, :wechat, :apply_country, :apply_project, %d, :go_abroad_year,
-              %d, %d, %d, :update_time, :create_time)',
-            self::tableName(), $userId, $serviceType, $goAbroadYear,
+        $sql = sprintf('INSERT INTO %s (user_id, name, contract_id, phone, wechat, apply_country, apply_project, service_type,
+              go_abroad_year, apply_status, visa_status, close_case_status, update_time, create_time)
+              values (%d, :name, :contract_id, :phone, :wechat, :apply_country, :apply_project, %d, 
+              :go_abroad_year, %d, %d, %d, :update_time, :create_time)',
+            self::tableName(), $userId, $serviceType,
             $applyStatus, $visaStatus, $closeCaseStatus);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
@@ -190,7 +190,7 @@ class CustomerDao extends ActiveRecord{
         $stmt->bindParam(':phone', $phone, \PDO::PARAM_STR);
         $stmt->bindParam(':wechat', $wechat, \PDO::PARAM_STR);
         $stmt->bindParam(':apply_country', $applyCountry, \PDO::PARAM_INT);
-        $stmt->bindParam(':apply_project', $applyProject, \PDO::PARAM_STR);
+        $stmt->bindParam(':apply_project', $applyProject, \PDO::PARAM_INT);
         $stmt->bindParam(':go_abroad_year', $goAbroadYear, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);

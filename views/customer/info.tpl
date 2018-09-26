@@ -72,30 +72,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label col-lg-3">签约业务线</label>
-                            <div class="input-group m-bot15">
-                                <input type="hidden" id='line_business_default' value="{$customer_info['line_business']}">
-                                <label id="line_business">{$customer_info['line_business']}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-3 control-label col-lg-3">微信号</label>
                             <div class="input-group m-bot15">
                                 <input type="hidden" id='wechat_default' value="{$customer_info['wechat']}">
                                 <label id="wechat">{$customer_info['wechat']}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label col-lg-3">绑定微信</label>
-                            <div class="input-group m-bot15">
-                                <label id="bind_wechat">{$customer_info['bind_wechat']}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label col-lg-3">选校状态</label>
-                            <div class="input-group m-bot15">
-                                <input type="hidden" id='select_check_default' value="{$customer_info['select_check']}">
-                                <label id="select_check">{$customer_info['select_check']}</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -117,13 +97,6 @@
                             <div class="input-group m-bot15">
                                 <input type="hidden" id='close_case_status_default' value="{$customer_info['close_case_status']}">
                                 <label id="close_case_status">{$customer_info['close_case_status']}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label col-lg-3">结案类型</label>
-                            <div class="input-group m-bot15">
-                                <input type="hidden" id='close_case_type_default' value="{$customer_info['close_case_type']}">
-                                <label id="close_case_type">{$customer_info['close_case_type']}</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -164,8 +137,6 @@
         $("#service_type").replaceWith("<input id='service_type' value='" + service_type + "'>");
         go_abroad_year = $("#go_abroad_year").text();
         $("#go_abroad_year").replaceWith("<input id='go_abroad_year' value='" + go_abroad_year + "'>");
-        line_business = $("#line_business").text();
-        $("#line_business").replaceWith("<input id='line_business' value='" + line_business + "'>");
         wechat = $("#wechat").text();
         $("#wechat").replaceWith("<input id='wechat' value='" + wechat + "'>");
         communication = $("#communication").text();
@@ -188,8 +159,6 @@
         $("#service_type").replaceWith("<label id='service_type'>" + service_type + "</label>");
         go_abroad_year = $("#go_abroad_year_default").val();
         $("#go_abroad_year").replaceWith("<label id='go_abroad_year'>" + go_abroad_year + "</label>");
-        line_business = $("#line_business_default").val();
-        $("#line_business").replaceWith("<label id='line_business'>" + line_business + "</label>");
         wechat = $("#wechat_default").val();
         $("#wechat").replaceWith("<label id='wechat'>" + wechat + "</label>");
         communication = $("#communication_default").val();
@@ -207,11 +176,10 @@
         var apply_project = $("#apply_project").val();
         var service_type = $("#service_type").val();
         var go_abroad_year = $("#go_abroad_year").val();
-        var line_business = $("#line_business").val();
         var wechat = $("#wechat").val();
         var communication = $("#communication").val();
         if (id == '' || name == '' || contract_id == '' || phone == '' || apply_country == '' || apply_project == '' ||
-            service_type == '' || go_abroad_year == '' || line_business == '' || wechat == '' || communication == '' ) {
+            service_type == '' || go_abroad_year == '' || wechat == '' || communication == '' ) {
             alert('必填项不可以为空');
             return;
         }
@@ -224,7 +192,6 @@
             "apply_project": apply_project,
             "service_type": service_type,
             "go_abroad_year": go_abroad_year,
-            "line_business": line_business,
             "wechat": wechat,
             "communication": communication,
         };
