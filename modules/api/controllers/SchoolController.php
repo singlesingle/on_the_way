@@ -9,45 +9,66 @@ use app\models\CustomerDao;
 use app\service\BasicInfoService;
 use app\service\CaseService;
 use app\service\CustomerService;
+use app\service\SchoolService;
 use Yii;
 
-class CustomerController extends BaseController
+class SchoolController extends BaseController
 {
-    //创建客户
+    //添加学校
     public function actionAdd()
     {
         $this->defineMethod = 'POST';
         $this->defineParams = array (
-            'name' => array (
+            'customer_id' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'contract_id' => array (
+            'school_name' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'phone' => array (
+            'school_area' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'degree' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'apply_country' => array (
+            'admission_time' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'apply_project' => array (
+            'class' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'service_type' => array (
+            'profession_name' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'go_abroad_year' => array (
+            'link' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'wechat' => array (
-                'require' => true,
+            'end_time' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'end_time_link' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'practice' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'honors' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'remark' => array (
+                'require' => false,
                 'checker' => 'noCheck',
             ),
         );
@@ -55,17 +76,22 @@ class CustomerController extends BaseController
             $ret = $this->outputJson(array(), $this->err);
             return $ret;
         }
-        $name = $this->getParam('name', '');
-        $contractId = $this->getParam('contract_id', '');
-        $phone = $this->getParam('phone', '');
-        $applyCountry = $this->getParam('apply_country', '');
-        $applyProject = $this->getParam('apply_project', 0);
-        $serviceType = $this->getParam('service_type', '');
-        $goAbroadYear = $this->getParam('go_abroad_year', '');
-        $wechat = $this->getParam('wechat', '');
-        $userId = $this->data['user_id'];
-        $customerService = new CustomerService();
-        $ret = $customerService->addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat);
+        $customerId = $this->getParam('customer_id', '');
+        $schoolName = $this->getParam('school_name', '');
+        $schoolArea = $this->getParam('school_area', '');
+        $degree = $this->getParam('degree', '');
+        $admissionTime = $this->getParam('admission_time', 0);
+        $class = $this->getParam('class', '');
+        $professionName = $this->getParam('profession_name', '');
+        $link = $this->getParam('link', '');
+        $endTime = $this->getParam('end_time', '');
+        $endTimeLink = $this->getParam('end_time_link', 0);
+        $practice = $this->getParam('practice', '');
+        $honors = $this->getParam('honors', '');
+        $remark = $this->getParam('remark', '');
+        $schoolService= new SchoolService();
+        $schoolId = $schoolService->addSchool($customerId, $schoolName, $schoolArea, $degree, $admissionTime);
+        $ret = $schoolService->addProfession($schoolId, $class, $professionName, $link, $endTime, $endTimeLink, $practice, $honors, $remark);
         $this->actionLog(self::LOGADD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);

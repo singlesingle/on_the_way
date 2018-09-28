@@ -31,12 +31,13 @@ return [
     'api/customer/update' => 'api/customer/update',
     'api/customer/list' => 'api/customer/list',
     'api/customer/searchlist' => 'api/customer/searchlist',
+    'api/customer/savebasicinfo' => 'api/customer/savebasicinfo',
     'api/document/add' => 'api/document/add',
     'api/message/add' => 'api/message/add',
     'api/message/release' => 'api/message/release',
     'api/message/delete' => 'api/message/delete',
     'api/message/mylist' => 'api/message/mylist',
-
+    'api/school/add' => 'api/school/add',
     /////// api url rules end
 
     '/403'  => 'page/error/error403',

@@ -79,11 +79,11 @@ class BasicInfoDao extends ActiveRecord{
     }
 
     //查询客户基础信息
-    public function queryById($id) {
-        $sql=sprintf('SELECT * FROM %s WHERE id = :id', self::tableName());
+    public function queryByCustomerId($customerId) {
+        $sql=sprintf('SELECT * FROM %s WHERE customer_id = :customer_id', self::tableName());
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+        $stmt->bindParam(':customer_id', $customerId, \PDO::PARAM_INT);
         $stmt->execute();
         $ret = $stmt->queryOne();
         return $ret;

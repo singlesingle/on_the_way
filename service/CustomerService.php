@@ -3,6 +3,7 @@
 namespace app\service;
 
 use app\classes\Log;
+use app\models\BasicInfoDao;
 use app\models\CaseDao;
 use app\models\CustomerDao;
 use app\models\UserDao;

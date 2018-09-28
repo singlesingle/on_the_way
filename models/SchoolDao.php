@@ -35,7 +35,9 @@ class SchoolDao extends ActiveRecord{
 
     //查询客户的学校列表
     public function queryById($customerId) {
-        $sql=sprintf('SELECT * FROM %s WHERE customer_id = %d', self::tableName(), $customerId);
+        $sql=sprintf('SELECT a.name as school_name, b.name as profession_name, school_area, end_time,
+              admission_time, degree, honors, practice, b.create_time FROM %s as a INNER JOIN profession as b 
+              ON a.id = b.school_id WHERE customer_id = %d', self::tableName(), $customerId);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $stmt->execute();

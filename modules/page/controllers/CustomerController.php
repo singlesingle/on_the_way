@@ -4,7 +4,10 @@ namespace app\modules\page\controllers;
 
 use app\classes\BaseController;
 use app\classes\ErrorDict;
+use app\models\BasicInfoDao;
+use app\service\BasicInfoService;
 use app\service\CustomerService;
+use app\service\SchoolService;
 
 class CustomerController extends BaseController
 {
@@ -41,9 +44,15 @@ class CustomerController extends BaseController
         $userId = $this->data['user_id'];
         $customerService = new CustomerService();
         $customerInfo = $customerService->customerInfo($id, $userId);
+        $basicInfoService = new BasicInfoService();
+        $basicInfo = $basicInfoService->basicInfo($customerInfo['id']);
+        $schoolService = new SchoolService();
+        $schoolList = $schoolService->schoolList($customerInfo['id']);
         $this->data['page_topo'] = 'customer_admin';
         $this->data['active_page'] = 'list';
         $this->data['customer_info'] = $customerInfo;
+        $this->data['basic_info'] = $basicInfo;
+        $this->data['school_list'] = $schoolList;
         return $this->render('info.tpl', $this->data);
     }
     
