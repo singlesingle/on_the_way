@@ -9,6 +9,7 @@ return [
     'page/user/info' => 'page/user/info',
     'page/case/my' => 'page/case/my',
     'page/case/inner' => 'page/case/inner',
+    'page/case/info' => 'page/case/info',
     'page/customer/list' => 'page/customer/list',
     'page/customer/info' => 'page/customer/info',
     'page/document/list' => 'page/document/list',
@@ -16,6 +17,7 @@ return [
     /////// page url rules end
 
     /////// api url rules begin
+    'api/wx/reply' => 'api/wx/reply',
     'api/user/login' => 'api/user/login',
     'api/user/adduser' => 'api/user/adduser',
     'api/user/deleteuser' => 'api/user/deleteuser',
@@ -33,10 +35,12 @@ return [
     'api/customer/searchlist' => 'api/customer/searchlist',
     'api/customer/savebasicinfo' => 'api/customer/savebasicinfo',
     'api/document/add' => 'api/document/add',
+    'api/document/upload' => 'api/document/upload',
     'api/message/add' => 'api/message/add',
     'api/message/release' => 'api/message/release',
     'api/message/delete' => 'api/message/delete',
     'api/message/mylist' => 'api/message/mylist',
+    'api/message/info' => 'api/message/info',
     'api/school/add' => 'api/school/add',
     /////// api url rules end
 

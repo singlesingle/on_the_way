@@ -40,65 +40,13 @@ class MessageSenderDao extends ActiveRecord{
         return $ret;
     }
 
-    /**
-     * 更新用户信息
-     * @param $id
-     * @param $name
-     * @param $pwd
-     * @param $phone
-     * @param $introduce
-     * @return bool|int
-     * @throws \yii\db\Exception
-     */
-    public function updateUserInfo($id, $name, $pwd, $phone, $introduce) {
-        $update_filed = [];
-        if ($name != '') {
-            $update_filed[] = 'name = ' . $name;
-        }
-        if ($pwd != '') {
-            $update_filed[] = 'pwd = ' . $pwd;
-        }
-        if ($phone != '') {
-            $update_filed[] = 'phone = ' . $phone;
-        }
-        if ($introduce != '') {
-            $update_filed[] = 'introduce = ' . $introduce;
-        }
-        if (count($update_filed) == 0) {
-            return false;
-        }
-        $sql = sprintf('UPDATE %s SET %s WHERE id = %d',
-            self::tableName(), implode(',', $update_filed), $id);
+    //更新消息状态为已读
+    public function updateRead($messageId, $acceptUserId) {
+        $sql = sprintf('UPDATE %s SET is_read = %d WHERE message_id = %d, accept_user_id = %d',
+            self::tableName(), self::$isRead['已读'], $messageId, $acceptUserId);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $ret = $stmt->execute();
-        return $ret;
-    }
-
-    /**
-     * 查询用户
-     * @param $id
-     * @return array|false
-     * @throws \yii\db\Exception
-     */
-    public function queryById($id) {
-        $sql=sprintf('SELECT * FROM %s WHERE id = :id', self::tableName());
-        $stmt = self::getDb()->createCommand($sql);
-        $stmt->prepare();
-        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-        $stmt->execute();
-        $ret = $stmt->queryOne();
-        return $ret;
-    }
-
-    //查询用户消息列表
-    public function queryUserMessageList($userId, $iDisplayStart, $iDisplayLength) {
-        $sql=sprintf('SELECT * FROM %s as a INNER JOIN %s as b ON a.message_id = b.id WHERE accept_user_id = %d and status != %d limit %d,%d',
-            self::tableName(), 'message', $userId, MessageDao::$status['删除'], $iDisplayStart, $iDisplayLength);
-        $stmt = self::getDb()->createCommand($sql);
-        $stmt->prepare();
-        $stmt->execute();
-        $ret = $stmt->queryAll();
         return $ret;
     }
 }

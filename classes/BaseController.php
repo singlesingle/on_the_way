@@ -80,8 +80,8 @@ class BaseController extends Controller {
         $this->beginTime = microtime(true);
         session_start();
 
-        $url = Yii::$app->request->url;
-        if ($url == '/page/user/login' || $url == '/api/user/login') {
+        $url = Yii::$app->request->getPathInfo();
+        if ($url == 'page/user/login' || $url == 'api/user/login' || $url == 'api/wx/reply') {
             return parent::beforeAction( $action );
         }
 

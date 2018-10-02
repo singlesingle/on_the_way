@@ -42,7 +42,7 @@
                             <td>{$one['check_pass_time']}</td>
 
                             <td>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="">查看</a>
+                                <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['id']}">查看</a>
                             </td>
                         </tr>
                     {/foreach}

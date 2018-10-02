@@ -66,53 +66,34 @@ class CustomerService
         return $list;
     }
 
-    public function customerInfo($id, $userId) {
+    public function customerInfo($id) {
         $customerDao = new CustomerDao();
-        $userDao = new UserDao();
-        $userInfo = $userDao->queryById($userId);
-        $userIds = [];
-        $power = false;
-        if ($userInfo['role'] == UserDao::$role['管理员']) {
-            $power = true;
-        }elseif ($userInfo['role'] == UserDao::$role['总监']) {
-            $userList = $userDao->queryByLeader($userId);
-            $userIds = [];
-            foreach ($userList as $user) {
-                $userIds[] = $user['id'];
-            }
-        }elseif ($userInfo['role'] == UserDao::$role['文案人员']) {
-            $userIds = [$userId];
-        }
-        if ($power || in_array($userId, $userIds)) {
-            $one = $customerDao->queryById($id);
-            if (isset(CustomerDao::$serviceType[$one['service_type']])) {
-                $one['service_type'] = CustomerDao::$serviceType[$one['service_type']];
-            }else
-                $one['service_type'] = '';
-            if (isset(CustomerDao::$applyStatus[$one['apply_status']])) {
-                $one['apply_status'] = CustomerDao::$applyStatus[$one['apply_status']];
-            }else
-                $one['apply_status'] = '';
-            if (isset(CustomerDao::$visaStatus[$one['visa_status']])) {
-                $one['visa_status'] = CustomerDao::$visaStatus[$one['visa_status']];
-            }else
-                $one['visa_status'] = '';
-            if (isset(CustomerDao::$closeCaseStatus[$one['close_case_status']])) {
-                $one['close_case_status'] = CustomerDao::$closeCaseStatus[$one['close_case_status']];
-            }else
-                $one['close_case_status'] = '';
-            if (isset(CustomerDao::$applyProject[$one['apply_project']])) {
-                $one['apply_project'] = CustomerDao::$applyProject[$one['apply_project']];
-            }else
-                $one['apply_project'] = '';
-            if (isset(CustomerDao::$applyCountry[$one['apply_country']])) {
-                $one['apply_country'] = CustomerDao::$applyCountry[$one['apply_country']];
-            }else
-                $one['apply_country'] = '';
-            return $one;
-        }else {
-            return false;
-        }
+        $one = $customerDao->queryById($id);
+        if (isset(CustomerDao::$serviceType[$one['service_type']])) {
+            $one['service_type'] = CustomerDao::$serviceType[$one['service_type']];
+        }else
+            $one['service_type'] = '';
+        if (isset(CustomerDao::$applyStatus[$one['apply_status']])) {
+            $one['apply_status'] = CustomerDao::$applyStatus[$one['apply_status']];
+        }else
+            $one['apply_status'] = '';
+        if (isset(CustomerDao::$visaStatus[$one['visa_status']])) {
+            $one['visa_status'] = CustomerDao::$visaStatus[$one['visa_status']];
+        }else
+            $one['visa_status'] = '';
+        if (isset(CustomerDao::$closeCaseStatus[$one['close_case_status']])) {
+            $one['close_case_status'] = CustomerDao::$closeCaseStatus[$one['close_case_status']];
+        }else
+            $one['close_case_status'] = '';
+        if (isset(CustomerDao::$applyProject[$one['apply_project']])) {
+            $one['apply_project'] = CustomerDao::$applyProject[$one['apply_project']];
+        }else
+            $one['apply_project'] = '';
+        if (isset(CustomerDao::$applyCountry[$one['apply_country']])) {
+            $one['apply_country'] = CustomerDao::$applyCountry[$one['apply_country']];
+        }else
+            $one['apply_country'] = '';
+        return $one;
 
     }
 

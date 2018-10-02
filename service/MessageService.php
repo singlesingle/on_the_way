@@ -48,6 +48,16 @@ class MessageService
         return $ret;
     }
 
+    //查看消息
+    public function look($messageId, $userId)
+    {
+        $messageDao = new MessageDao();
+        $messageInfo = $messageDao->queryById($messageId);
+        $messageSenderDao = new MessageSenderDao();
+        $messageSenderDao->updateRead($messageId, $userId);
+        return $messageInfo;
+    }
+
 
     //系统消息列表
     public function systemMessageList()

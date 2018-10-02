@@ -39,7 +39,7 @@
                             <td>{$one['close_case_status']}</td>
                             <td>{$one['summary']}</td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="">预览</a>
+                                <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['id']}">预览</a>
                                 <a type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#update_case_portal"
                                    onclick="update_case_page('{$one['id']}','{$one['title']}','{$one['admission_school']}','{$one['rank']}','{$one['profession']}','{$one['result']}','{$one['entry_time']}','{$one['graduated_school']}','{$one['summary']}')">编辑</a>&nbsp&nbsp
                             </td>

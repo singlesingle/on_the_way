@@ -43,7 +43,7 @@ class CustomerController extends BaseController
         $id = $this->getParam('id', '');
         $userId = $this->data['user_id'];
         $customerService = new CustomerService();
-        $customerInfo = $customerService->customerInfo($id, $userId);
+        $customerInfo = $customerService->customerInfo($id);
         $basicInfoService = new BasicInfoService();
         $basicInfo = $basicInfoService->basicInfo($customerInfo['id']);
         $schoolService = new SchoolService();

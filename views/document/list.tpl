@@ -4,6 +4,9 @@
 <script src="/static/js/select2/select2.js"></script>
 <link href="/static/select2/select2.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/select2-bootstrap.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" />
+<link rel="stylesheet" href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" />
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
 <div class="col-sm-12">
     <section class="panel">
         <header class="panel-heading">
@@ -40,7 +43,7 @@
                             <td>{$one['create_time']}</td>
                             <td>
                                 <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">查看</a>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">上传文件</a>
+                                <a type="button" data-toggle="modal" data-target="#uploadDocument" class="btn btn-sm btn-danger" onclick="upload_page('{$one['id']}')">上传文件</a>
                                 <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">删除</a>
                             </td>
                         </tr>
@@ -114,7 +117,44 @@
     </div><!-- /.modal -->
 </div>
 
+<div class="modal fade" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addservertitle">
+                    上传文件
+                </h4>
+            </div>
+            <div class="modal-body">
+                {*<form>*}
+                    {*<input id="documentId" class="file_input" hidden="hidden" type="hidden">*}
+                    {*<input type="file" name="file" id="file" />*}
+                    {*<br />*}
+                    {*<input type="submit" name="submit" value="Submit" onclick="upload_file()" />*}
+                {*</form>*}
+                <form action="/api/document/upload" method="post"
+                      enctype="multipart/form-data">
+                    <input id="documentId" name="documentId" value="" class="file_input" hidden="hidden" type="text">
+                    <label for="file">Filename:</label>
+                    <input type="file" name="file" id="file" />
+                    <br />
+                    <input type="submit" name="submit" value="Submit" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <script type="text/javascript">
+    var saveUrl = '';
     $('#member_list').DataTable({
         "displayLength": 25,
         "order": [],
@@ -176,6 +216,67 @@
                 }
             });
         }
+    }
+
+    function upload_page(id) {
+        $("#documentId").val(id);
+    }
+
+    function upload_file() {
+        file = $("#file")[0].files;
+        alert(file);
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: request,
+            dataType:"json",
+            async :false,
+            success: function (result) {
+                if (result.error.returnCode == 0) {
+                    alert('保存成功');
+                    var reload_uri = "http://"+window.location.host+"/page/customer/info?id=" + id;
+                    window.location.href=reload_uri;
+                }else {
+                    alert(result.error.returnUserMessage);
+                }
+            },
+            error:function(result) {
+                alert("系统异常");
+            }
+        })
+    }
+    //自动上传
+    $("#kendo_upload_demo3 .file_input").kendoUpload({
+        localization: {
+            select: "请选择文件...",
+            remove: '删除',//删除按钮的tips
+            headerStatusUploading : '开始上传',
+            headerStatusUploaded : "文件上传成功"
+        },
+        async : {
+            autoUpload : true,
+            saveUrl : saveUrl, //文件上传对应的接口
+            removeUrl : 'remove.action' //文件删除对应的接口
+        },
+        select: function(e) {
+            alert(saveUrl);
+        },
+        success: onApplySuccess,
+        error: onApplyError,
+        showFileList: false
+    });
+
+    function onApplySuccess(e) {
+        var json = e.response;
+        if (json.error.returnCode == 0 ) {
+            alert('申请成功，请返回列表查看');
+            window.location.href = '/page/storeip/list';
+        }else {
+            alert(json.error.returnUserMessage);
+        }
+    }
+    function onApplyError(e) {
+        alert("申请异常");
     }
 </script>
 {include "layout/footer.tpl"}

@@ -17,29 +17,67 @@ class CustomerDao extends ActiveRecord{
         return "customer";
     }
 
+//    //废弃
+//    public static $progress = [
+//        1 => '已签约',
+//    ];
+//
+//    public static $progressDict = [
+//        '已签约' => 1,
+//    ];
+//
+//    //废弃
+//    public static $bindWechat = [
+//        0 => '未绑定',
+//        1 => '已绑定',
+//    ];
+//
+//    public static $bindWechatDict = [
+//        '未绑定' => 0,
+//        '已绑定' => 1,
+//    ];
+
+//    //废弃
+//    public static $selectCheck = [
+//        1 => '已提交',
+//        2 => '已通过',
+//        3 => '已确认',
+//    ];
+//
+//    public static $selectCheckDict = [
+//        '已提交' => 1,
+//        '已通过' => 2,
+//        '已确认' => 3,
+//    ];
+//
+//    //废弃
+//    public static $applyStage = [
+//        0 => "待投递",
+//        1 => "申请材料递出",
+//        2 => "投递跟进",
+//        3 => "基础材料齐全",
+//        4 => "录取结果跟进",
+//        5 => "已拒录",
+//        6 => "已录取",
+//        7 => "已放弃",
+//        8 => "确认入读",
+//    ];
+//
+//    public static $applyStageDict = [
+//        "待投递" => 0,
+//        "申请材料递出" => 1,
+//        "投递跟进" => 2,
+//        "基础材料齐全" => 3,
+//        "录取结果跟进" => 4,
+//        "已拒录" => 5,
+//        "已录取" => 6,
+//        "已放弃" => 7,
+//        "确认入读" => 8,
+//    ];
+
     public static $status = [
         "正常" => 0,
         "删除" => 1,
-    ];
-
-    //废弃
-    public static $progress = [
-        1 => '已签约',
-    ];
-
-    public static $progressDict = [
-        '已签约' => 1,
-    ];
-
-    //废弃
-    public static $bindWechat = [
-        0 => '未绑定',
-        1 => '已绑定',
-    ];
-
-    public static $bindWechatDict = [
-        '未绑定' => 0,
-        '已绑定' => 1,
     ];
 
     public static $serviceType = [
@@ -54,44 +92,6 @@ class CustomerDao extends ActiveRecord{
         '全程服务' => 2,
         '单申请'   => 3,
         '签证'     => 4,
-    ];
-
-    //废弃
-    public static $selectCheck = [
-        1 => '已提交',
-        2 => '已通过',
-        3 => '已确认',
-    ];
-
-    public static $selectCheckDict = [
-        '已提交' => 1,
-        '已通过' => 2,
-        '已确认' => 3,
-    ];
-
-    //废弃
-    public static $applyStage = [
-        0 => "待投递",
-        1 => "申请材料递出",
-        2 => "投递跟进",
-        3 => "基础材料齐全",
-        4 => "录取结果跟进",
-        5 => "已拒录",
-        6 => "已录取",
-        7 => "已放弃",
-        8 => "确认入读",
-    ];
-
-    public static $applyStageDict = [
-        "待投递" => 0,
-        "申请材料递出" => 1,
-        "投递跟进" => 2,
-        "基础材料齐全" => 3,
-        "录取结果跟进" => 4,
-        "已拒录" => 5,
-        "已录取" => 6,
-        "已放弃" => 7,
-        "确认入读" => 8,
     ];
 
     public static $applyStatus = [
@@ -128,15 +128,6 @@ class CustomerDao extends ActiveRecord{
     public static $closeCaseStatusDict = [
         "未结案" => 1,
         "已结案" => 2,
-    ];
-
-    //废弃
-    public static $closeCaseType = [
-
-    ];
-
-    public static $closeCaseTypeDict = [
-
     ];
 
     public static $applyProject = [
@@ -232,7 +223,7 @@ class CustomerDao extends ActiveRecord{
         return $ret;
     }
 
-    //新增客户
+    //更新客户
     public function updateCustomer($id, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear,
                                    $lineBusiness, $wechat, $communication) {
         $curTime = date("Y-m-d H:i:s");
@@ -293,6 +284,26 @@ class CustomerDao extends ActiveRecord{
         $stmt->prepare();
         $stmt->execute();
         $ret = $stmt->queryAll();
+        return $ret;
+    }
+
+    //更新客户签证状态
+    public function updateVisaStatus($id, $visaStatus) {
+        $sql = sprintf('UPDATE %s SET visa_status = %d WHERE id = %d',
+            self::tableName(), $visaStatus, $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //更新客户申请状态
+    public function updateApplyStatus($id, $applyStatus) {
+        $sql = sprintf('UPDATE %s SET apply_status = %d WHERE id = %d',
+            self::tableName(), $applyStatus, $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
         return $ret;
     }
 }

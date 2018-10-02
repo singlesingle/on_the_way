@@ -144,11 +144,43 @@ class MessageController extends BaseController
         foreach ($list as $one) {
             $data = [];
             $one['create_time'] = date('Y年m月d日 H:i', strtotime($one['create_time']));
-            $data[] = "<a href='/page/desktop/info' class='text-left'>{$one['title']}</a><a href='/page/desktop/info' class='pull-right' style='color: #9b9b9b'>{$one['create_time']}</a>";
+            $one['title'] = htmlentities($one['title']);
+            $one['create_time'] = htmlentities($one['create_time']);
+            $one['content'] = htmlentities($one['content']);
+            $data[] = "<a data-toggle=\"modal\" data-target=\"#message_info\" type='button' onclick='messageInfo()' class='text-left'>{$one['title']}</a>
+            <a data-toggle=\"modal\" data-target=\"#message_info\" onclick='messageInfo()' class='pull-right' style='color: #9b9b9b'>{$one['create_time']}</a>";
             $messageList[] = $data;
         }
         $json_data = array ('sEcho'=>$sEcho,'iTotalRecords'=>$count,'iTotalDisplayRecords'=>$count,'aaData'=>$messageList);  //按照datatable的当前页和每页长度返回json数据
         $obj=json_encode($json_data, JSON_UNESCAPED_UNICODE);
         echo $obj;
+    }
+
+    //查看系统消息
+    public function actionInfo()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'message_id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $messageId = $this->getParam('message_id', '');
+        $userId = $this->data['user_id'];
+        $messageService = new MessageService();
+        $messageInfo = $messageService->look($messageId, $userId);
+        if ($messageInfo) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson($messageInfo, $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
     }
 }
