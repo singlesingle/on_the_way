@@ -306,4 +306,15 @@ class CustomerDao extends ActiveRecord{
         $ret = $stmt->execute();
         return $ret;
     }
+
+    //根据微信昵称查询用户信息
+    public function queryByWechat($nickName) {
+        $sql=sprintf('SELECT * FROM %s WHERE wechat = :wechat', self::tableName());
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':wechat', $nickName, \PDO::PARAM_STR);
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
 }

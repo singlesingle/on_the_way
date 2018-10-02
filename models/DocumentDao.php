@@ -76,4 +76,15 @@ class DocumentDao extends ActiveRecord{
         $ret = $stmt->queryAll();
         return $ret;
     }
+
+    //更新上传文件url
+    public function updateFileUrl($fileUrl, $id) {
+        $sql=sprintf('UPDATE %s SET annex = :annex WHERE id = %d',
+            self::tableName(), $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':annex', $fileUrl, \PDO::PARAM_STR);
+        $ret = $stmt->execute();
+        return $ret;
+    }
 }

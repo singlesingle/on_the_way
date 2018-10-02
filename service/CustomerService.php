@@ -152,4 +152,10 @@ class CustomerService
         }
         return $list;
     }
+
+    public function queryByWechat($nickName) {
+        $customerDao = new CustomerDao();
+        $customerInfo = $customerDao->queryByWechat($nickName);
+        return $customerInfo;
+    }
 }

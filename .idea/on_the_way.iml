@@ -20,6 +20,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/specify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/verify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cos-php-sdk-v5/src" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/cos-php-sdk-v5/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />

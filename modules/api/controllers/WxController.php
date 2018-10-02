@@ -8,7 +8,9 @@ use app\classes\Log;
 use app\classes\Util;
 use app\models\UserDao;
 use app\service\CaseService;
+use app\service\CustomerService;
 use app\service\UserService;
+use app\service\WechatService;
 use Yii;
 
 class WxController extends BaseController
@@ -27,15 +29,22 @@ class WxController extends BaseController
             $postObj = simplexml_load_string($xmlData, 'SimpleXMLElement', LIBXML_NOCDATA);
             Log::addLogNode('MsgType', $postObj->MsgType);
             Log::addLogNode('Content', $postObj->Content);
-            if ($postObj->Content == '进度') {
-                $msg = $postObj->ToUserName . "您好：\n" . "您的申请状态为正在申请中";
-                $content = $this->_response_text($postObj, $msg);
-                echo $content;
-            }else {
+            if ($postObj->Content != '进度')
                 echo 'success';
+            $wechatService = new WechatService();
+            $accessToken = $wechatService->getToken();
+            $openId = $postObj->ToUserName;
+            $userInfo = $wechatService->getUserInfo($openId, $accessToken);
+            $nickName = $userInfo['nickname']; //用户的昵称
+            $customerService = new CustomerService();
+            $customerInfo = $customerService->queryByWechat($nickName);
+            if (!$customerInfo) {
+                $msg = "您好：\n" . "您不存在处理中的任务！";
+            }else {
+                $msg = "您好：\n" . "您的申请状态为正在申请中";
             }
-
-            return;
+            $content = $this->_response_text($postObj, $msg);
+            echo $content;
         }
     }
 

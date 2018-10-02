@@ -90,7 +90,7 @@ class DocumentController extends BaseController
         $filePath = $_FILES["file"]["tmp_name"];
         $fileName = $_FILES["file"]["name"];
         $fileService = new FileService();
-        $ret = $fileService->uploadFile($filePath, $fileName);
+        $ret = $fileService->uploadFile($documentId, $filePath, $fileName);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
             $ret = $this->outputJson('', $error);

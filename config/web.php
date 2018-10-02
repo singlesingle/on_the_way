@@ -6,7 +6,7 @@ define('APP_VERSION', '1.0.0');
 define('APP_CONFIG_PATH', APP_PATH . '/config');
 
 //从配置文件读取配置
-$environment = "online";
+$environment = "dev";
 $params = require(__DIR__ . '/' . $environment . '_params.php');
 $db = require(__DIR__ . '/' . $environment . '_db.php');
 $params = array_merge($params, $db);
