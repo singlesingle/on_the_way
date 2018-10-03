@@ -9,6 +9,8 @@ use app\models\CustomerDao;
 use app\service\BasicInfoService;
 use app\service\CaseService;
 use app\service\CustomerService;
+use app\service\FileService;
+use app\service\MaterialService;
 use Yii;
 
 class CustomerController extends BaseController
@@ -402,6 +404,58 @@ class CustomerController extends BaseController
             $zipCode, $mailAddress, $mailZipCode, $placeBirth, $birthday, $gender, $nativeLanguage, $secondLanguage,
             $country, $maritalStatus, $passport, $passportPlace, $passportDate);
         $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
+    }
+
+    //新增材料
+    public function actionUploadmaterial()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'name' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'contract_id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'phone' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'apply_country' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $customerId = $this->getParam('customer_id', '');
+        $name = $this->getParam('name', '');
+        $type = $this->getParam('type', '');
+        $schoolId = $this->getParam('school_id', '');
+        $filePath = $_FILES["file"]["tmp_name"];
+        $fileName = $_FILES["file"]["name"];
+        $fileService = new FileService();
+        $url = $fileService->uploadFile($filePath, $fileName);
+        if (!$url) {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('上传文件失败', $error);
+            return $ret;
+        }
+        $materialService = new MaterialService();
+        $ret = $materialService->addMaterial($customerId, $name, $type, $schoolId, $url);
+        $this->actionLog(self::LOGADD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
             $ret = $this->outputJson('', $error);

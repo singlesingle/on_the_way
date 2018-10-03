@@ -12,6 +12,7 @@ class Model extends Collection
 {
     /** @var Parameter Structure of the model */
     protected $structure;
+    public $data;
 
     /**
      * @param array     $data      Data contained by the model

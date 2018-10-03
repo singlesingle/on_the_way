@@ -36,6 +36,7 @@ return [
     'api/customer/savebasicinfo' => 'api/customer/savebasicinfo',
     'api/document/add' => 'api/document/add',
     'api/document/upload' => 'api/document/upload',
+    'api/document/download' => 'api/document/download',
     'api/message/add' => 'api/message/add',
     'api/message/release' => 'api/message/release',
     'api/message/delete' => 'api/message/delete',

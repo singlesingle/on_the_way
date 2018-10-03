@@ -21,7 +21,8 @@ class WechatService
         $curl = new Curl();
         $response = $curl->get($url);
         $ret = json_decode($response, true);
-        return $ret;
+        Log::extApiLog('request', $response, 'wechat');
+        return $ret['access_token'];
     }
 
     //获取用户基本信息
@@ -31,6 +32,7 @@ class WechatService
         $curl = new Curl();
         $response = $curl->get($url);
         $ret = json_decode($response, true);
+        Log::extApiLog('request', $response, 'wechat');
         return $ret;
     }
 }

@@ -42,7 +42,7 @@
                             <td>{$one['type']}</td>
                             <td>{$one['create_time']}</td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">查看</a>
+                                <a type="button" class="btn btn-sm btn-danger" onclick="view_document('{$one['id']}')">查看</a>
                                 <a type="button" data-toggle="modal" data-target="#uploadDocument" class="btn btn-sm btn-danger" onclick="upload_page('{$one['id']}')">上传文件</a>
                                 <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">删除</a>
                             </td>
@@ -222,61 +222,31 @@
         $("#documentId").val(id);
     }
 
-    function upload_file() {
-        file = $("#file")[0].files;
-        alert(file);
+    function view_document(id) {
         $.ajax({
-            url: uri,
+            url: '/api/document/download',
             type: "POST",
-            data: request,
-            dataType:"json",
-            async :false,
-            success: function (result) {
-                if (result.error.returnCode == 0) {
-                    alert('保存成功');
-                    var reload_uri = "http://"+window.location.host+"/page/customer/info?id=" + id;
-                    window.location.href=reload_uri;
+            data: {
+                'documentId': id,
+            },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.error.returnCode == 0) {
+                    file_url = data.data;
+                    if (file_url) {
+                        window.location = file_url;
+                    }else {
+                        alert('还未上传文件，无法查看！');
+                    }
                 }else {
-                    alert(result.error.returnUserMessage);
+                    alert('查看失败！');
                 }
             },
-            error:function(result) {
-                alert("系统异常");
+            error: function (data) {
+                alert('查看异常！');
             }
-        })
-    }
-    //自动上传
-    $("#kendo_upload_demo3 .file_input").kendoUpload({
-        localization: {
-            select: "请选择文件...",
-            remove: '删除',//删除按钮的tips
-            headerStatusUploading : '开始上传',
-            headerStatusUploaded : "文件上传成功"
-        },
-        async : {
-            autoUpload : true,
-            saveUrl : saveUrl, //文件上传对应的接口
-            removeUrl : 'remove.action' //文件删除对应的接口
-        },
-        select: function(e) {
-            alert(saveUrl);
-        },
-        success: onApplySuccess,
-        error: onApplyError,
-        showFileList: false
-    });
-
-    function onApplySuccess(e) {
-        var json = e.response;
-        if (json.error.returnCode == 0 ) {
-            alert('申请成功，请返回列表查看');
-            window.location.href = '/page/storeip/list';
-        }else {
-            alert(json.error.returnUserMessage);
-        }
-    }
-    function onApplyError(e) {
-        alert("申请异常");
+        });
     }
 </script>
 {include "layout/footer.tpl"}

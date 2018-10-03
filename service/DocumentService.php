@@ -45,4 +45,15 @@ class DocumentService
         }
         return $documentList;
     }
+
+    //查询文书存储地址
+    public function queryFile($documentId) {
+        $documentService = new DocumentDao();
+        $documentInfo = $documentService->queryById($documentId);
+        if ($documentInfo) {
+            return $documentInfo['annex'];
+        }else {
+            return false;
+        }
+    }
 }

@@ -246,7 +246,39 @@
                     </section>
                 </div>
             </div>
-            <div class="tab-pane" id="tab3_4"></div>
+            <div class="tab-pane" id="tab3_4">
+                <div class="col-sm-12">
+                    <a  type="button" class="pull-right ng-scope" data-toggle="modal" data-target="#add_school_portal">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增材料
+                    </a>
+                    <section class="panel">
+                        <div class="panel-body">
+                            <table cellspacing="0"  id="material_list" class="table table-bordered table-striped">
+                                <thead>
+                                <tr role="row">
+                                    <th>材料名称</th>
+                                    <th>类型</th>
+                                    <th>学校</th>
+                                    <th>材料下载</th>
+                                    <th>上传时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach $material_list as $one}
+                                    <tr>
+                                        <td>{$one['name']}</td>
+                                        <td>{$one['type']}</td>
+                                        <td>{$one['school_name']}</td>
+                                        <td>{$one['url']}</td>
+                                        <td>{$one['create_time']}</td>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
             <div class="tab-pane" id="tab3_5"></div>
             <div class="tab-pane" id="tab3_6"></div>
             {*<div class="tab-pane fade in active" id="tab3_6">*}
@@ -493,6 +525,18 @@
 </div>
 <script>
     $('#member_list').DataTable({
+        "displayLength": 25,
+        "order": [],
+        "language": {
+            "search":"搜索",
+            "lengthMenu": "每页 _MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)"
+        }
+    });
+
+    $('#material_list').DataTable({
         "displayLength": 25,
         "order": [],
         "language": {

@@ -31,20 +31,22 @@ class WxController extends BaseController
             Log::addLogNode('Content', $postObj->Content);
             if ($postObj->Content != '进度')
                 echo 'success';
-            $wechatService = new WechatService();
-            $accessToken = $wechatService->getToken();
-            $openId = $postObj->ToUserName;
-            $userInfo = $wechatService->getUserInfo($openId, $accessToken);
-            $nickName = $userInfo['nickname']; //用户的昵称
-            $customerService = new CustomerService();
-            $customerInfo = $customerService->queryByWechat($nickName);
-            if (!$customerInfo) {
-                $msg = "您好：\n" . "您不存在处理中的任务！";
-            }else {
-                $msg = "您好：\n" . "您的申请状态为正在申请中";
+            else {
+                $wechatService = new WechatService();
+                $accessToken = $wechatService->getToken();
+                $openId = $postObj->FromUserName;
+                $userInfo = $wechatService->getUserInfo($openId, $accessToken);
+                $nickName = $userInfo['nickname']; //用户的昵称
+                $customerService = new CustomerService();
+                $customerInfo = $customerService->queryByWechat($nickName);
+                if (!$customerInfo) {
+                    $msg = "您好：\n" . "您不存在处理中的任务！";
+                }else {
+                    $msg = "您好：\n" . "您的申请状态为正在申请中";
+                }
+                $content = $this->_response_text($postObj, $msg);
+                echo $content;
             }
-            $content = $this->_response_text($postObj, $msg);
-            echo $content;
         }
     }
 
