@@ -16,6 +16,8 @@ class MessageController extends BaseController
         $this->defineMethod = 'GET';
         $messageService = new MessageService();
         $list = $messageService->systemMessageList();
+        $this->data['page_topo'] = 'admin';
+        $this->data['active_page'] = 'message_admin';
         $this->data['list'] = $list;
         return $this->render('list.tpl', $this->data);
     }

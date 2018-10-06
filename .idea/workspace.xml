@@ -14,72 +14,106 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MaterialDao.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/MaterialDao.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WxController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/api/controllers/WxController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="65" column="10" lean-forward="true" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/MaterialService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WechatService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/WechatService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Log.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/Log.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="315" column="44" selection-start-line="315" selection-start-column="37" selection-end-line="315" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/CustomerService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="155" column="23" selection-start-line="155" selection-start-column="23" selection-end-line="155" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="info.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="272" column="57" selection-start-line="272" selection-start-column="57" selection-end-line="272" selection-end-column="57" />
+            <state relative-caret-position="115">
+              <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" />
-                <element signature="n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" />
-                <element signature="e#63640#65114#0#HTML" />
-                <element signature="e#65162#67769#0#HTML" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#9;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#68462#70304#0#HTML" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.tpl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/layout/header.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="147" column="48" selection-start-line="147" selection-start-column="48" selection-end-line="147" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/page/controllers/UserController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/page/controllers/MessageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasks/StatusController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+              <folding>
+                <element signature="e#29#57#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CaseController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/page/controllers/CaseController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomerDao.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/CustomerDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="321" column="41" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cli.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/cli.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="e#6#44#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/console.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SchoolDao.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/SchoolDao.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -88,36 +122,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>transfer_position</find>
-      <find>pwd</find>
-      <find>aDataSort</find>
-      <find>message_list</find>
-      <find>bi</find>
-      <find>search_apply_country</find>
-      <find>progress</find>
-      <find>$</find>
-      <find>on-change</find>
-      <find>新增选校</find>
-      <find>add_school</find>
-      <find>add_user_portal</find>
+      <find>unread</find>
+      <find>un</find>
+      <find>con</find>
+      <find>visa_status</find>
+      <find>close_case_status</find>
+      <find>customer_statictic</find>
+      <find>message_info</find>
+      <find>add_material</find>
+      <find>school_list</find>
+      <find>customer</find>
       <find>add_school_portal</find>
+      <find>add_material_portal</find>
+      <find>$school</find>
+      <find>material_type</find>
+      <find>basic_info</find>
+      <find>save_basic_info</find>
+      <find>country</find>
       <find>入学时间</find>
-      <find>是否合作机构</find>
-      <find>name_pinyin</find>
-      <find>english_name</find>
-      <find>gender</find>
-      <find>email</find>
-      <find>name=&quot;</find>
-      <find>address</find>
-      <find>member_list</find>
-      <find>mail_address</find>
-      <find>DataTable</find>
-      <find>member</find>
-      <find />
-      <find>messageInfo</find>
-      <find>gpa_page</find>
-      <find>documentId</find>
-      <find>material_list</find>
+      <find>honor</find>
+      <find>微信号</find>
+      <find>update_case_id</find>
+      <find>update_result</find>
+      <find>用户名</find>
+      <find>su</find>
+      <find>birthday</find>
+      <find>passport_date</find>
+      <find>申请截止日期</find>
+      <find>end_time</find>
+      <find>添加课程专业</find>
+      <find>case_admin</find>
     </findStrings>
     <replaceStrings>
       <replace>id=&quot;</replace>
@@ -129,57 +163,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/modules/api/controllers/CaseController.php" />
-        <option value="$PROJECT_DIR$/models/CaseDao.php" />
-        <option value="$PROJECT_DIR$/service/CaseService.php" />
-        <option value="$PROJECT_DIR$/modules/page/controllers/DocumentController.php" />
-        <option value="$PROJECT_DIR$/classes/ErrorDict.php" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
-        <option value="$PROJECT_DIR$/views/user/login.tpl" />
         <option value="$PROJECT_DIR$/models/UserDao.php" />
         <option value="$PROJECT_DIR$/service/UserService.php" />
-        <option value="$PROJECT_DIR$/modules/page/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/modules/api/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/views/user/info.tpl" />
-        <option value="$PROJECT_DIR$/views/user/list.tpl" />
-        <option value="$PROJECT_DIR$/views/layout/header.tpl" />
-        <option value="$PROJECT_DIR$/views/message/list.tpl" />
         <option value="$PROJECT_DIR$/models/MessageDao.php" />
         <option value="$PROJECT_DIR$/models/ProfessionDao.php" />
-        <option value="$PROJECT_DIR$/views/customer/list.tpl" />
         <option value="$PROJECT_DIR$/models/BasicInfoDao.php" />
-        <option value="$PROJECT_DIR$/service/BasicInfoService.php" />
         <option value="$PROJECT_DIR$/modules/api/controllers/SchoolController.php" />
-        <option value="$PROJECT_DIR$/service/SchoolService.php" />
-        <option value="$PROJECT_DIR$/models/SchoolDao.php" />
-        <option value="$PROJECT_DIR$/classes/BaseController.php" />
-        <option value="$PROJECT_DIR$/views/case/inner.tpl" />
-        <option value="$PROJECT_DIR$/views/case/my.tpl" />
         <option value="$PROJECT_DIR$/views/case/info.tpl" />
         <option value="$PROJECT_DIR$/modules/page/controllers/CaseController.php" />
-        <option value="$PROJECT_DIR$/views/desktop/info.tpl" />
-        <option value="$PROJECT_DIR$/models/MessageSenderDao.php" />
-        <option value="$PROJECT_DIR$/service/MessageService.php" />
-        <option value="$PROJECT_DIR$/modules/api/controllers/MessageController.php" />
-        <option value="$PROJECT_DIR$/models/StatusChangeDao.php" />
         <option value="$PROJECT_DIR$/config/web.php" />
-        <option value="$PROJECT_DIR$/models/DocumentDao.php" />
-        <option value="$PROJECT_DIR$/models/CustomerDao.php" />
         <option value="$PROJECT_DIR$/cos-php-sdk-v5/src/Qcloud/Cos/Client.php" />
         <option value="$PROJECT_DIR$/vendor/cos-php-sdk-v5/vendor/guzzle/guzzle/src/Guzzle/Service/Resource/Model.php" />
-        <option value="$PROJECT_DIR$/service/DocumentService.php" />
-        <option value="$PROJECT_DIR$/config/urlRules.php" />
-        <option value="$PROJECT_DIR$/views/document/list.tpl" />
-        <option value="$PROJECT_DIR$/service/MaterialService.php" />
-        <option value="$PROJECT_DIR$/modules/api/controllers/DocumentController.php" />
         <option value="$PROJECT_DIR$/service/FileService.php" />
-        <option value="$PROJECT_DIR$/modules/api/controllers/CustomerController.php" />
         <option value="$PROJECT_DIR$/modules/page/controllers/CustomerController.php" />
-        <option value="$PROJECT_DIR$/service/CustomerService.php" />
         <option value="$PROJECT_DIR$/service/WechatService.php" />
-        <option value="$PROJECT_DIR$/modules/api/controllers/WxController.php" />
-        <option value="$PROJECT_DIR$/views/customer/info.tpl" />
         <option value="$PROJECT_DIR$/models/MaterialDao.php" />
+        <option value="$PROJECT_DIR$/modules/api/controllers/CustomerController.php" />
+        <option value="$PROJECT_DIR$/models/StatusChangeDao.php" />
+        <option value="$PROJECT_DIR$/service/SchoolService.php" />
+        <option value="$PROJECT_DIR$/modules/api/controllers/MessageController.php" />
+        <option value="$PROJECT_DIR$/service/MessageService.php" />
+        <option value="$PROJECT_DIR$/classes/BaseController.php" />
+        <option value="$PROJECT_DIR$/models/MessageSenderDao.php" />
+        <option value="$PROJECT_DIR$/modules/page/controllers/DesktopController.php" />
+        <option value="$PROJECT_DIR$/service/MaterialService.php" />
+        <option value="$PROJECT_DIR$/modules/api/controllers/WxController.php" />
+        <option value="$PROJECT_DIR$/views/customer/list.tpl" />
+        <option value="$PROJECT_DIR$/service/BasicInfoService.php" />
+        <option value="$PROJECT_DIR$/models/SchoolDao.php" />
+        <option value="$PROJECT_DIR$/service/CustomerService.php" />
+        <option value="$PROJECT_DIR$/service/CaseService.php" />
+        <option value="$PROJECT_DIR$/service/DocumentService.php" />
+        <option value="$PROJECT_DIR$/modules/api/controllers/DocumentController.php" />
+        <option value="$PROJECT_DIR$/config/urlRules.php" />
+        <option value="$PROJECT_DIR$/views/user/login.tpl" />
+        <option value="$PROJECT_DIR$/views/message/list.tpl" />
+        <option value="$PROJECT_DIR$/views/user/list.tpl" />
+        <option value="$PROJECT_DIR$/models/DocumentDao.php" />
+        <option value="$PROJECT_DIR$/views/document/list.tpl" />
+        <option value="$PROJECT_DIR$/models/CaseDao.php" />
+        <option value="$PROJECT_DIR$/views/case/my.tpl" />
+        <option value="$PROJECT_DIR$/views/case/inner.tpl" />
+        <option value="$PROJECT_DIR$/views/desktop/info.tpl" />
+        <option value="$PROJECT_DIR$/models/CustomerDao.php" />
+        <option value="$PROJECT_DIR$/tasks/StatusController.php" />
+        <option value="$PROJECT_DIR$/config/console.php" />
+        <option value="$PROJECT_DIR$/views/customer/info.tpl" />
+        <option value="$PROJECT_DIR$/modules/page/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/modules/page/controllers/MessageController.php" />
+        <option value="$PROJECT_DIR$/views/layout/header.tpl" />
       </list>
     </option>
   </component>
@@ -276,6 +310,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,12 +321,12 @@
             <path>
               <item name="on_the_way" type="b2602c69:ProjectViewProjectNode" />
               <item name="on_the_way" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="classes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="on_the_way" type="b2602c69:ProjectViewProjectNode" />
               <item name="on_the_way" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="htdocs" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="on_the_way" type="b2602c69:ProjectViewProjectNode" />
@@ -327,7 +362,7 @@
             <path>
               <item name="on_the_way" type="b2602c69:ProjectViewProjectNode" />
               <item name="on_the_way" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="service" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="tasks" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="on_the_way" type="b2602c69:ProjectViewProjectNode" />
@@ -380,11 +415,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="url&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;urlR&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;header&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl&#10;head&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl" />
+    <property name="SearchEverywhereHistoryKey" value="Case&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;MessageC&#9;null&#9;null&#10;userC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;documentC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DocumentController.php&#10;caseC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;header&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl&#10;CustomerC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CustomerController.php&#10;CaseD&#9;FILE&#9;file://E:/mygit/on_the_way/models/CaseDao.php&#10;DocumentD&#9;FILE&#9;file://E:/mygit/on_the_way/models/DocumentDao.php&#10;User&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;Basec&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;UserC&#9;null&#9;null&#10;login&#9;FILE&#9;file://E:/mygit/on_the_way/views/user/login.tpl&#10;url&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;Document&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/DocumentController.php&#10;Mess&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/MessageController.php&#10;Des&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DesktopController.php&#10;document&#9;null&#9;null&#10;Wx&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/WxController.php&#10;School&#9;FILE&#9;file://E:/mygit/on_the_way/models/SchoolDao.php&#10;Ma&#9;FILE&#9;file://E:/mygit/on_the_way/models/MaterialDao.php&#10;Cus&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/CustomerController.php&#10;Desc&#9;null&#9;null&#10;Base&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;urlR&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;head&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -392,15 +426,15 @@
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\mygit\on_the_way\service" />
-      <recent name="E:\mygit\on_the_way" />
-      <recent name="E:\mygit\on_the_way\vendor" />
-      <recent name="E:\mygit\on_the_way\models" />
-      <recent name="E:\mygit\on_the_way\views\case" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\mygit\on_the_way\static\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\mygit\on_the_way\config" />
+      <recent name="E:\mygit\on_the_way\htdocs" />
+      <recent name="E:\mygit\on_the_way\tasks" />
+      <recent name="E:\mygit\on_the_way\service" />
+      <recent name="E:\mygit\on_the_way" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -450,25 +484,26 @@
       <workItem from="1538276594052" duration="1125000" />
       <workItem from="1538278189576" duration="4472000" />
       <workItem from="1538443200927" duration="30147000" />
-      <workItem from="1538535020184" duration="3292000" />
+      <workItem from="1538535020184" duration="48519000" />
+      <workItem from="1538706011436" duration="21686000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196652000" />
+    <option name="totallyTimeSpent" value="263565000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.011551155" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.011551155" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="8" sideWeight="0.49848714" visible="true" weight="0.011551155" />
+      <window_info anchor="bottom" id="File Transfer" order="8" sideWeight="0.4977307" visible="true" weight="0.011551155" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22692889" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22995462" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -491,136 +526,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/CustomerController.php">
+    <entry file="file://$PROJECT_DIR$/service/WechatService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11826">
-          <caret line="447" column="17" selection-start-line="447" selection-start-column="17" selection-end-line="447" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/FileService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding>
-            <element signature="e#31#52#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/DocumentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="93" column="40" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/page/controllers/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="56" column="47" lean-forward="true" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/SchoolDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/CaseService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/case/my.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="42" column="117" selection-start-line="42" selection-start-column="117" selection-end-line="42" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/page/controllers/CaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/core-scripting.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="211" column="18" selection-start-line="211" selection-start-column="18" selection-end-line="211" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/case/info.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7587">
-          <caret line="281" selection-start-line="281" selection-end-line="281" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/case/inner.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4941">
-          <caret line="183" column="21" selection-start-line="183" selection-start-column="21" selection-end-line="183" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/customer/list.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" column="86" selection-start-line="12" selection-start-column="81" selection-end-line="12" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20682">
-          <caret line="766" column="17" selection-start-line="766" selection-start-column="17" selection-end-line="766" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/MessageService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1269">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/desktop/info.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5616">
-          <caret line="208" column="24" selection-start-line="208" selection-start-column="13" selection-end-line="208" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/MessageSenderDao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2430">
-          <caret line="176" column="27" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+        <state relative-caret-position="183">
+          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -631,213 +544,385 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Qcloud/Cos/UploadBodyListener.php" />
-    <entry file="file://$PROJECT_DIR$/Qcloud/Cos/Client.php" />
-    <entry file="phar://$PROJECT_DIR$/cos-sdk-v5.phar/src/Qcloud/Cos/Client.php" />
-    <entry file="file://$PROJECT_DIR$/views/user/list.tpl">
+    <entry file="file://$PROJECT_DIR$/models/ProfessionDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+        <state relative-caret-position="414">
+          <caret line="54" column="30" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/cos-php-sdk-v5/vendor/guzzle/guzzle/src/Guzzle/Http/Client.php">
+    <entry file="file://$PROJECT_DIR$/models/MessageDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="198">
+          <caret line="75" column="20" lean-forward="true" selection-start-line="75" selection-start-column="20" selection-end-line="75" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/web.php">
+    <entry file="file://$PROJECT_DIR$/static/bs3/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state relative-caret-position="191">
+          <caret line="6" column="5568" selection-start-line="6" selection-start-column="5568" selection-end-line="6" selection-end-column="5568" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/models/MessageSenderDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="333">
+          <caret line="60" column="132" selection-start-line="60" selection-start-column="132" selection-end-line="60" selection-end-column="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/MessageService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="87" column="51" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/MaterialService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/StatusChangeDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+        <state relative-caret-position="387">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cos-php-sdk-v5/src/Qcloud/Cos/Client.php" />
-    <entry file="file://$PROJECT_DIR$/htdocs/index.php">
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/CustomerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" selection-end-column="45" />
+        <state relative-caret-position="183">
+          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/cos-php-sdk-v5/src/Qcloud/Cos/Client.php">
+    <entry file="file://$PROJECT_DIR$/views/customer/list.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="121" column="38" lean-forward="true" selection-start-line="121" selection-start-column="38" selection-end-line="121" selection-end-column="38" />
+        <state relative-caret-position="281">
+          <caret line="208" column="58" selection-start-line="208" selection-start-column="58" selection-end-line="208" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/cos-php-sdk-v5/src/Qcloud/Cos/MultipartUpload.php">
+    <entry file="file://$PROJECT_DIR$/service/BasicInfoService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+        <state relative-caret-position="345">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/cos-php-sdk-v5/vendor/guzzle/guzzle/src/Guzzle/Service/Resource/Model.php">
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/Connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        <state relative-caret-position="191">
+          <caret line="777" column="20" selection-start-line="777" selection-start-column="20" selection-end-line="777" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/CustomerDao.php">
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/SchoolController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="301" column="5" selection-start-line="301" selection-start-column="5" selection-end-line="301" selection-end-column="5" />
+        <state relative-caret-position="156">
+          <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_real.php">
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/WxController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="378">
+          <caret line="44" column="53" lean-forward="true" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+    <entry file="file://$PROJECT_DIR$/service/CustomerService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        <state relative-caret-position="351">
+          <caret line="175" column="30" lean-forward="true" selection-start-line="175" selection-start-column="30" selection-end-line="175" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/DesktopController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+          <folding>
+            <element signature="e#48#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="145" column="85" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="85" />
+          <folding>
+            <element signature="e#265#1403#0#PHP" />
+            <element signature="e#1422#2351#0#PHP" />
+            <element signature="e#2370#3297#0#PHP" />
+            <element signature="n#style#0;n#a#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/service/DocumentService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="117">
+          <caret line="59" column="15" lean-forward="true" selection-start-line="59" selection-start-column="15" selection-end-line="59" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/DocumentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="119" lean-forward="true" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#2078#3484#0#PHP" />
+            <element signature="e#3501#4373#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/login.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/superglobals/_superglobals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="173" selection-start-line="173" selection-end-line="173" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/UserService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/message/list.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="66" column="26" lean-forward="true" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
+          <folding>
+            <element signature="e#3195#3215#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/list.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/DocumentDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/document/list.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="136" column="117" selection-start-line="136" selection-start-column="117" selection-end-line="136" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/CaseDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/CaseService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/api/controllers/CaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/case/my.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/case/inner.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/CustomerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/SchoolService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/desktop/info.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#div#0;n#section#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/urlRules.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/DocumentDao.php">
+    <entry file="file://$PROJECT_DIR$/models/BasicInfoDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document/list.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="143" column="20" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/SchoolController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3186">
-          <caret line="126" column="15" selection-start-line="126" selection-start-column="15" selection-end-line="126" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/FileService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+        <state relative-caret-position="324">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="37" />
           <folding>
-            <element signature="e#31#52#0#PHP" expanded="true" />
+            <element signature="e#910#3681#0#PHP" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11826">
-          <caret line="447" column="17" selection-start-line="447" selection-start-column="17" selection-end-line="447" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/page/controllers/CustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/DocumentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="93" column="40" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="315" column="44" selection-start-line="315" selection-start-column="37" selection-end-line="315" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/WechatService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/api/controllers/WxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="65" column="10" lean-forward="true" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="272" column="57" selection-start-line="272" selection-start-column="57" selection-end-line="272" selection-end-column="57" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" />
-            <element signature="n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" />
-            <element signature="e#63640#65114#0#HTML" />
-            <element signature="e#65162#67769#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/CustomerService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="155" column="23" selection-start-line="155" selection-start-column="23" selection-end-line="155" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/MaterialService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/MaterialDao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        <state relative-caret-position="400">
+          <caret line="54" column="15" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="15" />
+          <folding>
+            <element signature="e#653#1316#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/SchoolDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="55" column="22" lean-forward="true" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/CustomerDao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="321" column="41" selection-start-line="321" selection-start-column="20" selection-end-line="321" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/cli.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#6#44#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/console.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#9;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#68462#70304#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/DocumentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/StatusController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="e#29#57#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/CaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout/header.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="147" column="48" selection-start-line="147" selection-start-column="48" selection-end-line="147" selection-end-column="48" />
         </state>
       </provider>
     </entry>

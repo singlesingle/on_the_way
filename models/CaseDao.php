@@ -25,8 +25,9 @@ class CaseDao extends ActiveRecord{
     public function addCase($customerId, $createUserId, $title, $admissionSchool, $rank, $profession, $result, $entryTime, $graduatedSchool, $summary) {
         $curTime = date('Y-m-d H:i:s');
         $sql = sprintf("INSERT INTO %s (customer_id, create_user_id, title, admission_school, rank, profession, result, entry_time,
-              graduated_school, summary, check_pass_time, update_time, create_time)
-            values (%d, %d, :title, :admission_school, :rank, :profession, %d, :entry_time, :graduated_school, :summary, '0000-00-00 00:00:00', :update_time, :create_time)",
+              graduated_school, summary, update_time, create_time)
+            values (%d, %d, :title, :admission_school, :rank, :profession, %d, :entry_time, :graduated_school,
+            :summary, :update_time, :create_time)",
             self::tableName(), $customerId, $createUserId, $result
         );
         $stmt = self::getDb()->createCommand($sql);
@@ -80,7 +81,7 @@ class CaseDao extends ActiveRecord{
 
     //查询用户添加的客户案例
     public function queryMyCase($userId) {
-        $sql=sprintf('SELECT * FROM %s as a INNER JOIN %s as b ON a.customer_id = b.id WHERE create_user_id = %d',
+        $sql=sprintf('SELECT *, a.id as case_id FROM %s as a INNER JOIN %s as b ON a.customer_id = b.id WHERE create_user_id = %d',
             self::tableName(), 'customer', $userId);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();

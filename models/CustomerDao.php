@@ -130,6 +130,16 @@ class CustomerDao extends ActiveRecord{
         "已结案" => 2,
     ];
 
+    public static $collectStatus = [
+        0 => "未收集完成",
+        1 => "收集完成",
+    ];
+
+    public static $collectStatusDict = [
+        "未收集完成" => 0,
+        "收集完成" => 1,
+    ];
+
     public static $applyProject = [
         1 => '初中',
         2 => '高中',
@@ -185,8 +195,9 @@ class CustomerDao extends ActiveRecord{
         $stmt->bindParam(':go_abroad_year', $goAbroadYear, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
-        $ret = $stmt->execute();
-        return $ret;
+        $stmt->execute();
+        $id = self::getDb()->getLastInsertID();
+        return $id;
     }
 
     //查询客户
@@ -301,6 +312,16 @@ class CustomerDao extends ActiveRecord{
     public function updateApplyStatus($id, $applyStatus) {
         $sql = sprintf('UPDATE %s SET apply_status = %d WHERE id = %d',
             self::tableName(), $applyStatus, $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //更新客户结案状态
+    public function updateCloseCaseStatus($id, $closeCaseStatus) {
+        $sql = sprintf('UPDATE %s SET close_case_status = %d WHERE id = %d',
+            self::tableName(), $closeCaseStatus, $id);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $ret = $stmt->execute();

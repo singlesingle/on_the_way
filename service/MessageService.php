@@ -80,4 +80,12 @@ class MessageService
         $messageList = $messageSenderDao->queryUserMessageList($userId, $iDisplayStart, $iDisplayLength);
         return $messageList;
     }
+
+    //未读消息列表
+    public function unReadMessage($userId)
+    {
+        $messageSenderDao = new MessageSenderDao();
+        $messageList = $messageSenderDao->queryUnreadMessage($userId);
+        return $messageList;
+    }
 }

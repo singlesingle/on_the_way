@@ -12,9 +12,11 @@ class CustomerService
 {
     public function addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat) {
         $customerDao = new CustomerDao();
-        $ret = $customerDao->addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry,
+        $customerId = $customerDao->addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry,
             $applyProject, $serviceType, $goAbroadYear, CustomerDao::$applyStatusDict['未开始'],
             CustomerDao::$visaStatusDict['待申请'], CustomerDao::$closeCaseStatusDict['未结案']);
+        $basicInfoDao = new BasicInfoDao();
+        $ret = $basicInfoDao->addBasicInfo($customerId);
         return $ret;
     }
 
@@ -156,6 +158,37 @@ class CustomerService
     public function queryByWechat($nickName) {
         $customerDao = new CustomerDao();
         $customerInfo = $customerDao->queryByWechat($nickName);
-        return $customerInfo;
+        if ($customerInfo) {
+            if (isset(CustomerDao::$visaStatus[$customerInfo['visa_status']]))
+                $customerInfo['visa_status'] = CustomerDao::$visaStatus[$customerInfo['visa_status']];
+            else
+                $customerInfo['visa_status'] = '';
+            if (isset(CustomerDao::$collectStatus[$customerInfo['collect_status']]))
+                $customerInfo['collect_status'] = CustomerDao::$collectStatus[$customerInfo['collect_status']];
+            else
+                $customerInfo['collect_status'] = '';
+            return $customerInfo;
+        }else {
+            return false;
+        }
+    }
+
+    public function customerStatistic($userId, $role) {
+        $data = [];
+        $customerList = self::customerList($userId, $role);
+        $data['count'] = count($customerList);
+        $data['applying'] = 0;
+        $data['offer'] = 0;
+        $data['visa'] = 0;
+        $data['closeCase'] = 0;
+        foreach ($customerList as $customer) {
+            if ($customer['apply_status'] == '申请中')
+                $data['applying']++;
+            if ($customer['visa_status'] == '获签')
+                $data['visa']++;
+            if ($customer['close_case_status'] == '已结案')
+                $data['closeCase']++;
+        }
+        return $data;
     }
 }

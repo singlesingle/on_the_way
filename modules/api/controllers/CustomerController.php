@@ -415,7 +415,7 @@ class CustomerController extends BaseController
     }
 
     //新增材料
-    public function actionUploadmaterial()
+    public function actionAddmaterial()
     {
         $this->defineMethod = 'POST';
         $this->defineParams = array (
@@ -423,15 +423,15 @@ class CustomerController extends BaseController
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'contract_id' => array (
+            'type' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'phone' => array (
+            'customer_id' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
-            'apply_country' => array (
+            'school_id' => array (
                 'require' => true,
                 'checker' => 'noCheck',
             ),
@@ -453,8 +453,9 @@ class CustomerController extends BaseController
             $ret = $this->outputJson('上传文件失败', $error);
             return $ret;
         }
+        $userId = $this->data['user_id'];
         $materialService = new MaterialService();
-        $ret = $materialService->addMaterial($customerId, $name, $type, $schoolId, $url);
+        $ret = $materialService->addMaterial($userId, $customerId, $name, $type, $schoolId, $url);
         $this->actionLog(self::LOGADD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);

@@ -35,14 +35,18 @@ class CaseService
                 $one['apply_project'] = CustomerDao::$applyProject[$one['apply_project']];
             else
                 $one['apply_project'] = '';
-            if (isset(CaseDao::$result[$one['result']]))
-                $one['result'] = CaseDao::$result[$one['result']];
-            else
-                $one['result'] = '';
+//            if (isset(CaseDao::$result[$one['result']]))
+//                $one['result'] = CaseDao::$result[$one['result']];
+//            else
+//                $one['result'] = '';
             if (isset(CustomerDao::$closeCaseStatus[$one['close_case_status']]))
                 $one['close_case_status'] = CustomerDao::$closeCaseStatus[$one['close_case_status']];
             else
                 $one['close_case_status'] = '';
+            if (isset(CustomerDao::$applyCountry[$one['apply_country']]))
+                $one['apply_country'] = CustomerDao::$applyCountry[$one['apply_country']];
+            else
+                $one['apply_country'] = '';
         }
         return $caseList;
     }
@@ -65,6 +69,10 @@ class CaseService
                 $one['close_case_status'] = CustomerDao::$closeCaseStatus[$one['close_case_status']];
             else
                 $one['close_case_status'] = '';
+            if (isset(CustomerDao::$applyCountry[$one['apply_country']]))
+                $one['apply_country'] = CustomerDao::$applyCountry[$one['apply_country']];
+            else
+                $one['apply_country'] = '';
         }
         return $caseList;
     }

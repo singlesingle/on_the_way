@@ -60,12 +60,10 @@
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="title">
                         </div>
-                        <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">内容：</label>
-                        <textarea class="form-control" rows="20" style="width:400px;" id="content"></textarea>
-                        <span class="text-danger mt5 fl">*</span>
+                        <textarea class="form-control" rows="17" style="width:400px;" id="content"></textarea>
                     </div>
                 </form>
             </div>

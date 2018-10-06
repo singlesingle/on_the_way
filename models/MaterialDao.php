@@ -26,6 +26,16 @@ class MaterialDao extends ActiveRecord{
         7 => '其他',
     ];
 
+    public static $typeToName = [
+        '签证递交回执' => 1,
+        '获签信' => 2,
+        '拒签信' => 3,
+        '学校申请回执' => 4,
+        'offer' => 5,
+        '拒录信' => 6,
+        '其他' => 7,
+    ];
+
     //新加材料
     public function addMaterial($customerId, $name, $type, $schoolId, $url) {
         $curTime = date('Y-m-d H:i:s');

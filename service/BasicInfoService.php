@@ -21,14 +21,6 @@ class BasicInfoService
     {
         $basicInfoDao = new BasicInfoDao();
         $basicInfo = $basicInfoDao->queryByCustomerId($customerId);
-        if (isset(BasicInfoDao::$gender[$basicInfo['gender']])) {
-            $basicInfo['gender'] = BasicInfoDao::$gender[$basicInfo['gender']];
-        } else
-            $basicInfo['gender'] = '';
-        if (isset(BasicInfoDao::$maritalStatus[$basicInfo['marital_status']])) {
-            $basicInfo['marital_status'] = BasicInfoDao::$maritalStatus[$basicInfo['marital_status']];
-        } else
-            $basicInfo['marital_status'] = '';
         return $basicInfo;
     }
 

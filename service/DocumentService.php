@@ -26,6 +26,7 @@ class DocumentService
         $documentDao = new DocumentDao();
         $documentList = $documentDao->queryAll();
         foreach ($documentList as &$one) {
+            $one['create_time'] = date('Y年m月d日 H:i', strtotime($one['create_time']));
             if (isset(DocumentDao::$typeDict[$one['type']])) {
                 $one['type'] = DocumentDao::$typeDict[$one['type']];
             }else
@@ -41,6 +42,10 @@ class DocumentService
                     $one['apply_project'] = CustomerDao::$applyProject[$customerDict[$one['customer_id']]['apply_project']];
                 }else
                     $one['apply_project'] = '';
+                if (isset(CustomerDao::$applyCountry[$customerDict[$one['customer_id']]['apply_country']])) {
+                    $one['apply_country'] = CustomerDao::$applyCountry[$customerDict[$one['customer_id']]['apply_country']];
+                }else
+                    $one['apply_country'] = '';
             }
         }
         return $documentList;
@@ -55,5 +60,12 @@ class DocumentService
         }else {
             return false;
         }
+    }
+
+    //删除文书
+    public function delete($documentId) {
+        $documentDao = new DocumentDao();
+        $ret = $documentDao->deleteDocument($documentId);
+        return $ret;
     }
 }

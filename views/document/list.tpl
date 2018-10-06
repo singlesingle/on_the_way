@@ -44,7 +44,7 @@
                             <td>
                                 <a type="button" class="btn btn-sm btn-danger" onclick="view_document('{$one['id']}')">查看</a>
                                 <a type="button" data-toggle="modal" data-target="#uploadDocument" class="btn btn-sm btn-danger" onclick="upload_page('{$one['id']}')">上传文件</a>
-                                <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">删除</a>
+                                <a type="button" class="btn btn-sm btn-danger" onclick="delete_document('{$one['id']}')">删除</a>
                             </td>
                         </tr>
                     {/foreach}
@@ -101,6 +101,9 @@
                             <option value=""></option>
                             <option value="1">简历</option>
                             <option value="2">推荐信</option>
+                            <option value="3">Essay</option>
+                            <option value="4">PersonalStatement</option>
+                            <option value="5">活动列表</option>
                         </select>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
@@ -129,19 +132,12 @@
                 </h4>
             </div>
             <div class="modal-body">
-                {*<form>*}
-                    {*<input id="documentId" class="file_input" hidden="hidden" type="hidden">*}
-                    {*<input type="file" name="file" id="file" />*}
-                    {*<br />*}
-                    {*<input type="submit" name="submit" value="Submit" onclick="upload_file()" />*}
-                {*</form>*}
                 <form action="/api/document/upload" method="post"
                       enctype="multipart/form-data">
                     <input id="documentId" name="documentId" value="" class="file_input" hidden="hidden" type="text">
-                    <label for="file">Filename:</label>
                     <input type="file" name="file" id="file" />
                     <br />
-                    <input type="submit" name="submit" value="Submit" />
+                    <input type="submit" name="submit" value="上传" />
                 </form>
             </div>
             <div class="modal-footer">
@@ -245,6 +241,29 @@
             },
             error: function (data) {
                 alert('查看异常！');
+            }
+        });
+    }
+
+    function delete_document(id) {
+        $.ajax({
+            url: '/api/document/delete',
+            type: "POST",
+            data: {
+                'documentId': id,
+            },
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.error.returnCode == 0) {
+                    alert('删除成功！');
+                    window.location.reload();
+                }else {
+                    alert('删除失败！');
+                }
+            },
+            error: function (data) {
+                alert('删除异常！');
             }
         });
     }

@@ -22,7 +22,6 @@
                         <th>入读时间</th>
                         <th>就读/毕业院校</th>
                         <th>干货总结</th>
-                        <th>审核通过时间信息</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -39,8 +38,6 @@
                             <td>{$one['entry_time']}</td>
                             <td>{$one['graduated_school']}</td>
                             <td>{$one['summary']}</td>
-                            <td>{$one['check_pass_time']}</td>
-
                             <td>
                                 <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['id']}">查看</a>
                             </td>
@@ -50,51 +47,6 @@
                 </table>
         </div>
     </section>
-</div>
-
-<div class="modal fade" id="transfer_position" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title">
-                    案例详情
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">用户名：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="user_name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">原上级领导：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="domain_name" placeholder="多个域名以“,”分割">
-                        </div>
-                        <span class="text-danger mt5 fl">*</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">新上级领导：</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="group_name">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" onclick="transfer_user()">
-                    确认
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
 </div>
 
 <script type="text/javascript">

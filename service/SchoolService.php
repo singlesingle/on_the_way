@@ -8,6 +8,7 @@ use app\models\CaseDao;
 use app\models\CustomerDao;
 use app\models\ProfessionDao;
 use app\models\SchoolDao;
+use app\models\StatusChangeDao;
 use app\models\UserDao;
 
 class SchoolService
@@ -22,6 +23,7 @@ class SchoolService
     public function schoolList($customerId)
     {
         $schoolDao = new SchoolDao();
+        $statusChangeDao = new StatusChangeDao();
         $list = $schoolDao->queryById($customerId);
         foreach ($list as &$one) {
             if (isset(ProfessionDao::$honors[$one['honors']])) {
@@ -32,7 +34,13 @@ class SchoolService
                 $one['practice'] = ProfessionDao::$practice[$one['practice']];
             }else
                 $one['practice'] = '';
-            $one['status'] = '待申请';
+            $changInfo = $statusChangeDao->queryChangeInfo($customerId, $one['id'],
+                StatusChangeDao::$typeToName['学校申请状态'], $one['apply_status']);
+            $one['file_url'] = $changInfo['file_url'];
+            if (isset(SchoolDao::$applyStatus[$one['apply_status']])) {
+                $one['status'] = SchoolDao::$applyStatus[$one['apply_status']];
+            }else
+                $one['status'] = '';
         }
         return $list;
     }

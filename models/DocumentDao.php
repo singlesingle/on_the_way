@@ -23,12 +23,18 @@ class DocumentDao extends ActiveRecord{
 
     public static $type = [
         "简历" => 1,
-        "推荐信" => 2
+        "推荐信" => 2,
+        "Essay" => 3,
+        "PersonalStatement" => 4,
+        "活动列表" => 5,
     ];
 
     public static $typeDict = [
         1 => "简历",
-        2 => "推荐信"
+        2 => "推荐信",
+        3 => "Essay",
+        4 => "PersonalStatement",
+        5 => "活动列表",
     ];
 
     //添加文书
@@ -84,6 +90,17 @@ class DocumentDao extends ActiveRecord{
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();
         $stmt->bindParam(':annex', $fileUrl, \PDO::PARAM_STR);
+        $ret = $stmt->execute();
+        return $ret;
+    }
+
+    //删除文件
+    public function deleteDocument($id) {
+        $sql=sprintf('UPDATE %s SET status = :status WHERE id = %d',
+            self::tableName(), $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':status', self::$status['删除'], \PDO::PARAM_INT);
         $ret = $stmt->execute();
         return $ret;
     }

@@ -19,19 +19,39 @@
 <script src="/static/js/advanced-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <section class="col-sm-12">
     <div class="col-sm-8 ">
+        {*<div class="row">*}
+            {*<div class="col-sm-6">*}
+                {*<section class="panel">*}
+                    {*<header class="panel-heading">*}
+                        {*<span class="panel-title">今日应回访</span>*}
+                    {*</header>*}
+                    {*<div class="panel-body">*}
+                        {*<div>*}
+                            {*<div id="dsmscount" style="text-align: center; margin:0 auto; font-size: 20px; font-weight: bold;"><u>0</u></div>*}
+                        {*</div>*}
+                    {*</div>*}
+                {*</section>*}
+            {*</div>*}
+
+        {*</div>*}
         <div class="row">
             <div class="col-sm-6">
-                <section class="panel">
-                    <header class="panel-heading">
-                        <span class="panel-title">今日应回访</span>
-                    </header>
-                    <div class="panel-body">
-                        <div>
-                            <div id="dsmscount" style="text-align: center; margin:0 auto; font-size: 20px; font-weight: bold;"><u>0</u></div>
-                        </div>
+            <section class="panel">
+                <header class="panel-heading">
+                    <span class="panel-title">我的在办客户</span>&nbsp;<span style="color: #3580b5;font-size: 20px; font-weight: bold;">{$customer_statistic['count']}</span>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">申请中<u style="color: #3580b5;font-size: 16px;">{$customer_statistic['applying']}</u></div>
+                        <div class="col-sm-4">已获offer<u style="color: #3580b5;font-size: 16px;">{$customer_statistic['offer']}</u></div>
+                        <div class="col-sm-4">已办签证<u style="color: #3580b5;font-size: 16px;">{$customer_statistic['visa']}</u></div>
                     </div>
-                </section>
-            </div>
+                    <div class="row">
+                        <div class="col-sm-4">已结案<u style="color: #3580b5;font-size: 16px;">{$customer_statistic['closeCase']}</u></div>
+                    </div>
+                </div>
+            </section>
+        </div>
             <div class="col-sm-6">
                 <section class="panel">
                     <header class="panel-heading">
@@ -44,27 +64,6 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div class="row">
-        <div class="col-sm-6">
-            <section class="panel">
-                <header class="panel-heading">
-                    <span class="panel-title">我的在办客户</span>&nbsp;<span style="color: #3580b5;font-size: 20px; font-weight: bold;">8</span>
-                </header>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-4">已签约<u style="color: #3580b5;font-size: 16px;">8</u></div>
-                        <div class="col-sm-4">选校中<u style="color: #3580b5;font-size: 16px;">1</u></div>
-                        <div class="col-sm-4">申请中<u style="color: #3580b5;font-size: 16px;">4</u></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">已获offer<u style="color: #3580b5;font-size: 16px;">5</u></div>
-                        <div class="col-sm-4">已办签证<u style="color: #3580b5;font-size: 16px;">0</u></div>
-                        <div class="col-sm-4">已结案<u style="color: #3580b5;font-size: 16px;">14</u></div>
-                    </div>
-                </div>
-            </section>
-        </div>
         </div>
     </div>
     <div class="col-sm-4">
@@ -206,13 +205,27 @@
         });
     }
 
-    function messageInfo($title, $create_time, $content) {
-        alert($title);
-        alert($create_time);
-        alert($content);
-        $("#title").val($title);
-        $("#create_time").val($create_time);
-        $("#content").val($content);
+    function messageInfo(id) {
+        $.ajax({
+            url: '/api/message/info',//这个就是请求地址对应sAjaxSource
+            data : {
+                "message_id": id
+            },
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.error.returnCode == 0) {
+                    $("#title").html(data.data.title);
+                    $("#create_time").html(data.data.create_time);
+                    $("#content").html(data.data.content);
+                }else {
+                }
+            },
+            error: function (data) {
+                alert('查询异常！');
+            }
+        });
     }
 </script>
 

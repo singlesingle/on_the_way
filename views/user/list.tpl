@@ -25,10 +25,10 @@
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
-                        <th>用户名</th>
-                        <th>联系方式</th>
+                        <th>姓名</th>
+                        <th>手机号</th>
                         <th>岗位</th>
-                        <th>上级</th>
+                        <th>直属上级</th>
                         <th>状态</th>
                         <th>创建时间</th>
                         <th>操作</th>
@@ -79,7 +79,7 @@
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">用户名：</label>
+                        <label class="col-sm-3 control-label">姓名：</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="add_user_name">
                         </div>

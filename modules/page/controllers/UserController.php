@@ -25,8 +25,8 @@ class UserController extends BaseController
         }
         $userService = new UserService();
         $userList = $userService->userList();
-        $this->data['page_topo'] = 'user_admin';
-        $this->data['active_page'] = 'list';
+        $this->data['page_topo'] = 'admin';
+        $this->data['active_page'] = 'user_admin';
         $this->data['user_list'] = $userList;
         return $this->render('list.tpl', $this->data);
     }

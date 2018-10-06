@@ -2,6 +2,7 @@
 namespace app\classes;
 
 use app\service\ActionlogService;
+use app\service\MessageService;
 use Yii;
 use yii\web\Controller;
 use yii\base\Exception;
@@ -17,6 +18,7 @@ class BaseController extends Controller {
         'role'    => 0,
         'name'    => '',
         'photo'   => '',
+        'notice' => []
     ];
     protected $method;
     protected $defineMethod = 'GET';
@@ -96,7 +98,8 @@ class BaseController extends Controller {
         }
         //处理photo
         $this->data['photo'] = ".jpg.29x29.jpg";
-
+        $message = new MessageService();
+        $this->data['notice'] = $message->unReadMessage($_SESSION['user_id']);
         return parent::beforeAction( $action );
     }
 

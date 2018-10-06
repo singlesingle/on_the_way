@@ -20,7 +20,6 @@
                         <th>申请项目</th>
                         <th>申请学校</th>
                         <th>创建时间</th>
-                        <th>审核通过时间</th>
                         <th>案例状态</th>
                         <th>审核备注</th>
                         <th>操作</th>
@@ -35,13 +34,12 @@
                             <td>{$one['apply_project']}</td>
                             <td>{$one['admission_school']}</td>
                             <td>{$one['create_time']}</td>
-                            <td>{$one['check_pass_time']}</td>
                             <td>{$one['close_case_status']}</td>
                             <td>{$one['summary']}</td>
                             <td>
                                 <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['id']}">预览</a>
                                 <a type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#update_case_portal"
-                                   onclick="update_case_page('{$one['id']}','{$one['title']}','{$one['admission_school']}','{$one['rank']}','{$one['profession']}','{$one['result']}','{$one['entry_time']}','{$one['graduated_school']}','{$one['summary']}')">编辑</a>&nbsp&nbsp
+                                   onclick="update_case_page('{$one['case_id']}','{$one['title']}','{$one['admission_school']}','{$one['rank']}','{$one['profession']}','{$one['result']}','{$one['entry_time']}','{$one['graduated_school']}','{$one['summary']}')">编辑</a>&nbsp&nbsp
                             </td>
                         </tr>
                     {/foreach}
@@ -305,7 +303,7 @@
         $('#update_admission_school').val(admission_school);
         $('#update_rank').val(rank);
         $('#update_profession').val(profession);
-        $('#update_result').val(result);
+        $("#update_result option[value='"+result+"']").attr("selected","selected");
         $('#update_entry_time').val(entry_time);
         $('#update_graduated_school').val(graduated_school);
         $('#update_summary').val(summary);

@@ -144,11 +144,8 @@ class MessageController extends BaseController
         foreach ($list as $one) {
             $data = [];
             $one['create_time'] = date('Y年m月d日 H:i', strtotime($one['create_time']));
-            $one['title'] = htmlentities($one['title']);
-            $one['create_time'] = htmlentities($one['create_time']);
-            $one['content'] = htmlentities($one['content']);
-            $data[] = "<a data-toggle=\"modal\" data-target=\"#message_info\" type='button' onclick='messageInfo()' class='text-left'>{$one['title']}</a>
-            <a data-toggle=\"modal\" data-target=\"#message_info\" onclick='messageInfo()' class='pull-right' style='color: #9b9b9b'>{$one['create_time']}</a>";
+            $data[] = "<a data-toggle=\"modal\" data-target=\"#message_info\" type='button' onclick='messageInfo({$one['id']})' class='text-left'>{$one['title']}</a>
+            <a data-toggle=\"modal\" data-target=\"#message_info\" onclick='messageInfo({$one['id']})' class='pull-right' style='color: #9b9b9b'>{$one['create_time']}</a>";
             $messageList[] = $data;
         }
         $json_data = array ('sEcho'=>$sEcho,'iTotalRecords'=>$count,'iTotalDisplayRecords'=>$count,'aaData'=>$messageList);  //按照datatable的当前页和每页长度返回json数据

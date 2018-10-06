@@ -7,14 +7,52 @@ use app\models\BasicInfoDao;
 use app\models\CaseDao;
 use app\models\CustomerDao;
 use app\models\MaterialDao;
+use app\models\SchoolDao;
+use app\models\StatusChangeDao;
 use app\models\UserDao;
 
 class MaterialService
 {
-    public function addMaterial($customerId, $name, $type, $schoolId, $url)
+    public function addMaterial($userId, $customerId, $name, $type, $schoolId, $url)
     {
+        if (!isset(MaterialDao::$type[$type])) {
+            return false;
+        }
         $materialDao = new MaterialDao();
         $ret = $materialDao->addMaterial($customerId, $name, $type, $schoolId, $url);
+        $customerDao = new CustomerDao();
+        $statusChangeDao = new StatusChangeDao();
+        $schoolDao = new SchoolDao();
+        if ($type == MaterialDao::$typeToName['签证递交回执']) {
+            $customerDao->updateVisaStatus($customerId, CustomerDao::$visaStatusDict['签证递交']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['签证状态'],
+                CustomerDao::$visaStatusDict['签证递交'], $schoolId, $url);
+
+        }elseif ($type == MaterialDao::$typeToName['获签信']) {
+            $customerDao->updateVisaStatus($customerId, CustomerDao::$visaStatusDict['获签']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['签证状态'],
+                CustomerDao::$visaStatusDict['获签'], $schoolId, $url);
+
+        }elseif ($type == MaterialDao::$typeToName['拒签信']) {
+            $customerDao->updateVisaStatus($customerId, CustomerDao::$visaStatusDict['拒签']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['签证状态'],
+                CustomerDao::$visaStatusDict['拒签'], $schoolId, $url);
+
+        }elseif ($type == MaterialDao::$typeToName['学校申请回执']) {
+            $schoolDao->updateApplyStatus($schoolId, SchoolDao::$applyStatusName['已申请']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['学校申请状态'],
+                SchoolDao::$applyStatusName['已申请'], $schoolId, $url);
+
+        }elseif ($type == MaterialDao::$typeToName['offer']) {
+            $schoolDao->updateApplyStatus($schoolId, SchoolDao::$applyStatusName['录取']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['学校申请状态'],
+                SchoolDao::$applyStatusName['录取'], $schoolId, $url);
+
+        }elseif ($type == MaterialDao::$typeToName['拒录信']) {
+            $schoolDao->updateApplyStatus($schoolId, SchoolDao::$applyStatusName['未录取']);
+            $statusChangeDao->addStatusChange($customerId, $userId, StatusChangeDao::$typeToName['学校申请状态'],
+                SchoolDao::$applyStatusName['未录取'], $schoolId, $url);
+        }
         return $ret;
     }
 

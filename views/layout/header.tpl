@@ -48,37 +48,22 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                         <i class="fa fa-bell-o"></i>
-                        <span class="badge bg-warning">4</span>
+                        <span class="badge bg-important">{count($notice)}</span>
                     </a>
                     <ul class="dropdown-menu extended notification">
                         <li>
-                            <p>Notifications</p>
+                            <p>消息通知</p>
                         </li>
+                        {foreach $notice as $message}
                         <li>
                             <div class="alert alert-info clearfix">
-                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                                {*<span class="alert-icon"><i class="fa fa-bolt"></i></span>*}
                                 <div class="noti-info">
-                                    <a href="#"> Server #1 overloaded.</a>
+                                    <a data-toggle="modal" data-target="#notice_message" onclick="readMessage({$message['id']})">{$message['title']}</a>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="alert alert-danger clearfix">
-                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                                <div class="noti-info">
-                                    <a href="#"> Server #2 overloaded.</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="alert alert-success clearfix">
-                                <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                                <div class="noti-info">
-                                    <a href="#"> Server #3 overloaded.</a>
-                                </div>
-                            </div>
-                        </li>
-
+                        {/foreach}
                     </ul>
                 </li>
                 <!-- notification dropdown end -->
@@ -115,7 +100,7 @@
             <div class="leftside-navigation">
                 <ul class="sidebar-menu" id="nav-accordion">
                     <li class="sub-menu">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;" class="{if $page_topo eq "desktop"}active{/if}">
                             <i class="fa fa-home"></i>
                             <span>首页</span>
                         </a>
@@ -124,7 +109,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;" class="{if $page_topo eq "customer_admin"}active{/if}">
                             <i class="fa fa-users"></i>
                             <span>CRM</span>
                         </a>
@@ -133,7 +118,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;" class="{if $page_topo eq "case_admin"}active{/if}">
                             <i class="fa fa-fire"></i>
                             <span>案例库</span>
                         </a>
@@ -143,7 +128,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;" class="{if $page_topo eq "document_admin"}active{/if}">
                             <i class="fa fa-file-text"></i>
                             <span>文书库</span>
                         </a>
@@ -152,15 +137,15 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" class="active">
+                        <a href="javascript:;" class="{if $page_topo eq "admin"}active{/if}">
                             <i class="fa fa-sitemap"></i>
                             <span>管理</span>
                         </a>
                         <ul class="sub">
-                            <li {if $page_topo eq "user_admin"}class="active"{/if}><a href="/page/user/list">用户</a></li>
+                            <li {if $active_page eq "user_admin"}class="active"{/if}><a href="/page/user/list">用户</a></li>
                         </ul>
                         <ul class="sub">
-                            <li {if $page_topo eq "message_admin"}class="active"{/if}><a href="/page/message/list">消息</a></li>
+                            <li {if $active_page eq "message_admin"}class="active"{/if}><a href="/page/message/list">消息</a></li>
                         </ul>
                     </li>
 
@@ -169,8 +154,54 @@
             <!-- sidebar menu end-->
         </div>
     </aside>
+    <div class="modal fade" id="notice_message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        <p id="notice_title"></p>
+                        <p id="notice_create_time"></p>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p id="notice_content"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
     <!--sidebar end-->
 
     <!--main content start-->
     <section id="main-content">
     <section class="wrapper">
+        <script>
+            function readMessage(id) {
+                $.ajax({
+                    url: '/api/message/info',//这个就是请求地址对应sAjaxSource
+                    data : {
+                        "message_id": id
+                    },
+                    type: 'POST',
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        if (data.error.returnCode == 0) {
+                            $("#notice_title").html(data.data.title);
+                            $("#notice_create_time").html(data.data.create_time);
+                            $("#notice_content").html(data.data.content);
+                        }else {
+                        }
+                    },
+                    error: function (data) {
+                        alert('查询异常！');
+                    }
+                });
+            }
+        </script>

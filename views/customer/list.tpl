@@ -103,7 +103,7 @@
                         <th>申请项目</th>
                         <th>服务类型</th>
                         <th>出国年份</th>
-                        <th>微信号</th>
+                        <th>微信昵称</th>
                         <th>申请状态</th>
                         <th>签证状态</th>
                         <th>结案状态</th>
@@ -202,7 +202,7 @@
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">微信号：</label>
+                        <label class="col-sm-3 control-label">微信昵称：</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="add_wechat">
                         </div>

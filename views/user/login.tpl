@@ -8,7 +8,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Login</title>
+    <title>登陆</title>
 
     <!--Core CSS -->
     <link href="/static/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -34,21 +34,21 @@
 <div class="container">
 
     <form class="form-signin">
-        <h2 class="form-signin-heading">sign in now</h2>
+        <h2 class="form-signin-heading">用户登陆</h2>
         <div class="login-wrap">
             <div class="user-login-info">
-                <input type="text" id="phone" class="form-control" placeholder="Phone" autofocus>
-                <input type="password" id="password" class="form-control" placeholder="Password">
+                <input type="text" id="phone" class="form-control" placeholder="手机号" autofocus>
+                <input type="password" id="password" class="form-control" placeholder="密码">
             </div>
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            <button class="btn btn-lg btn-login btn-block" type="button" onclick="login();">Sign in</button>
+            {*<label class="checkbox">*}
+                {*<input type="checkbox" value="remember-me"> Remember me*}
+            {*</label>*}
+            <button class="btn btn-lg btn-login btn-block" type="button" onclick="login();">登陆</button>
 
             <div class="registration">
-                Don't have an account yet? Forgot Password?
+                注册新账号? 忘了密码?
                 <a>
-                    Contact administrator
+                    请联系管理员
                 </a>
             </div>
 

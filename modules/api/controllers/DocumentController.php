@@ -77,17 +77,6 @@ class DocumentController extends BaseController
             return $ret;
         }
         $documentId = $this->getParam('documentId', '');
-//        if ($_FILES["file"]["error"] > 0)
-//        {
-//            echo "Error: " . $_FILES["file"]["error"] . "<br />";
-//        }
-//        else
-//        {
-//            echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-//            echo "Type: " . $_FILES["file"]["type"] . "<br />";
-//            echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-//            echo "Stored in: " . $_FILES["file"]["tmp_name"];
-//        }
         $filePath = $_FILES["file"]["tmp_name"];
         $fileName = $_FILES["file"]["name"];
         $fileService = new FileService();
@@ -125,6 +114,34 @@ class DocumentController extends BaseController
         }else {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
             $ret = $this->outputJson($fileUrl, $error);
+        }
+        return $ret;
+    }
+
+    //删除文件
+    public function actionDelete()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'documentId' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $documentId = $this->getParam('documentId', '');
+        $documentService = new DocumentService();
+        $ret = $documentService->delete($documentId);
+        $this->actionLog(self::LOGDEL, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
         }
         return $ret;
     }
