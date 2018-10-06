@@ -14,50 +14,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="inner.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/case/inner.tpl">
+      <file leaf-file-name="info.tpl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" selection-start-line="5" selection-end-line="7" />
+            <state relative-caret-position="155">
+              <caret line="367" column="39" selection-start-line="367" selection-start-column="39" selection-end-line="367" selection-end-column="39" />
               <folding>
-                <element signature="e#555#578#0#HTML" expanded="true" />
+                <element signature="n#ul#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/case/my.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="13" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/document/list.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="11" lean-forward="true" selection-start-line="9" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/user/list.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="24" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.tpl" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/message/list.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -65,53 +31,8 @@
       <file leaf-file-name="list.tpl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/customer/list.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="13" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="13" />
-              <folding>
-                <element signature="e#1007#4377#0#HTML" />
-                <element signature="e#4390#4867#0#HTML" />
-                <element signature="e#4880#5038#0#HTML" />
-                <element signature="e#5874#11140#0#HTML" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layout/header.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="e#7554#7561#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="info.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/user/info.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="21" column="38" lean-forward="true" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/page/controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/UserService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="131" column="36" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
+            <state relative-caret-position="187">
+              <caret line="7" lean-forward="true" selection-start-line="5" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -196,11 +117,9 @@
         <option value="$PROJECT_DIR$/views/user/login.tpl" />
         <option value="$PROJECT_DIR$/models/DocumentDao.php" />
         <option value="$PROJECT_DIR$/models/CaseDao.php" />
-        <option value="$PROJECT_DIR$/views/desktop/info.tpl" />
         <option value="$PROJECT_DIR$/models/CustomerDao.php" />
         <option value="$PROJECT_DIR$/tasks/StatusController.php" />
         <option value="$PROJECT_DIR$/config/console.php" />
-        <option value="$PROJECT_DIR$/views/customer/info.tpl" />
         <option value="$PROJECT_DIR$/modules/page/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/modules/page/controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/views/layout/header.tpl" />
@@ -212,6 +131,8 @@
         <option value="$PROJECT_DIR$/views/document/list.tpl" />
         <option value="$PROJECT_DIR$/views/user/list.tpl" />
         <option value="$PROJECT_DIR$/views/message/list.tpl" />
+        <option value="$PROJECT_DIR$/views/desktop/info.tpl" />
+        <option value="$PROJECT_DIR$/views/customer/info.tpl" />
       </list>
     </option>
   </component>
@@ -427,7 +348,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="my&#9;FILE&#9;file://E:/mygit/on_the_way/views/case/my.tpl&#10;inner&#9;FILE&#9;file://E:/mygit/on_the_way/views/case/inner.tpl&#10;list&#9;FILE&#9;file://E:/mygit/on_the_way/views/customer/list.tpl&#10;userC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;info.tpl&#9;FILE&#9;file://E:/mygit/on_the_way/views/user/info.tpl&#10;Case&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;MessageC&#9;null&#9;null&#10;documentC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DocumentController.php&#10;caseC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;header&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl&#10;CustomerC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CustomerController.php&#10;CaseD&#9;FILE&#9;file://E:/mygit/on_the_way/models/CaseDao.php&#10;DocumentD&#9;FILE&#9;file://E:/mygit/on_the_way/models/DocumentDao.php&#10;User&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;Basec&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;UserC&#9;null&#9;null&#10;login&#9;FILE&#9;file://E:/mygit/on_the_way/views/user/login.tpl&#10;url&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;Document&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/DocumentController.php&#10;Mess&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/MessageController.php&#10;Des&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DesktopController.php&#10;document&#9;null&#9;null&#10;Wx&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/WxController.php&#10;School&#9;FILE&#9;file://E:/mygit/on_the_way/models/SchoolDao.php&#10;Ma&#9;FILE&#9;file://E:/mygit/on_the_way/models/MaterialDao.php&#10;Cus&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/CustomerController.php&#10;Desc&#9;null&#9;null&#10;Base&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;urlR&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;head&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl" />
+    <property name="SearchEverywhereHistoryKey" value="list.tpl&#9;FILE&#9;file://E:/mygit/on_the_way/views/customer/list.tpl&#10;info.tpl&#9;FILE&#9;file://E:/mygit/on_the_way/views/customer/info.tpl&#10;my&#9;FILE&#9;file://E:/mygit/on_the_way/views/case/my.tpl&#10;inner&#9;FILE&#9;file://E:/mygit/on_the_way/views/case/inner.tpl&#10;list&#9;FILE&#9;file://E:/mygit/on_the_way/views/customer/list.tpl&#10;userC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;Case&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;MessageC&#9;null&#9;null&#10;documentC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DocumentController.php&#10;caseC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CaseController.php&#10;header&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl&#10;CustomerC&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/CustomerController.php&#10;CaseD&#9;FILE&#9;file://E:/mygit/on_the_way/models/CaseDao.php&#10;DocumentD&#9;FILE&#9;file://E:/mygit/on_the_way/models/DocumentDao.php&#10;User&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/UserController.php&#10;Basec&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;UserC&#9;null&#9;null&#10;login&#9;FILE&#9;file://E:/mygit/on_the_way/views/user/login.tpl&#10;url&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;Document&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/DocumentController.php&#10;Mess&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/MessageController.php&#10;Des&#9;FILE&#9;file://E:/mygit/on_the_way/modules/page/controllers/DesktopController.php&#10;document&#9;null&#9;null&#10;Wx&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/WxController.php&#10;School&#9;FILE&#9;file://E:/mygit/on_the_way/models/SchoolDao.php&#10;Ma&#9;FILE&#9;file://E:/mygit/on_the_way/models/MaterialDao.php&#10;Cus&#9;FILE&#9;file://E:/mygit/on_the_way/modules/api/controllers/CustomerController.php&#10;Desc&#9;null&#9;null&#10;Base&#9;FILE&#9;file://E:/mygit/on_the_way/classes/BaseController.php&#10;urlR&#9;FILE&#9;file://E:/mygit/on_the_way/config/urlRules.php&#10;head&#9;FILE&#9;file://E:/mygit/on_the_way/views/layout/header.tpl" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -499,7 +420,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266502000" />
+    <option name="totallyTimeSpent" value="267647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -512,7 +433,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22995462" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22995462" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -763,13 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/desktop/info.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/urlRules.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -816,21 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#9;n#div#1;n#div#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#!!top" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#div#0;n#section#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="e#68462#70304#0#HTML" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,19 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/customer/list.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="13" lean-forward="true" selection-start-line="11" selection-start-column="12" selection-end-line="13" />
-          <folding>
-            <element signature="e#1007#4377#0#HTML" />
-            <element signature="e#4390#4867#0#HTML" />
-            <element signature="e#4880#5038#0#HTML" />
-            <element signature="e#5874#11140#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/case/my.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -940,17 +826,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/list.tpl">
+    <entry file="file://$PROJECT_DIR$/views/message/list.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="216">
+          <caret line="8" selection-start-line="6" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/message/list.tpl">
+    <entry file="file://$PROJECT_DIR$/views/user/list.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="421">
+          <caret line="22" column="55" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/desktop/info.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/customer/list.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="7" lean-forward="true" selection-start-line="5" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="367" column="39" selection-start-line="367" selection-start-column="39" selection-end-line="367" selection-end-column="39" />
+          <folding>
+            <element signature="n#ul#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -19,21 +19,6 @@
 <script src="/static/js/advanced-datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <section class="col-sm-12">
     <div class="col-sm-8 ">
-        {*<div class="row">*}
-            {*<div class="col-sm-6">*}
-                {*<section class="panel">*}
-                    {*<header class="panel-heading">*}
-                        {*<span class="panel-title">今日应回访</span>*}
-                    {*</header>*}
-                    {*<div class="panel-body">*}
-                        {*<div>*}
-                            {*<div id="dsmscount" style="text-align: center; margin:0 auto; font-size: 20px; font-weight: bold;"><u>0</u></div>*}
-                        {*</div>*}
-                    {*</div>*}
-                {*</section>*}
-            {*</div>*}
-
-        {*</div>*}
         <div class="row">
             <div class="col-sm-6">
             <section class="panel">

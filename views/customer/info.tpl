@@ -18,6 +18,8 @@
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/dataTables.bootstrap.js"></script>
 <script src="/static/js/select2/select2.js"></script>
 <link href="/static/js/select2/select2.css" rel="stylesheet">
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/daterangepicker-2.0.5/daterangepicker.css" rel="stylesheet">
 
 <div class="col-lg-12">
     <div class="row">
@@ -323,9 +325,9 @@
             </div>
             <div class="tab-pane" id="tab3_3">
                 <div class="col-sm-12">
-                    <a  type="button" class="pull-right ng-scope" data-toggle="modal" data-target="#add_school_portal"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增选校 </a>
                     <section class="panel">
                         <div class="panel-body">
+                            <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#add_school_portal">新增选校</a>
                             <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                                 <thead>
                                 <tr role="row">
@@ -364,11 +366,9 @@
             </div>
             <div class="tab-pane" id="tab3_4">
                 <div class="col-sm-12">
-                    <a  type="button" class="pull-right ng-scope" data-toggle="modal" data-target="#add_material_portal">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增材料
-                    </a>
                     <section class="panel">
                         <div class="panel-body">
+                            <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#add_material_portal">新增材料</a>
                             <table cellspacing="0"  id="material_list" class="table table-bordered table-striped">
                                 <thead>
                                 <tr role="row">
