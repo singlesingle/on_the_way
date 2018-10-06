@@ -127,7 +127,9 @@ class UserService
             foreach ($userList as $user) {
                 $managerList[$user['id']] = $user['name'];
             }
-            $userInfo['leader'] = isset($managerList[$userInfo['fid']]) ? $managerList[$userInfo['fid']] : '';
+            $userInfo['leader'] = isset($managerList[$userInfo['fid']]) ? $managerList[$userInfo['fid']] : '无';
+        }else {
+            $userInfo['leader'] = '无';
         }
 
         $userInfo['role'] = isset(UserDao::$role_name[$userInfo['role']]) ? UserDao::$role_name[$userInfo['role']] : '';

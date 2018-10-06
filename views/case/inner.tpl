@@ -3,12 +3,12 @@
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/datatables-1.10.7/dataTables.bootstrap.js"></script>
 <script src="/static/js/select2/select2.js"></script>
 <link href="/static/js/select2/select2.css" rel="stylesheet">
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/daterangepicker-2.0.5/daterangepicker.css" rel="stylesheet">
 <div class="col-sm-12">
-    <section class="panel">
-        <header class="panel-heading">
-            内部案例库
-        </header>
+    <div class="panel">
         <div class="panel-body">
+            <laber style="font-size:large">内部案例库</laber>
                 <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
@@ -46,12 +46,13 @@
                     </tbody>
                 </table>
         </div>
-    </section>
+    </div>
 </div>
 
 <script type="text/javascript">
     $('#member_list').DataTable({
         "displayLength": 25,
+        "sPaginationType": "full_numbers",
         "order": [],
         "language": {
             "search":"搜索",

@@ -6,7 +6,7 @@
 <meta name="description" content="">
 <meta name="author" content="ThemeBucket">
 <link rel="shortcut icon" type="image/x-icon" href="/static/img/logo.png"/>
-<title>在途客户管理系统</title>
+<title>在途客户管理</title>
 <!--Core CSS -->
 <link href="/static/bs3/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
         <div class="brand">
 
             <a href="/page/desktop/info" class="logo">
-                在途客户管理系统
+                在途客户管理
             </a>
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars"></div>

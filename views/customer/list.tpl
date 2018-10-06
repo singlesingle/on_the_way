@@ -7,81 +7,81 @@
 <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/daterangepicker-2.0.5/daterangepicker.css" rel="stylesheet">
 <script src="https://magicbox.bkclouds.cc/static_api/v3/assets/colresizable-1.5/colResizable-1.5.min.js"></script>
 <div class="col-sm-12">
-    <section class="panel">
-        <header class="panel-heading">
+    <div class="panel">
+        <div class="panel-body">
             <laber style="font-size:large">在办客户管理</laber>
             <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#add_user_portal">新增</a>
 
             <div class="form-inline row" style="margin-bottom: 10px; margin-top: 20px">
-                    <div class="form-group col-md-2">
-                        <div >申请国家</div>
-                        <select id="search_apply_country" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="1">英国</option>
-                            <option value="2">加拿大</option>
-                            <option value="3">澳大利亚</option>
-                            <option value="4">欧洲</option>
-                            <option value="5">新西兰</option>
-                            <option value="6">爱尔兰</option>
-                            <option value="7">香港</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div >申请项目</div>
-                        <select id="search_apply_project" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="1">初中</option>
-                            <option value="2">高中</option>
-                            <option value="3">本科</option>
-                            <option value="4">硕士</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div >服务类型</div>
-                        <select id="search_service_type" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="1">单文书</option>
-                            <option value="2">全程服务</option>
-                            <option value="3">单申请</option>
-                            <option value="4">签证</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div >出国年份</div>
-                        <select id="search_go_abroad_year" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div >申请状态</div>
-                        <select id="search_apply_status" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="0">未开始</option>
-                            <option value="1">申请中</option>
-                            <option value="2">已完成</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div >签证状态</div>
-                        <select id="search_visa_status" class="form-control" style="width:200px;">
-                            <option value=""></option>
-                            <option value="0">待申请</option>
-                            <option value="1">签证递交</option>
-                            <option value="2">获签</option>
-                            <option value="3">拒签</option>
-                        </select>
-                    </div>
+                <div class="form-group col-md-2">
+                    <div >申请国家</div>
+                    <select id="search_apply_country" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="1">英国</option>
+                        <option value="2">加拿大</option>
+                        <option value="3">澳大利亚</option>
+                        <option value="4">欧洲</option>
+                        <option value="5">新西兰</option>
+                        <option value="6">爱尔兰</option>
+                        <option value="7">香港</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <div >申请项目</div>
+                    <select id="search_apply_project" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="1">初中</option>
+                        <option value="2">高中</option>
+                        <option value="3">本科</option>
+                        <option value="4">硕士</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <div >服务类型</div>
+                    <select id="search_service_type" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="1">单文书</option>
+                        <option value="2">全程服务</option>
+                        <option value="3">单申请</option>
+                        <option value="4">签证</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <div >出国年份</div>
+                    <select id="search_go_abroad_year" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <div >申请状态</div>
+                    <select id="search_apply_status" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="0">未开始</option>
+                        <option value="1">申请中</option>
+                        <option value="2">已完成</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <div >签证状态</div>
+                    <select id="search_visa_status" class="form-control" style="width:100%;">
+                        <option value=""></option>
+                        <option value="0">待申请</option>
+                        <option value="1">签证递交</option>
+                        <option value="2">获签</option>
+                        <option value="3">拒签</option>
+                    </select>
+                </div>
             </div>
             <div class="form-inline row" style="margin-bottom: 10px">
                 <div class="form-group col-md-2">
                     <div >结案状态</div>
-                    <select id="search_close_case_status" class="form-control" style="width:200px;">
+                    <select id="search_close_case_status" class="form-control" style="width:100%;">
                         <option value=""></option>
                         <option value="1">未结案</option>
                         <option value="2">已结案</option>
@@ -91,8 +91,6 @@
             <div class="col-xs-12 text-center" style="margin-bottom: 20px">
                 <button class="btn btn-danger" onclick="data()">查询</button>
             </div>
-        </header>
-        <div class="panel-body">
                 <table cellspacing="0"  id="customer_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
@@ -115,7 +113,7 @@
                     </tbody>
                 </table>
         </div>
-    </section>
+    </div>
 </div>
 
 <div class="modal fade" id="add_user_portal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

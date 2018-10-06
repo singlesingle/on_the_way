@@ -5,16 +5,20 @@
 <link href="/static/bk/css/bk_app_theme.css" rel="stylesheet" type="text/css" />
 
 <div class="col-lg-12">
+    {*<div class="row">*}
+        {*<div class="col-lg-12">*}
+            {*<div class="alert alert-success bootstrap-admin-alert">*}
+                {*<h4>个人信息维护</h4>*}
+            {*</div>*}
+        {*</div>*}
+    {*</div>*}
     <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-success bootstrap-admin-alert">
-                <h4>个人信息维护</h4>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="panel">
             <section>
+
+                <div class="panel-heading alert-success">
+                    <h4>个人信息维护</h4>
+                </div>
                 <div class="panel-body">
                     <form>
                         <input type="hidden" id='id' value="{$user_info['id']}">

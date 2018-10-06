@@ -4,14 +4,14 @@
 <script src="/static/js/select2/select2.js"></script>
 <link href="/static/select2/select2.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/select2-bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://magicbox.bkclouds.cc/static_api/v3/assets/daterangepicker-2.0.5/daterangepicker.css" rel="stylesheet">
 <div class="col-sm-12">
     <section class="panel">
-        <header class="panel-heading">
-            我的案例
-            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add_user_portal">新增</a>
-        </header>
         <div class="panel-body">
-                <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
+            <laber style="font-size:large">我的案例</laber>
+            <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#add_user_portal">新增</a>
+            <table cellspacing="0"  id="member_list" class="table table-bordered table-striped">
                     <thead>
                     <tr role="row">
                         <th>标题</th>
