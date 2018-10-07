@@ -48,6 +48,10 @@ return [
     'api/school/add' => 'api/school/add',
     /////// api url rules end
 
+    /////// cron url rules tart
+    'api/customer/status' => 'api/customer/status',
+    /////// cron url rules end
+
     '/403'  => 'page/error/error403',
     '/404'  => 'page/error/error404',
     '/500'  => 'page/error/error500'

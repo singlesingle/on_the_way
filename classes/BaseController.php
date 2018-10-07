@@ -83,7 +83,8 @@ class BaseController extends Controller {
         session_start();
 
         $url = Yii::$app->request->getPathInfo();
-        if ($url == 'page/user/login' || $url == 'api/user/login' || $url == 'api/wx/reply') {
+        if ($url == 'page/user/login' || $url == 'api/user/login' || $url == 'api/wx/reply'
+            || $url == 'api/customer/status') {
             return parent::beforeAction( $action );
         }
 
