@@ -7,6 +7,7 @@ use app\classes\ErrorDict;
 use app\models\BasicInfoDao;
 use app\service\BasicInfoService;
 use app\service\CustomerService;
+use app\service\EducationService;
 use app\service\MaterialService;
 use app\service\SchoolService;
 
@@ -51,12 +52,15 @@ class CustomerController extends BaseController
         $schoolList = $schoolService->schoolList($customerInfo['id']);
         $materialService = new MaterialService();
         $materialList = $materialService->materialList($customerInfo['id']);
+        $educationService = new EducationService();
+        $educationInfo = $educationService->educationInfo($customerInfo['id']);
         $this->data['page_topo'] = 'customer_admin';
         $this->data['active_page'] = 'list';
         $this->data['customer_info'] = $customerInfo;
         $this->data['basic_info'] = $basicInfo;
         $this->data['school_list'] = $schoolList;
         $this->data['material_list'] = $materialList;
+        $this->data['education'] = $educationInfo;
         return $this->render('info.tpl', $this->data);
     }
     

@@ -39,7 +39,7 @@
                             <td>{$one['graduated_school']}</td>
                             <td>{$one['summary']}</td>
                             <td>
-                                <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['id']}">查看</a>
+                                <a type="button" class="btn btn-sm btn-danger" href="/page/case/info?id={$one['case_id']}">查看</a>
                             </td>
                         </tr>
                     {/foreach}

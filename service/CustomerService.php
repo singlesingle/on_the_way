@@ -6,6 +6,7 @@ use app\classes\Log;
 use app\models\BasicInfoDao;
 use app\models\CaseDao;
 use app\models\CustomerDao;
+use app\models\EducationDao;
 use app\models\UserDao;
 
 class CustomerService
@@ -16,8 +17,10 @@ class CustomerService
             $applyProject, $serviceType, $goAbroadYear, CustomerDao::$applyStatusDict['未开始'],
             CustomerDao::$visaStatusDict['待申请'], CustomerDao::$closeCaseStatusDict['未结案']);
         $basicInfoDao = new BasicInfoDao();
-        $ret = $basicInfoDao->addBasicInfo($customerId);
-        return $ret;
+        $basicInfoDao->addBasicInfo($customerId);
+        $educationDao = new EducationDao();
+        $educationDao->addEducationInfo($customerId);
+        return $customerId;
     }
 
     //客户列表

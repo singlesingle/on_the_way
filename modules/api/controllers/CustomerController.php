@@ -9,6 +9,7 @@ use app\models\CustomerDao;
 use app\service\BasicInfoService;
 use app\service\CaseService;
 use app\service\CustomerService;
+use app\service\EducationService;
 use app\service\FileService;
 use app\service\MaterialService;
 use Yii;
@@ -457,6 +458,85 @@ class CustomerController extends BaseController
         $materialService = new MaterialService();
         $ret = $materialService->addMaterial($userId, $customerId, $name, $type, $schoolId, $url);
         $this->actionLog(self::LOGADD, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
+        return $ret;
+    }
+
+    //保存客户教育信息
+    public function actionSaveeducation()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+            'start_time' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'end_time' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'major' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'level' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'address' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'school_name' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'rank' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'type' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'school_web' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+            'phone' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $id = $this->getParam('id', '');
+        $startTime = $this->getParam('start_time', '');
+        $endTime = $this->getParam('end_time', '');
+        $level = $this->getParam('level', '');
+        $major = $this->getParam('major', '');
+        $address = $this->getParam('address', 0);
+        $schoolName = $this->getParam('school_name', '');
+        $rank = $this->getParam('rank', '');
+        $type = $this->getParam('type', '');
+        $schoolWeb = $this->getParam('school_web', '');
+        $phone = $this->getParam('phone', '');
+        $educationService = new EducationService();
+        $ret = $educationService->saveEducation($id, $startTime, $endTime, $major, $level, $address, $schoolName,
+            $rank, $type, $schoolWeb, $phone);
+        $this->actionLog(self::LOGMOD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
             $ret = $this->outputJson('', $error);

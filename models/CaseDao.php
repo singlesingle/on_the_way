@@ -92,7 +92,7 @@ class CaseDao extends ActiveRecord{
 
     //查询内部客户案例
     public function queryAllCase() {
-        $sql=sprintf('SELECT * FROM %s as a INNER JOIN %s as b ON a.customer_id = b.id',
+        $sql=sprintf('SELECT *, a.id as case_id FROM %s as a INNER JOIN %s as b ON a.customer_id = b.id',
             self::tableName(), 'customer');
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();

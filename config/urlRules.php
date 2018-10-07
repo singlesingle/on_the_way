@@ -35,6 +35,7 @@ return [
     'api/customer/searchlist' => 'api/customer/searchlist',
     'api/customer/savebasicinfo' => 'api/customer/savebasicinfo',
     'api/customer/addmaterial' => 'api/customer/addmaterial',
+    'api/customer/saveeducation' => 'api/customer/saveeducation',
     'api/document/add' => 'api/document/add',
     'api/document/upload' => 'api/document/upload',
     'api/document/download' => 'api/document/download',

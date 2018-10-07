@@ -31,11 +31,11 @@
     </div>
     <div class="tab-box" id="myTab3">
         <ul class="nav nav-tabs king-nav-tabs2  king-tab-success">
-            {*<li class="active">*}
-                {*<a href="#tab3_1" data-toggle="tab">摘要</a>*}
-            {*</li>*}
             <li class="active">
-                <a href="#tab3_2" data-toggle="tab">学生信息</a>
+                <a href="#tab3_1" data-toggle="tab">学生信息</a>
+            </li>
+            <li>
+                <a href="#tab3_2" data-toggle="tab">教育背景</a>
             </li>
             <li>
                 <a href="#tab3_3" data-toggle="tab">选校</a>
@@ -51,21 +51,18 @@
             {*</li>*}
         </ul>
         <div class="tab-content mb20">
-            {*<div class="tab-pane" id="tab3_1">*}
-
-            {*</div>*}
-            <div class="tab-pane" id="tab3_2">
-                <form name="myFormBasic" class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-valid-pattern ng-valid-email ng-valid-date ng-pristine"  novalidate="" style="margin-top: 20px;">
+            <div class="tab-pane active" id="tab3_1">
+                <form class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-valid-pattern ng-valid-email ng-valid-date ng-pristine"  novalidate="" style="margin-top: 20px;">
                     <div class="row basic-form col-md-10 col-lg-offset-1" >
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label pt0"><sup class="text-danger">*</sup>中文名</label>
+                                <label class="col-sm-3 control-label pt0"> 中文名</label>
                                 <div class="col-sm-9">
                                     <input  type="text" class="form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" id="name" placeholder="请与护照一致" required="" style="" value="{$customer_info['name']}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label pt0"><sup class="text-danger">*</sup>中文名拼音</label>
+                                <label class="col-sm-3 control-label pt0"> 中文名拼音</label>
                                 <div class="col-sm-9">
                                     <input  type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern" ng-pattern="/^[A-Z]+$/" placeholder="请与护照一致" id="name_pinyin" value="{$basic_info['name_pinyin']}" ng-change="console.info(11)" required=""> <!-- ngIf: myFormBasic.name_pinyin.$error.pattern && myFormBasic.$submitted==true --> <!-- ngIf: myFormBasic.name_pinyin.$error.required && myFormBasic.$submitted==true --> </div> </div> <div class="form-group">
                                 <label class="col-sm-3 control-label pt0">英文名</label> <div class="col-sm-9">
@@ -78,18 +75,18 @@
                                     <input  type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="used_name" value="{$basic_info['used_name']}"> </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>身份证号码</label>
+                                <label class="col-sm-3 control-label"> 身份证号码</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-not-empty ng-valid ng-valid-required" ng-pattern="/(^\d{15}$)|(^\d{17}(\d|X)$)/" ng-change="$info.changeIdentityNum($info.basic.identity_number)" id="id_number" value="{$basic_info['id_number']}" required="" style=""> <!-- ngIf: myFormBasic.identity_number.$error.pattern && myFormBasic.$submitted==true --> <!-- ngIf: myFormBasic.identity_number.$error.required && myFormBasic.$submitted==true -->
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>手机号码</label>
+                                <label class="col-sm-3 control-label"> 手机号码</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-not-empty ng-valid ng-valid-required" ng-pattern="/^(((1[345789][\d][0-9]{8}))(|\+\d))$/" id="phone" value="{$customer_info['phone']}" required="" style=""> <!-- ngIf: myFormBasic.mobile.$error.pattern && myFormBasic.$submitted==true --> <!-- ngIf: myFormBasic.mobile.$error.required && myFormBasic.$submitted==true -->
                                 </div>
                             </div>
-                            <div class="form-group"> <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>电子邮箱</label>
+                            <div class="form-group"> <label class="col-sm-3 control-label"> 电子邮箱</label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email ng-not-empty" id="email" value="{$basic_info['email']}" style=""> <!-- ngIf: myFormBasic.email.$error.email && myFormBasic.$submitted==true -->
                                 </div>
@@ -127,13 +124,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>出生地</label>
+                                <label class="col-sm-3 control-label"> 出生地</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" id="place_birth" value="{$basic_info['place_birth']}"> <!-- ngIf: myFormBasic.phone.$error.pattern && myFormBasic.$submitted==true -->
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label pt0"><sup class="text-danger">*</sup>出生日期</label>
+                                <label class="col-sm-3 control-label pt0"> 出生日期</label>
                                 <div class="col-sm-9">
                                     <div class="date-time">
                                         <input type="text" class="form-control" id="birthday" name="begintime" value="{$basic_info['birthday']}" style="width:300px;">
@@ -142,7 +139,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>性别</label>
+                                <label class="col-sm-3 control-label"> 性别</label>
                                 <div class="col-sm-9">
                                     <select id="gender" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-options="Gender.name as Gender.name for Gender in $info.Gender" required="">
                                         {if {$basic_info['gender']} == ''}
@@ -164,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>母语</label>
+                                <label class="col-sm-3 control-label"> 母语</label>
                                 <div class="col-sm-9">
                                     <select id="native_language" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="$info.basic.native_language" ng-options="options.name as options.name for options in $info.Languages" required="">
                                         {if {$basic_info['native_language']} == ''}
@@ -214,27 +211,27 @@
                                             <option value="英语" class="">英语</option>
                                         {/if}
                                         {if {$basic_info['second_language']} == '法语'}
-                                        <option value="法语" class="" selected="selected">法语</option>
+                                            <option value="法语" class="" selected="selected">法语</option>
                                         {else}
-                                        <option value="法语" class="">法语</option>
+                                            <option value="法语" class="">法语</option>
                                         {/if}
                                         {if {$basic_info['second_language']} == '俄语'}
-                                        <option value="俄语" class="" selected="selected">俄语</option>
+                                            <option value="俄语" class="" selected="selected">俄语</option>
                                         {else}
-                                        <option value="俄语" class="">俄语</option>
+                                            <option value="俄语" class="">俄语</option>
                                         {/if}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"><sup class="text-danger">*</sup>国籍</label>
+                                <label class="col-sm-3 control-label"> 国籍</label>
                                 <div class="col-sm-9"> <div>
                                         <div on="type" ng-switch="" class="ss-dmc-control ng-pristine ng-untouched ng-isolate-scope ng-not-empty ng-valid ng-valid-required" type="'select'" code="'region_load_countries'" ng-model="$info.basic.nationality" required="required" style=""> <!-- ngSwitchWhen: select -->
                                             <select id='country' ng-switch-when="select" ng-model="locals.model" ng-change="onChanged();" ng-options="option[valueField || 'name'] as option.name for option in options" ng-disabled="isDisabled || disabled" class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" style="">
                                                 {if {$basic_info['country']} == ''}
-                                                <option value="" class="" selected="selected">请选择</option>
+                                                    <option value="" class="" selected="selected">请选择</option>
                                                 {else}
-                                                <option value="" class="">请选择</option>
+                                                    <option value="" class="">请选择</option>
                                                 {/if}
                                                 {if {$basic_info['country']} == '中国'}
                                                     <option label="中国" value="中国" selected="selected">中国</option>
@@ -279,9 +276,9 @@
                                             <option value="" class="">请选择</option>
                                         {/if}
                                         {if {$basic_info['marital_status']} == 1}
-                                        <option label="已婚" value="1" selected="selected">已婚</option>
+                                            <option label="已婚" value="1" selected="selected">已婚</option>
                                         {else}
-                                        <option label="已婚" value="1" >已婚</option>
+                                            <option label="已婚" value="1" >已婚</option>
                                         {/if}
                                         {if {$basic_info['marital_status']} == 2}
                                             <option label="未婚" value="2" selected="selected">未婚</option>
@@ -297,7 +294,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label"> <sup class="text-danger">*</sup> 最新护照号码 <br>
+                                <label class="col-sm-3 control-label">   最新护照号码 <br>
                                 </label>
                                 <div class="col-sm-9">
                                     <input  type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="如果没有请填无" id="passport" value="{$basic_info['passport']}" required=""> <!-- ngIf: myFormBasic.passport_number.$error.required && myFormBasic.$submitted==true --> </div> </div>
@@ -318,7 +315,142 @@
                     </div> <!-- ngIf: $info.immigration.length -->
                     <div class="row">
                         <div class="form-group text-center col-sm-12">
-                            <button class="btn btn-primary btn-submit" type="submit" onclick="save_basic_info('{$basic_info['id']}')">保存</button>
+                            <button class="btn btn-primary btn-submit" type="button" onclick="save_basic_info('{$basic_info['id']}')">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="tab3_2">
+                <form class="form-horizontal ng-scope ng-invalid ng-invalid-required ng-valid-pattern ng-valid-email ng-valid-date ng-pristine"  novalidate="" style="margin-top: 20px;">
+                    <div class="row basic-form col-md-10 col-lg-offset-1" >
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label pt0"> 起止时间</label>
+                                <div class="col-sm-4 pull-left">
+                                    <input  type="text" class="form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" id="start_time"  required="" style="" value="{$education['start_time']}">
+                                </div>
+                                <span class="link-word"> —— </span>
+                                <div class="col-sm-4 pull-right">
+                                    <input  type="text" class="form-control ng-pristine ng-untouched ng-not-empty ng-valid ng-valid-required" id="end_time" required="" style="" value="{$education['end_time']}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">学历阶段</label>
+                                <div class="col-sm-9">
+                                    <select id="level" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="$info.basic.marital_status" ng-options="options.name as options.name for options in $info.Marriage">
+                                        {if {$education['level']} == ''}
+                                            <option value="" class="" selected="selected">请选择</option>
+                                        {else}
+                                            <option value="" class="">请选择</option>
+                                        {/if}
+                                        {if {$education['level']} == '初中'}
+                                            <option value="初中" class="" selected="selected">初中</option>
+                                        {else}
+                                            <option value="初中" class="">初中</option>
+                                        {/if}
+                                        {if {$education['level']} == '高中'}
+                                            <option value="高中" class="" selected="selected">高中</option>
+                                        {else}
+                                            <option value="高中" class="">高中</option>
+                                        {/if}
+                                        {if {$education['level']} == '本科'}
+                                            <option value="本科" class="" selected="selected">本科</option>
+                                        {else}
+                                            <option value="本科" class="">本科</option>
+                                        {/if}
+                                        {if {$education['level']} == '硕士'}
+                                            <option value="硕士" class="" selected="selected">硕士</option>
+                                        {else}
+                                            <option value="硕士" class="">硕士</option>
+                                        {/if}
+                                        {if {$education['level']} == '博士'}
+                                            <option value="博士" class="" selected="selected">博士</option>
+                                        {else}
+                                            <option value="博士" class="">博士</option>
+                                        {/if}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">学校名称</label>
+                                <div class="col-sm-9">
+                                    <input  type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="school_name" value="{$education['school_name']}"> </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">学校性质</label>
+                                <div class="col-sm-9">
+                                    <select id="school_type" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="$info.basic.marital_status" ng-options="options.name as options.name for options in $info.Marriage">
+                                        {if {$education['type']} == ''}
+                                            <option value="" class="" selected="selected">请选择</option>
+                                        {else}
+                                            <option value="" class="">请选择</option>
+                                        {/if}
+                                        {if {$education['type']} == '985'}
+                                            <option value="985" class="" selected="selected">985</option>
+                                        {else}
+                                            <option value="985" class="">985</option>
+                                        {/if}
+                                        {if {$education['type']} == '211'}
+                                            <option value="211" class="" selected="selected">211</option>
+                                        {else}
+                                            <option value="211" class="">211</option>
+                                        {/if}
+                                        {if {$education['type']} == '普通一本'}
+                                            <option value="普通一本" class="" selected="selected">普通一本</option>
+                                        {else}
+                                            <option value="普通一本" class="">普通一本</option>
+                                        {/if}
+                                        {if {$education['type']} == '二本'}
+                                            <option value="二本" class="" selected="selected">二本</option>
+                                        {else}
+                                            <option value="二本" class="">二本</option>
+                                        {/if}
+                                        {if {$education['type']} == '三本'}
+                                            <option value="三本" class="" selected="selected">三本</option>
+                                        {else}
+                                            <option value="三本" class="">三本</option>
+                                        {/if}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 联系电话</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-not-empty ng-valid ng-valid-required" ng-pattern="/^(((1[345789][\d][0-9]{8}))(|\+\d))$/" id="contract_phone" value="{$education['phone']}" required="" style=""> <!-- ngIf: myFormBasic.mobile.$error.pattern && myFormBasic.$submitted==true --> <!-- ngIf: myFormBasic.mobile.$error.required && myFormBasic.$submitted==true -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 就读专业</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" id="major" value="{$education['major']}"> <!-- ngIf: myFormBasic.phone.$error.pattern && myFormBasic.$submitted==true -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label pt0"> 学校地址</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="school_address" name="school_address" value="{$education['address']}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"> 年级排名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" id="rank" placeholder="年级排名/年级总人数" value="{$education['rank']}"> <!-- ngIf: myFormBasic.phone.$error.pattern && myFormBasic.$submitted==true -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">   学校网址 <br>
+                                </label>
+                                <div class="col-sm-9">
+                                    <input  type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="school_web" value="{$education['school_web']}" required=""> <!-- ngIf: myFormBasic.passport_number.$error.required && myFormBasic.$submitted==true -->
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- ngIf: $info.immigration.length -->
+                    <div class="row">
+                        <div class="form-group text-center col-sm-12">
+                            <button class="btn btn-primary btn-submit" type="button" onclick="save_education('{$education['id']}')">保存</button>
                         </div>
                     </div>
                 </form>
@@ -677,6 +809,51 @@
             "passport_date": passport_date
         };
         var uri = "http://"+window.location.host+"/api/customer/savebasicinfo";
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: request,
+            dataType:"json",
+            async :false,
+            success: function (result) {
+                if (result.error.returnCode == 0) {
+                    alert('保存成功');
+                }else {
+                    alert(result.error.returnUserMessage);
+                }
+            },
+            error:function(result) {
+                alert("系统异常");
+            }
+        });
+    }
+
+    //保存客户教育信息
+    function save_education(id) {
+        var start_time = $("#start_time").val();
+        var end_time = $("#end_time").val();
+        var major = $("#major").val();
+        var level = $("#level").val();
+        var type = $("#school_type").val();
+        var phone = $("#contract_phone").val();
+        var address = $("#school_address").val();
+        var rank = $("#rank").val();
+        var school_web = $("#school_web").val();
+        var school_name = $("#school_name").val();
+        var request = {
+            "id": id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "major": major,
+            "level": level,
+            "type": type,
+            "phone": phone,
+            "school_name": school_name,
+            "address": address,
+            "school_web": school_web,
+            "rank": rank,
+        };
+        var uri = "http://"+window.location.host+"/api/customer/saveeducation";
         $.ajax({
             url: uri,
             type: "POST",

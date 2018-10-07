@@ -73,70 +73,60 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">就读时间</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['start_time']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">学历阶段</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['level']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">当前情况</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">无</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">就读地点</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['address']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">就读学校</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['school_name']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">学校层级</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['type']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">就读院系</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
                             <label id="1name"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">就读专业</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
-                            <label id="1name"></label>
+                            <label id="1name">{$education_info['major']}</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">GPA类型</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
                             <label id="1name"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label col-lg-3">考试成绩</label>
                         <div class="input-group m-bot15">
-                            <input type="hidden" id='1name_default' value="">
                             <label id="1name"></label>
                         </div>
                     </div>
