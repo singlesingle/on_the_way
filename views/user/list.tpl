@@ -45,16 +45,16 @@
                             <td>{$one['create_time']}</td>
                             <td>
                                 {if $one['status'] == '禁用'}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="enable_user('{$one['id']}')">启用</a>&nbsp&nbsp
+                                    <a type="button" class="btn btn-sm btn-danger" onclick="enable_user('{$one['id']}')">启用</a>
                                 {else}
-                                    <a type="button" class="btn btn-sm btn-info" onclick="disable_user('{$one['id']}')">禁用</a>&nbsp&nbsp
+                                    <a type="button" class="btn btn-sm btn-danger" onclick="disable_user('{$one['id']}')">禁用</a>
                                 {/if}
                                 {if $one['role'] != '管理员'}
                                 <a type="button" class="btn btn-sm btn-danger" onclick="delete_user('{$one['id']}')">删除</a>
                                 {/if}
 				                {if $one['role'] != '管理员' and $one['role'] == '文案人员'}
-                                    <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#transfer_position"
-                                       onclick="transfer_page('{$one['id']}','{$one['name']}')">调岗</a>&nbsp
+                                    <a type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#transfer_position"
+                                       onclick="transfer_page('{$one['id']}','{$one['name']}')">调岗</a>
                                 {/if}
                             </td>
                         </tr>

@@ -22,14 +22,15 @@
 <link href="https://magicbox.bkclouds.cc/static_api/v3/assets/daterangepicker-2.0.5/daterangepicker.css" rel="stylesheet">
 
 <div class="col-lg-12">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-success bootstrap-admin-alert">
-                <h4>客户详细信息</h4>
-            </div>
-        </div>
-    </div>
+    {*<div class="row">*}
+        {*<div class="col-lg-12">*}
+            {*<div class="alert alert-success bootstrap-admin-alert">*}
+                {*<h4>客户详细信息</h4>*}
+            {*</div>*}
+        {*</div>*}
+    {*</div>*}
     <div class="tab-box" id="myTab3">
+        <h4>客户详细信息</h4>
         <ul class="nav nav-tabs king-nav-tabs2  king-tab-success">
             <li class="active">
                 <a href="#tab3_1" data-toggle="tab">学生信息</a>
@@ -536,7 +537,7 @@
     <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-body">
-            <form id="formSelection"  class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-date ng-valid-url" novalidate="" style="padding-bottom:50px">
+            <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-date ng-valid-url" style="padding-bottom:50px">
                 <section class="section-form">
                     <header>
                         <h4> <span class="header-title-block"></span>选校信息 </h4> <hr>
@@ -546,7 +547,7 @@
                             <label  class="col-md-3 control-label ng-binding required"> 学校名称 </label>
                             <div class="col-md-8">
                                 <div on="options.type" ng-switch="" class="control ng-isolate-scope" model="bindModel" conf-options="controlOptions"  on-reload="col.onReload()" id="name">
-                                    <input id="school_name" type="text"  ng-model="locals.model"  typeahead-loading="loadingOptions" typeahead-no-results="noResults" typeahead-template-url="customTemplate.html" ng-required="required" class="form-control dynamic-search ng-pristine ng-empty ng-valid ng-valid-required ng-touched" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-2019-5730" style="">
+                                    <input id="add_school_name" type="text"  ng-model="locals.model"  typeahead-loading="loadingOptions" typeahead-no-results="noResults" typeahead-template-url="customTemplate.html" ng-required="required" class="form-control dynamic-search ng-pristine ng-empty ng-valid ng-valid-required ng-touched" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-2019-5730" style="">
                                 </div> <!-- ngIf: col.helper -->
                             </div>
                         </div><!-- end ngIf: vm.model --><!-- end ngRepeat: col in vm.schoolInfoFields | filter: vm.hasField(vm.country) --><!-- ngIf: vm.model -->
@@ -602,7 +603,7 @@
                                 <label class="col-md-3 control-label" ng-class="{ 'required ': vm.selectionCountry !== '英国' }"> 申请截止日期 </label>
                                 <!-- ngIf: vm.selectionCountry === '美国' -->
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" id="end_time" name="end_time" style="width:300px;">
+                                    <input type="text" class="form-control" id="apply_end_time" name="apply_end_time" style="width:300px;">
                                     <div uib-datepicker-popup-wrap="" ng-model="date" ng-change="dateSelection(date)" template-url="uib/template/datepickerPopup/popup.html" class="ng-pristine ng-untouched ng-valid ng-scope ng-empty"><!-- ngIf: isOpen -->
                                     </div>
                                 </div>
@@ -674,8 +675,7 @@
                 </section>
                 <hr>
                 <div class="col-md-12 text-center buttons">
-                    <button class="btn btn-primary" onclick="add_school()">保存</button>
-                    <a ng-click="vm.$uibModalInstance.close();" class="btn btn-default" href="">取消</a>
+                    <a type="button" class="btn btn-primary" onclick="add_school()">新增</a>
                 </div>
             </form>
         </div>
@@ -875,14 +875,14 @@
     
     function add_school() {
         var customer_id = {$customer_info['id']};
-        var school_name = $("#school_name").val();
+        var school_name = $("#add_school_name").val();
         var school_area = $("#school_area").val();
         var degree = $("#degree").val();
         var admission_time = $("#admission_time").val();
         var c_class = $("#class").val();
         var profession_name = $("#profession_name").val();
         var link = $("#link").val();
-        var end_time = $("#end_time").val();
+        var end_time = $("#apply_end_time").val();
         var end_time_link = $("#end_time_link").val();
         var practice = $("#practice").val();
         var honors = $("#honors").val();
@@ -912,8 +912,7 @@
             success: function (result) {
                 if (result.error.returnCode == 0) {
                     alert('添加成功');
-                    var reload_uri = "http://"+window.location.host+"/page/customer/info?id=" + customer_id;
-                    window.location.href=reload_uri;
+                    window.location.reload();
                 }else {
                     alert(result.error.returnUserMessage);
                 }

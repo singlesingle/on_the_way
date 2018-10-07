@@ -32,23 +32,23 @@ class SchoolController extends BaseController
                 'checker' => 'noCheck',
             ),
             'degree' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
             'admission_time' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
             'class' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
             'profession_name' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
             'link' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
             'end_time' => array (
