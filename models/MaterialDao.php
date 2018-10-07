@@ -54,7 +54,7 @@ class MaterialDao extends ActiveRecord{
 
     //查询客户的材料列表
     public function queryByCustomerId($customerId) {
-        $sql=sprintf('SELECT a.id, a.name, a.type, a.url, a.create_time, b.name as school_name FROM %s as a INNER JOIN school as b on a.school_id = b.id
+        $sql=sprintf('SELECT a.id, a.name, a.type, a.url, a.create_time, b.name as school_name FROM %s as a LEFT JOIN school as b on a.school_id = b.id
         WHERE a.customer_id = %d', self::tableName(), $customerId);
         $stmt = self::getDb()->createCommand($sql);
         $stmt->prepare();

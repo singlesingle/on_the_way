@@ -44,6 +44,7 @@
                             <td>
                                 <a type="button" class="btn btn-sm btn-danger" onclick="view_document('{$one['id']}')">查看</a>
                                 <a type="button" data-toggle="modal" data-target="#uploadDocument" class="btn btn-sm btn-danger" onclick="upload_page('{$one['id']}')">上传文件</a>
+
                                 <a type="button" class="btn btn-sm btn-danger" onclick="delete_document('{$one['id']}')">删除</a>
                             </td>
                         </tr>
@@ -132,12 +133,18 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form action="/api/document/upload" method="post"
-                      enctype="multipart/form-data">
+                {*<form action="/api/document/upload" method="post"*}
+                      {*enctype="multipart/form-data">*}
+                    {*<input id="documentId" name="documentId" value="" class="file_input" hidden="hidden" type="text">*}
+                    {*<input type="file" name="file" id="file" />*}
+                    {*<br />*}
+                    {*<input type="submit" name="submit" value="上传" />*}
+                {*</form>*}
+                <form>
                     <input id="documentId" name="documentId" value="" class="file_input" hidden="hidden" type="text">
                     <input type="file" name="file" id="file" />
                     <br />
-                    <input type="submit" name="submit" value="上传" />
+                    <input type="button" id="upload" value="上传" />
                 </form>
             </div>
             <div class="modal-footer">
@@ -267,5 +274,38 @@
             }
         });
     }
+    $(function () {
+        $("#upload").click(function () {
+            var formData = new FormData();
+            documentId = $("#documentId").val();
+            formData.append("file", document.getElementById("file").files[0]);
+            formData.append("documentId", documentId);
+            $.ajax({
+                url: "/api/document/upload",
+                type: "POST",
+                data: formData,
+                /**
+                 *必须false才会自动加上正确的Content-Type
+                 */
+                contentType: false,
+                /**
+                 * 必须false才会避开jQuery对 formdata 的默认处理
+                 * XMLHttpRequest会对 formdata 进行正确的处理
+                 */
+                processData: false,
+                success: function (data) {
+                    if (data.error.returnCode == 0) {
+                        alert("上传成功！");
+                        window.location.reload();
+                    }else {
+                        alert('上传失败！');
+                    }
+                },
+                error: function () {
+                    alert("上传异常！");
+                }
+            });
+        });
+    });
 </script>
 {include "layout/footer.tpl"}

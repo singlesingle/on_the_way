@@ -17,8 +17,8 @@
       <file leaf-file-name="info.tpl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="588" column="44" lean-forward="true" selection-start-line="588" selection-start-column="44" selection-end-line="588" selection-end-column="44" />
+            <state relative-caret-position="378">
+              <caret line="601" column="69" selection-start-line="601" selection-start-column="69" selection-end-line="601" selection-end-column="69" />
               <folding>
                 <element signature="e#53435#53709#0#HTML" />
                 <element signature="e#53747#54021#0#HTML" />
@@ -222,7 +222,7 @@
       <path value="$PROJECT_DIR$/vendor/cos-php-sdk-v5/vendor" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1386" />
@@ -420,16 +420,15 @@
       <workItem from="1538443200927" duration="30147000" />
       <workItem from="1538535020184" duration="48519000" />
       <workItem from="1538706011436" duration="21686000" />
-      <workItem from="1538903392877" duration="1640000" />
+      <workItem from="1538903392877" duration="2260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="275103000" />
+    <option name="totallyTimeSpent" value="275723000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5030257" side_tool="true" visible="true" weight="0.011551155" />
@@ -438,7 +437,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.23373677" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23373677" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -842,8 +841,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/customer/info.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="588" column="44" lean-forward="true" selection-start-line="588" selection-start-column="44" selection-end-line="588" selection-end-column="44" />
+        <state relative-caret-position="378">
+          <caret line="601" column="69" selection-start-line="601" selection-start-column="69" selection-end-line="601" selection-end-column="69" />
           <folding>
             <element signature="e#53435#53709#0#HTML" />
             <element signature="e#53747#54021#0#HTML" />

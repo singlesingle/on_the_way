@@ -562,19 +562,18 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" action="/api/customer/addmaterial" method="post"
-                      enctype="multipart/form-data">
-                    <input type="hidden" hidden="hidden" name="customer_id" value="{$customer_info['id']}">
+                <form class="form-horizontal">
+                    <input type="hidden" hidden="hidden" id="customer_id" value="{$customer_info['id']}">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">材料名称：</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" id="material_name">
                         </div>
                         <span class="text-danger mt5 fl">*</span>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">材料类型：</label>
-                        <select name="type" class="col-sm-6">
+                        <select id="material_type" class="col-sm-6">
                             <option value=""></option>
                             <option value="1">签证递交回执</option>
                             <option value="2">获签信</option>
@@ -588,7 +587,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">学校：</label>
-                        <select name="school_id" class="col-sm-6">
+                        <select id="school_id" class="col-sm-6">
                             <option value=""></option>
                             {foreach $school_list as $one}
                             <option value="{$one['id']}">{$one['school_name']}</option>
@@ -598,9 +597,9 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">上传材料：</label>
                         <input type="file" name="file" id="file" />
-                        <br />
+                        <br/>
                     </div>
-                    <input type="submit" class="btn btn-primary" name="submit" value="新增" />
+                    <input type="button" class="btn btn-primary" id="upload" value="新增" />
                 </form>
             </div>
         </div><!-- /.modal-content -->
@@ -747,6 +746,46 @@
             }
         });
     }
+
+    $(function () {
+        $("#upload").click(function () {
+            var formData = new FormData();
+            customer_id = $("#customer_id").val();
+            material_name = $("#material_name").val();
+            type = $("#material_type").val();
+            school_id = $("#school_id").val();
+            formData.append("customer_id", customer_id);
+            formData.append("name", material_name);
+            formData.append("type", type);
+            formData.append("school_id", school_id);
+            formData.append("file", document.getElementById("file").files[0]);
+            $.ajax({
+                url: "/api/customer/addmaterial",
+                type: "POST",
+                data: formData,
+                /**
+                 *必须false才会自动加上正确的Content-Type
+                 */
+                contentType: false,
+                /**
+                 * 必须false才会避开jQuery对 formdata 的默认处理
+                 * XMLHttpRequest会对 formdata 进行正确的处理
+                 */
+                processData: false,
+                success: function (data) {
+                    if (data.error.returnCode == 0) {
+                        alert("新增成功！");
+                        window.location.reload();
+                    }else {
+                        alert('新增失败！');
+                    }
+                },
+                error: function () {
+                    alert("新增异常！");
+                }
+            });
+        });
+    });
 </script>
 
 {include "layout/footer.tpl"}

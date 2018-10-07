@@ -432,7 +432,7 @@ class CustomerController extends BaseController
                 'checker' => 'noCheck',
             ),
             'school_id' => array (
-                'require' => true,
+                'require' => false,
                 'checker' => 'noCheck',
             ),
         );

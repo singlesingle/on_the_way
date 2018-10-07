@@ -4,6 +4,7 @@ namespace app\modules\api\controllers;
 
 use app\classes\BaseController;
 use app\classes\ErrorDict;
+use app\classes\Log;
 use app\models\DocumentDao;
 use app\service\DocumentService;
 use app\service\CustomerService;
@@ -80,6 +81,8 @@ class DocumentController extends BaseController
         $filePath = $_FILES["file"]["tmp_name"];
         $fileName = $_FILES["file"]["name"];
         $fileService = new FileService();
+        Log::addLogNode('filename', $fileName);
+        Log::addLogNode('filepath', $filePath);
         $ret = $fileService->uploadDocument($documentId, $filePath, $fileName);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
