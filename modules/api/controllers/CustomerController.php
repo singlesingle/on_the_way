@@ -599,22 +599,24 @@ class CustomerController extends BaseController
 
             //结案状态，判断是否需要从“未结案”变为“已结案”
             //学生签证有结果，申请学校全部有结果状态变为已结案
-            if ($customer['visa_status'] == CustomerDao::$visaStatusDict['获签']
-                || $customer['visa_status'] == CustomerDao::$visaStatusDict['拒签']) {
-                $over = true;
-                $schoolList = $schoolDao->queryById($customer['id']);
-                foreach ($schoolList as $school) {
-                    if ($school['apply_status'] == SchoolDao::$applyStatusName['录取'] || $school['apply_status'] == SchoolDao::$applyStatusName['未录取']
-                        || $school['apply_status'] == SchoolDao::$applyStatusName['确认入读']) {
-                        continue;
-                    }else {
-                        $over = false;
-                        break;
+            if  ($customer['close_case_status'] == CustomerDao::$closeCaseStatusDict['未结案']) {
+                if ($customer['visa_status'] == CustomerDao::$visaStatusDict['获签']
+                    || $customer['visa_status'] == CustomerDao::$visaStatusDict['拒签']) {
+                    $over = true;
+                    $schoolList = $schoolDao->queryById($customer['id']);
+                    foreach ($schoolList as $school) {
+                        if ($school['apply_status'] == SchoolDao::$applyStatusName['录取'] || $school['apply_status'] == SchoolDao::$applyStatusName['未录取']
+                            || $school['apply_status'] == SchoolDao::$applyStatusName['确认入读']) {
+                            continue;
+                        }else {
+                            $over = false;
+                            break;
+                        }
                     }
-                }
-                if ($over) {
-                    $customerDao->updateCloseCaseStatus($customer['id'], CustomerDao::$closeCaseStatusDict['已结案']);
-                    echo "客户{$customer['id']}已结案";
+                    if ($over) {
+                        $customerDao->updateCloseCaseStatus($customer['id'], CustomerDao::$closeCaseStatusDict['已结案']);
+                        echo "客户{$customer['id']}已结案";
+                    }
                 }
             }
         }
