@@ -11,10 +11,10 @@ use app\models\UserDao;
 
 class CustomerService
 {
-    public function addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat) {
+    public function addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat, $consultant) {
         $customerDao = new CustomerDao();
         $customerId = $customerDao->addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry,
-            $applyProject, $serviceType, $goAbroadYear, CustomerDao::$applyStatusDict['未开始'],
+            $applyProject, $serviceType, $goAbroadYear, $consultant, CustomerDao::$applyStatusDict['未开始'],
             CustomerDao::$visaStatusDict['待申请'], CustomerDao::$closeCaseStatusDict['未结案']);
         $basicInfoDao = new BasicInfoDao();
         $basicInfoDao->addBasicInfo($customerId);
@@ -176,6 +176,12 @@ class CustomerService
         }
     }
 
+    public function queryByName($name) {
+        $customerDao = new CustomerDao();
+        $customerInfo = $customerDao->queryByName($name);
+        return $customerInfo;
+    }
+
     public function customerStatistic($userId, $role) {
         $data = [];
         $customerList = self::customerList($userId, $role);
@@ -193,5 +199,19 @@ class CustomerService
                 $data['closeCase']++;
         }
         return $data;
+    }
+
+    //修改客户备注
+    public function updateRemark($id, $communication) {
+        $customerDao = new CustomerDao();
+        $ret = $customerDao->updateRemark($id, $communication);
+        return $ret;
+    }
+
+    //修改客户签证状态
+    public function updateVisaStatus($id, $visaStatus) {
+        $customerDao = new CustomerDao();
+        $ret = $customerDao->updateVisaStatus($id, $visaStatus);
+        return $ret;
     }
 }

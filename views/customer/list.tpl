@@ -10,7 +10,9 @@
     <div class="panel">
         <div class="panel-body">
             <laber style="font-size:large">在办客户管理</laber>
-            <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#add_user_portal">新增</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a type="button" class="btn btn-info btn-sm col-lg-offset-9" data-toggle="modal" data-target="#add_user_portal">新增</a>
+            <a type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#batch_add_portal">批量新增</a>
 
             <div class="form-inline row" style="margin-bottom: 10px; margin-top: 20px">
                 <div class="form-group col-md-2">
@@ -219,6 +221,34 @@
     </div><!-- /.modal -->
 </div>
 
+<div class="modal fade" id="batch_add_portal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addservertitle">
+                    上传客户excel文档
+                </h4>
+                <input type="button" class="pull-right" id="download" value="下载模板" />
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="file" name="file" id="file" />
+                    <br />
+                    <input type="button" id="upload" value="上传" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <script type="text/javascript">
     $(document).ready(
         data
@@ -332,5 +362,37 @@
             });
         }
     }
+
+    $(function () {
+        $("#upload").click(function () {
+            var formData = new FormData();
+            formData.append("file", document.getElementById("file").files[0]);
+            $.ajax({
+                url: "/api/customer/batchadd",
+                type: "POST",
+                data: formData,
+                /**
+                 *必须false才会自动加上正确的Content-Type
+                 */
+                contentType: false,
+                /**
+                 * 必须false才会避开jQuery对 formdata 的默认处理
+                 * XMLHttpRequest会对 formdata 进行正确的处理
+                 */
+                processData: false,
+                success: function (data) {
+                    if (data.error.returnCode == 0) {
+                        alert("批量新增成功！");
+                        window.location.reload();
+                    }else {
+                        alert(data.error.returnUserMessage);
+                    }
+                },
+                error: function () {
+                    alert("批量新增异常！");
+                }
+            });
+        });
+    });
 </script>
 {include "layout/footer.tpl"}

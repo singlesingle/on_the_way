@@ -175,13 +175,13 @@ class CustomerDao extends ActiveRecord{
     ];
 
     //新增客户
-    public function addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry, $applyProject, $serviceType, $goAbroadYear,
-            $applyStatus, $visaStatus, $closeCaseStatus) {
+    public function addCustomer($userId, $name, $contractId, $phone, $wechat, $applyCountry, $applyProject, $serviceType,
+                                $goAbroadYear, $consultant, $applyStatus, $visaStatus, $closeCaseStatus) {
         $curTime = date("Y-m-d H:i:s");
         $sql = sprintf('INSERT INTO %s (user_id, name, contract_id, phone, wechat, apply_country, apply_project, service_type,
-              go_abroad_year, apply_status, visa_status, close_case_status, update_time, create_time)
+              go_abroad_year, consultant, apply_status, visa_status, close_case_status, update_time, create_time)
               values (%d, :name, :contract_id, :phone, :wechat, :apply_country, :apply_project, %d, 
-              :go_abroad_year, %d, %d, %d, :update_time, :create_time)',
+              :go_abroad_year, :consultant, %d, %d, %d, :update_time, :create_time)',
             self::tableName(), $userId, $serviceType,
             $applyStatus, $visaStatus, $closeCaseStatus);
         $stmt = self::getDb()->createCommand($sql);
@@ -193,6 +193,7 @@ class CustomerDao extends ActiveRecord{
         $stmt->bindParam(':apply_country', $applyCountry, \PDO::PARAM_INT);
         $stmt->bindParam(':apply_project', $applyProject, \PDO::PARAM_INT);
         $stmt->bindParam(':go_abroad_year', $goAbroadYear, \PDO::PARAM_STR);
+        $stmt->bindParam(':consultant', $consultant, \PDO::PARAM_STR);
         $stmt->bindParam(':update_time', $curTime, \PDO::PARAM_STR);
         $stmt->bindParam(':create_time', $curTime, \PDO::PARAM_STR);
         $stmt->execute();
@@ -336,6 +337,28 @@ class CustomerDao extends ActiveRecord{
         $stmt->bindParam(':wechat', $nickName, \PDO::PARAM_STR);
         $stmt->execute();
         $ret = $stmt->queryOne();
+        return $ret;
+    }
+
+    //根据客户名字查询客户信息
+    public function queryByName($name) {
+        $sql=sprintf('SELECT * FROM %s WHERE name = :name AND status = %d', self::tableName(), self::$status['正常']);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
+
+    //更新客户备注信息
+    public function updateRemark($id, $communication) {
+        $sql = sprintf('UPDATE %s SET communication = :communication WHERE id = %d',
+            self::tableName(), $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':communication', $communication, \PDO::PARAM_STR);
+        $ret = $stmt->execute();
         return $ret;
     }
 }

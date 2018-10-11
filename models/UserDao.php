@@ -221,4 +221,15 @@ class UserDao extends ActiveRecord{
         $ret = $stmt->queryAll();
         return $ret;
     }
+
+    //查询某种角色用户列表
+    public function userListByRole($role) {
+        $sql=sprintf('SELECT * FROM %s WHERE status != %d AND role = :role', self::tableName(), self::$status['删除']);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->bindParam(':role', $role, \PDO::PARAM_INT);
+        $stmt->execute();
+        $ret = $stmt->queryAll();
+        return $ret;
+    }
 }

@@ -116,6 +116,14 @@ class UserService
         return $ret;
     }
 
+    //查询某种角色用户列表
+    public function userListByRole($role)
+    {
+        $userDao = new UserDao();
+        $ret = $userDao->userListByRole($role);
+        return $ret;
+    }
+
     //查询用户信息
     public function userInfoById($userId)
     {

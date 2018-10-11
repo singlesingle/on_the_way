@@ -50,4 +50,10 @@ class SchoolService
         $ret = $professionDao->addProfession($schoolId, $class, $name, $link, $endTime, $endTimeLink, $practice, $honors, $remark);
         return $ret;
     }
+
+    public function updateApplyStatus($id, $applyStatus) {
+        $schoolDao = new SchoolDao();
+        $ret = $schoolDao->updateApplyStatus($id, $applyStatus);
+        return $ret;
+    }
 }

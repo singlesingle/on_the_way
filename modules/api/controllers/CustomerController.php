@@ -10,12 +10,15 @@ use app\models\CustomerDao;
 use app\models\EducationDao;
 use app\models\MaterialDao;
 use app\models\SchoolDao;
+use app\models\UserDao;
 use app\service\BasicInfoService;
 use app\service\CaseService;
 use app\service\CustomerService;
 use app\service\EducationService;
 use app\service\FileService;
 use app\service\MaterialService;
+use app\service\SchoolService;
+use app\service\UserService;
 use Yii;
 
 class CustomerController extends BaseController
@@ -57,6 +60,10 @@ class CustomerController extends BaseController
                 'require' => true,
                 'checker' => 'noCheck',
             ),
+            'consultant' => array (
+                'require' => false,
+                'checker' => 'noCheck',
+            ),
         );
         if (false === $this->check()) {
             $ret = $this->outputJson(array(), $this->err);
@@ -70,9 +77,11 @@ class CustomerController extends BaseController
         $serviceType = $this->getParam('service_type', '');
         $goAbroadYear = $this->getParam('go_abroad_year', '');
         $wechat = $this->getParam('wechat', '');
+        $consultant = $this->getParam('consultant', '');
         $userId = $this->data['user_id'];
         $customerService = new CustomerService();
-        $ret = $customerService->addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject, $serviceType, $goAbroadYear, $wechat);
+        $ret = $customerService->addCustomer($userId, $name, $contractId, $phone, $applyCountry, $applyProject,
+            $serviceType, $goAbroadYear, $wechat, $consultant);
         $this->actionLog(self::LOGADD, $ret ? self::OPOK : self::OPFAIL, $this->params);
         if ($ret) {
             $error = ErrorDict::getError(ErrorDict::SUCCESS);
@@ -620,5 +629,197 @@ class CustomerController extends BaseController
                 }
             }
         }
+    }
+
+    //批量录入客户信息
+    public function actionBatchadd()
+    {
+        $role = $this->params['role'];
+        if ($role == UserDao::$role['文案人员']) {
+            $error = ErrorDict::getError(ErrorDict::G_POWER);
+            $ret = $this->outputJson('对不起，您无权限！', $error);
+            return $ret;
+        }
+        $filePath = $_FILES["file"]["tmp_name"];
+        $uploadName = $_FILES["files"]["name"];
+//        $pattern = "/^(.*)+(.xls|.xlsx)$/";
+//        if (!preg_match($pattern, $uploadName)) {
+//            $error = ErrorDict::getError(ErrorDict::G_PARAM, '文件格式错误', '文件格式错误');
+//            $ret = $this->outputJson('', $error);
+//            return $ret;
+//        }
+        $reader = \PHPExcel_IOFactory::createReader('Excel2007'); //设置以Excel5格式(Excel97-2003工作簿)
+        $PHPExcel = $reader->load($filePath); // 载入excel文件
+        $sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
+        $highestRow = $sheet->getHighestRow(); // 取得总行数
+        $highestColumn = 'S'; // 取得总列数
+        $userService = new UserService();
+        $nameToId = [];
+        $userList = $userService->userListByRole(UserDao::$role['文案人员']);
+        foreach ($userList as $user) {
+            $nameToId[$user['name']] = $user['id'];
+        }
+        $customerService = new CustomerService();
+        $schoolService = new SchoolService();
+        for ($row = 2; $row <= $highestRow; $row++) {//行数是以第2行开始
+            $continue = true;
+            list($applyCountry, $serviceType, $consultant, $userName, $studentName, $applySchools, $applyProfessions, $applyProject, $admissionTime, $applyStatus, $visaStatus, $remark) = '';
+            for ($column = 'B'; $column <= $highestColumn; $column++) {
+                $value = $sheet->getCell($column.$row)->getValue();
+                switch ($column) {
+                    case 'B':
+                        $applyCountry = trim($value);
+                        break;
+                    case 'C':
+                        $serviceType = trim($value);
+                        break;
+                    case 'D':
+                        $consultant = trim($value);
+                        break;
+                    case 'E':
+                        $userName = trim($value);
+                        break;
+                    case 'F':
+                        $studentName = trim($value);
+                        if (empty($studentName)) {
+                            $continue = false;
+                        }
+                        break;
+                    case 'G':
+                        $applySchools = trim($value);
+                        break;
+                    case 'H':
+                        $applyProfessions = trim($value);
+                        break;
+                    case 'I':
+                        $applyProject = trim($value);
+                        break;
+                    case 'J':
+                        $admissionTime = trim($value);
+                        break;
+                    case 'K':
+                        $applyStatus = trim($value);
+                        break;
+                    case 'L':
+                        $visaStatus = trim($value);
+                        break;
+                    case 'M':
+                        $remark = trim($value);
+                        break;
+                }
+                if ($continue == false) {
+                    break;
+                }
+            }
+            if ($continue == false) {
+                if ($row == 2) {
+                    $error = ErrorDict::getError(ErrorDict::G_PARAM, '文件数据为空', '文件数据为空');
+                    $ret = $this->outputJson('', $error);
+                    return $ret;
+                }
+                break;
+            }
+            $rowMessage = '第' . $row . '行，客户' . $studentName . ':';
+
+            //判断客户是否已存在，只依照名字，名字重复的不支持自动录取，如需录取请手动
+            $customerInfo = $customerService->queryByName($studentName);
+            if ($customerInfo) {
+                $error = ErrorDict::getError(ErrorDict::G_PARAM, '学生姓名已录入', $rowMessage . '学生姓名已录入，如需重复');
+                $ret = $this->outputJson('', $error);
+                return $ret;
+            }
+
+            //判断文案人员是否已录入系统
+            if(!isset($nameToId[$userName])) {
+                $error = ErrorDict::getError(ErrorDict::G_PARAM, '文案人员未录入', $rowMessage . '文案人员未录入');
+                $ret = $this->outputJson('', $error);
+                return $ret;
+            }
+            $userId = $nameToId[$userName];
+
+            //判断申请项目
+            $applyProjectId = 0;
+            if (strstr($applyProject, '初中')) {
+                $applyProjectId = CustomerDao::$applyProjectDict['初中'];
+            }elseif (strstr($applyProject, '高中')) {
+                $applyProjectId = CustomerDao::$applyProjectDict['高中'];
+            }elseif (strstr($applyProject, '本科')) {
+                $applyProjectId = CustomerDao::$applyProjectDict['本科'];
+            }elseif (strstr($applyProject, '硕士')) {
+                $applyProjectId = CustomerDao::$applyProjectDict['硕士'];
+            }
+
+            //判断服务类型
+            $serviceTypeId = 0;
+            if (strstr($serviceType, '文书')) {
+                $serviceTypeId = CustomerDao::$serviceTypeDict['单文书'];
+            }elseif (strstr($serviceType, '全程')) {
+                $serviceTypeId = CustomerDao::$serviceTypeDict['全程服务'];
+            }elseif (strstr($serviceType, '单申请')) {
+                $serviceTypeId = CustomerDao::$serviceTypeDict['单申请'];
+            }elseif (strstr($serviceType, '签证')) {
+                $serviceTypeId = CustomerDao::$serviceTypeDict['签证'];
+            }
+
+            //判断出国年限
+            $goAbroadYear = '';
+            if (strlen($admissionTime) >= 4) {
+                $year = substr($admissionTime, 0, 4);
+                if (intval($year) < 3000) {
+                    $goAbroadYear = $year;
+                }
+            }
+
+            //判断申请状态
+            $applyStatusId = 0;
+            if (strstr($applyStatus, '录取')) {
+                $applyStatusId = SchoolDao::$applyStatusName['录取'];
+            }elseif (strstr($applyStatus, '拒')) {
+                $applyStatusId = SchoolDao::$applyStatusName['未录取'];
+            }
+
+            //判断签证状态
+            $visaStatusId = 0;
+            if (strstr($visaStatus, '获签')) {
+                $visaStatusId = CustomerDao::$visaStatusDict['获签'];
+            }elseif (strstr($visaStatus, '拒签')) {
+                $visaStatusId = CustomerDao::$visaStatusDict['拒签'];
+            }
+
+            //录入客户信息
+            $customerId = $customerService->addCustomer($userId, $studentName, '', '', $applyCountry,
+                $applyProjectId, $serviceTypeId, $goAbroadYear, '', $consultant);
+
+            //更新客户备注信息
+            $customerService->updateRemark($customerId, $remark);
+
+            //更新客户签证状态
+            if ($visaStatusId) {
+                $customerService->updateVisaStatus($customerId, $visaStatusId);
+            }
+
+            //判断客户申报学校
+            if ($applySchools && !strstr($applySchools, '定校')) {
+                $applySchoolArr = explode(',', str_replace(array('，'), ',', $applySchools));
+                $applyProfessionArr = explode(',', str_replace(array('，', '&'), ',', $applyProfessions));
+                foreach ($applySchoolArr as $schoolName) {
+                    $schoolId = $schoolService->addSchool($customerId, $schoolName, '', '', $admissionTime);
+                    //更新学校申请状态
+                    if ($applyStatusId) {
+                        $schoolService->updateApplyStatus($schoolId, $applyStatusId);
+                    }
+                    if (count($applySchoolArr) > 0) {
+                        foreach ($applyProfessionArr as $profession) {
+                            //添加申请专业
+                            $schoolService->addProfession($schoolId, '', $profession, '', '', '', '', '', '');
+                        }
+                    }
+                }
+            }
+        }
+        $this->actionLog(self::LOGADD, self::OPOK, $this->params);
+        $error = ErrorDict::getError(ErrorDict::SUCCESS);
+        $ret = $this->outputJson('', $error);
+        return $ret;
     }
 }
