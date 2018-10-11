@@ -21,7 +21,8 @@
         "yiisoft/yii2-smarty": "^2.0",
         "linslin/yii2-curl": "*",
         "yiisoft/yii2-redis": "~2.0.0",
-        "yiisoft/yii2-elasticsearch": "^2.0"
+        "yiisoft/yii2-elasticsearch": "^2.0",
+	"phpoffice/phpexcel": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -61,7 +62,7 @@
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://packagist.laravel-china.org"
         }
     }
 }
