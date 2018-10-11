@@ -225,13 +225,10 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="addservertitle">
+                <laber style="font-size:large">
                     上传客户excel文档
-                </h4>
-                <input type="button" class="pull-right" id="download" value="下载模板" />
+                </laber>
+                <a type="button" class="pull-right " href="http://hqys-1253984536.cos.ap-beijing.myqcloud.com/%E6%89%B9%E9%87%8F%E5%BD%95%E5%85%A5%E5%AD%A6%E7%94%9F%E6%A8%A1%E6%9D%BF.xlsx" download="批量录入学生模板.xlsx"  >下载模板</a>
             </div>
             <div class="modal-body">
                 <form>

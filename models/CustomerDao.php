@@ -299,6 +299,44 @@ class CustomerDao extends ActiveRecord{
         return $ret;
     }
 
+    //根据条件查询客户数量
+    public function countByCondition($applyCountry, $applyProject, $serviceType, $goAbroadYear, $applyStatus, $visaStatus,
+                                    $closeCaseStatus, $userId) {
+        $search_filed = [];
+        if ($applyCountry !== '') {
+            $search_filed[] = 'apply_country = ' . $applyCountry;
+        }
+        if ($applyProject !== '') {
+            $search_filed[] = 'apply_project = ' . $applyProject;
+        }
+        if ($serviceType !== '') {
+            $search_filed[] = 'service_type = ' . $serviceType;
+        }
+        if ($goAbroadYear !== '') {
+            $search_filed[] = 'go_abroad_year = ' . $goAbroadYear;
+        }
+        if ($applyStatus !== '') {
+            $search_filed[] = 'apply_status = ' . $applyStatus;
+        }
+        if ($visaStatus !== '') {
+            $search_filed[] = 'visa_status = ' . $visaStatus;
+        }
+        if ($closeCaseStatus !== '') {
+            $search_filed[] = 'close_case_status = ' . $closeCaseStatus;
+        }
+        if (count($userId) > 0) {
+            $search_filed[] = 'user_id in (' . implode(',', $userId) . ')';
+        }
+        $search_filed[] = 'status = ' . self::$status['正常'];
+        $sql = sprintf('SELECT count(1) as c FROM %s WHERE %s',
+            self::tableName(), implode(' AND ', $search_filed));
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->execute();
+        $ret = $stmt->queryOne();
+        return $ret;
+    }
+
     //更新客户签证状态
     public function updateVisaStatus($id, $visaStatus) {
         $sql = sprintf('UPDATE %s SET visa_status = %d WHERE id = %d',

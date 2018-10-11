@@ -271,8 +271,10 @@ class CustomerController extends BaseController
         $customerService = new CustomerService();
         $list = $customerService->queryCustomerList($applyCountry, $applyProject, $serviceType, $goAbroadYear,
             $applyStatus, $visaStatus, $closeCaseStatus, $iDisplayStart, $iDisplayLength, $userId, $role);
+        $allCount = $customerService->queryCustomerCount($applyCountry, $applyProject, $serviceType, $goAbroadYear,
+            $applyStatus, $visaStatus, $closeCaseStatus, $userId, $role);
         if ($list) {
-            $count = count($list);
+            $count = $allCount;
             foreach ($list as $one) {
                 $data = [];
                 $data[] = $one['name'];
@@ -721,81 +723,87 @@ class CustomerController extends BaseController
             }
             $rowMessage = '第' . $row . '行，客户' . $studentName . ':';
 
-            //判断客户是否已存在，只依照名字，名字重复的不支持自动录取，如需录取请手动
-            $customerInfo = $customerService->queryByName($studentName);
-            if ($customerInfo) {
-                $error = ErrorDict::getError(ErrorDict::G_PARAM, '学生姓名已录入', $rowMessage . '学生姓名已录入，如需重复');
-                $ret = $this->outputJson('', $error);
-                return $ret;
-            }
-
-            //判断文案人员是否已录入系统
-            if(!isset($nameToId[$userName])) {
-                $error = ErrorDict::getError(ErrorDict::G_PARAM, '文案人员未录入', $rowMessage . '文案人员未录入');
-                $ret = $this->outputJson('', $error);
-                return $ret;
-            }
-            $userId = $nameToId[$userName];
-
-            //判断申请项目
-            $applyProjectId = 0;
-            if (strstr($applyProject, '初中')) {
-                $applyProjectId = CustomerDao::$applyProjectDict['初中'];
-            }elseif (strstr($applyProject, '高中')) {
-                $applyProjectId = CustomerDao::$applyProjectDict['高中'];
-            }elseif (strstr($applyProject, '本科')) {
-                $applyProjectId = CustomerDao::$applyProjectDict['本科'];
-            }elseif (strstr($applyProject, '硕士')) {
-                $applyProjectId = CustomerDao::$applyProjectDict['硕士'];
-            }
-
-            //判断服务类型
-            $serviceTypeId = 0;
-            if (strstr($serviceType, '文书')) {
-                $serviceTypeId = CustomerDao::$serviceTypeDict['单文书'];
-            }elseif (strstr($serviceType, '全程')) {
-                $serviceTypeId = CustomerDao::$serviceTypeDict['全程服务'];
-            }elseif (strstr($serviceType, '单申请')) {
-                $serviceTypeId = CustomerDao::$serviceTypeDict['单申请'];
-            }elseif (strstr($serviceType, '签证')) {
-                $serviceTypeId = CustomerDao::$serviceTypeDict['签证'];
-            }
-
-            //判断出国年限
-            $goAbroadYear = '';
-            if (strlen($admissionTime) >= 4) {
-                $year = substr($admissionTime, 0, 4);
-                if (intval($year) < 3000) {
-                    $goAbroadYear = $year;
-                }
-            }
-
             //判断申请状态
             $applyStatusId = 0;
-            if (strstr($applyStatus, '录取')) {
+            if (strstr($applyStatus, '录取') || $applyStatus == '录') {
                 $applyStatusId = SchoolDao::$applyStatusName['录取'];
             }elseif (strstr($applyStatus, '拒')) {
                 $applyStatusId = SchoolDao::$applyStatusName['未录取'];
             }
 
-            //判断签证状态
-            $visaStatusId = 0;
-            if (strstr($visaStatus, '获签')) {
-                $visaStatusId = CustomerDao::$visaStatusDict['获签'];
-            }elseif (strstr($visaStatus, '拒签')) {
-                $visaStatusId = CustomerDao::$visaStatusDict['拒签'];
-            }
+            //判断客户是否已存在，只依照名字，已存在的只录入学校
+            $customerInfo = $customerService->queryByName($studentName);
+            if ($customerInfo) {
+                  //判断客户是否已存在，只依照名字，名字重复的不支持自动录取，如需录取请手动
+//                $error = ErrorDict::getError(ErrorDict::G_PARAM, '学生姓名已录入', $rowMessage . '学生姓名已录入，如需重复录入请手动单条录入！');
+//                $ret = $this->outputJson('', $error);
+//                return $ret;
+                  $cusertomerId = $customerInfo['id'];
+            }else {
 
-            //录入客户信息
-            $customerId = $customerService->addCustomer($userId, $studentName, '', '', $applyCountry,
-                $applyProjectId, $serviceTypeId, $goAbroadYear, '', $consultant);
+                //判断文案人员是否已录入系统
+                if(!isset($nameToId[$userName])) {
+                    $error = ErrorDict::getError(ErrorDict::G_PARAM, '文案人员未录入', $rowMessage . '文案人员未录入');
+                    $ret = $this->outputJson('', $error);
+                    return $ret;
+                }
+                $userId = $nameToId[$userName];
 
-            //更新客户备注信息
-            $customerService->updateRemark($customerId, $remark);
+                //判断申请国家
+                $applyCountry = isset(CustomerDao::$applyCountryDict[$applyCountry]) ? CustomerDao::$applyCountryDict[$applyCountry] : 0;
 
-            //更新客户签证状态
-            if ($visaStatusId) {
-                $customerService->updateVisaStatus($customerId, $visaStatusId);
+                //判断申请项目
+                $applyProjectId = 0;
+                if (strstr($applyProject, '初中')) {
+                    $applyProjectId = CustomerDao::$applyProjectDict['初中'];
+                }elseif (strstr($applyProject, '高中')) {
+                    $applyProjectId = CustomerDao::$applyProjectDict['高中'];
+                }elseif (strstr($applyProject, '本科')) {
+                    $applyProjectId = CustomerDao::$applyProjectDict['本科'];
+                }elseif (strstr($applyProject, '硕士')) {
+                    $applyProjectId = CustomerDao::$applyProjectDict['硕士'];
+                }
+
+                //判断服务类型
+                $serviceTypeId = 0;
+                if (strstr($serviceType, '文书')) {
+                    $serviceTypeId = CustomerDao::$serviceTypeDict['单文书'];
+                }elseif (strstr($serviceType, '全程')) {
+                    $serviceTypeId = CustomerDao::$serviceTypeDict['全程服务'];
+                }elseif (strstr($serviceType, '单申请')) {
+                    $serviceTypeId = CustomerDao::$serviceTypeDict['单申请'];
+                }elseif (strstr($serviceType, '签证')) {
+                    $serviceTypeId = CustomerDao::$serviceTypeDict['签证'];
+                }
+
+                //判断出国年限
+                $goAbroadYear = '';
+                if (strlen($admissionTime) >= 4) {
+                    $year = substr($admissionTime, 0, 4);
+                    if (intval($year) < 3000) {
+                        $goAbroadYear = $year;
+                    }
+                }
+
+                //判断签证状态
+                $visaStatusId = 0;
+                if (strstr($visaStatus, '获签')) {
+                    $visaStatusId = CustomerDao::$visaStatusDict['获签'];
+                }elseif (strstr($visaStatus, '拒签')) {
+                    $visaStatusId = CustomerDao::$visaStatusDict['拒签'];
+                }
+
+                //录入客户信息
+                $customerId = $customerService->addCustomer($userId, $studentName, '', '', $applyCountry,
+                    $applyProjectId, $serviceTypeId, $goAbroadYear, '', $consultant);
+
+                //更新客户备注信息
+                $customerService->updateRemark($customerId, $remark);
+
+                //更新客户签证状态
+                if ($visaStatusId) {
+                    $customerService->updateVisaStatus($customerId, $visaStatusId);
+                }
             }
 
             //判断客户申报学校

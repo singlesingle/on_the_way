@@ -74,4 +74,14 @@ class SchoolDao extends ActiveRecord{
         $ret = $stmt->execute();
         return $ret;
     }
+
+    //查询学校列表
+    public function schoolList() {
+        $sql=sprintf('SELECT * FROM %s', self::tableName());
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $stmt->execute();
+        $ret = $stmt->queryAll();
+        return $ret;
+    }
 }

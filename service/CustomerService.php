@@ -7,6 +7,7 @@ use app\models\BasicInfoDao;
 use app\models\CaseDao;
 use app\models\CustomerDao;
 use app\models\EducationDao;
+use app\models\SchoolDao;
 use app\models\UserDao;
 
 class CustomerService
@@ -158,6 +159,27 @@ class CustomerService
         return $list;
     }
 
+    //查询客户数量
+    public function queryCustomerCount($applyCountry, $applyProject, $serviceType, $goAbroadYear, $applyStatus, $visaStatus,
+                                      $closeCaseStatus, $userId, $role)
+    {
+        $customerDao = new CustomerDao();
+        $userDao = new UserDao();
+        $userIds = [];
+        if ($role == UserDao::$role['管理员']) {
+        }elseif ($role == UserDao::$role['总监']) {
+            $userList = $userDao->queryByLeader($userId);
+            foreach ($userList as $user) {
+                $userIds[] = $user['id'];
+            }
+        }elseif ($role == UserDao::$role['文案人员']) {
+            $userIds = [$userId];
+        }
+        $list = $customerDao->countByCondition($applyCountry, $applyProject, $serviceType, $goAbroadYear, $applyStatus, $visaStatus,
+            $closeCaseStatus, $userIds);
+        return $list['c'];
+    }
+
     public function queryByWechat($nickName) {
         $customerDao = new CustomerDao();
         $customerInfo = $customerDao->queryByWechat($nickName);
@@ -190,6 +212,15 @@ class CustomerService
         $data['offer'] = 0;
         $data['visa'] = 0;
         $data['closeCase'] = 0;
+        //查询每个学生收到的offer数量
+        $schoolDao = new SchoolDao();
+        $schoolList = $schoolDao->schoolList();
+        $customerToOffer = [];
+        foreach ($schoolList as $school) {
+            if ($school['apply_status'] == SchoolDao::$applyStatusName['录取']) {
+                $customerToOffer[$school['customer_id']] = true;
+            }
+        }
         foreach ($customerList as $customer) {
             if ($customer['apply_status'] == '申请中')
                 $data['applying']++;
@@ -197,6 +228,8 @@ class CustomerService
                 $data['visa']++;
             if ($customer['close_case_status'] == '已结案')
                 $data['closeCase']++;
+            if (isset($customerToOffer[$customer['id']]))
+                $data['offer']++;
         }
         return $data;
     }

@@ -48,7 +48,9 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                         <i class="fa fa-bell-o"></i>
+                        {if count($notice) > 0}
                         <span class="badge bg-important">{count($notice)}</span>
+                        {/if}
                     </a>
                     <ul class="dropdown-menu extended notification">
                         <li>
@@ -136,6 +138,7 @@
                             <li {if $active_page eq "document_list"}class="active"{/if}><a href="/page/document/list">文书范例</a></li>
                         </ul>
                     </li>
+                    {if $role == 1}
                     <li class="sub-menu">
                         <a href="javascript:;" class="{if $page_topo eq "admin"}active{/if}">
                             <i class="fa fa-sitemap"></i>
@@ -148,7 +151,7 @@
                             <li {if $active_page eq "message_admin"}class="active"{/if}><a href="/page/message/list">消息</a></li>
                         </ul>
                     </li>
-
+                    {/if}
                 </ul>
             </div>
             <!-- sidebar menu end-->
