@@ -108,7 +108,7 @@
                         <th>签证状态</th>
                         <th>结案状态</th>
                         {*<th>沟通跟进</th>*}
-                        <th>操作</th>
+                        <th >操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -391,5 +391,30 @@
             });
         });
     });
+
+    function delete_customer(customer_id) {
+        if(confirm('确定要新增此客户吗?')) {
+            $.ajax({
+                url: '/api/customer/deletecustomer',
+                type: "POST",
+                data: {
+                    'customer_id': customer_id,
+                },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    if (data.error.returnCode == 0) {
+                        alert('删除客户成功！');
+                        window.location.reload();
+                    }else {
+                        alert('删除客户失败！');
+                    }
+                },
+                error: function (data) {
+                    alert('添加客户异常！');
+                }
+            });
+        }
+    }
 </script>
 {include "layout/footer.tpl"}

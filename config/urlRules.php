@@ -37,6 +37,7 @@ return [
     'api/customer/addmaterial' => 'api/customer/addmaterial',
     'api/customer/saveeducation' => 'api/customer/saveeducation',
     'api/customer/batchadd' => 'api/customer/batchadd',
+    'api/customer/deletecustomer' => 'api/customer/deletecustomer',
     'api/document/add' => 'api/document/add',
     'api/document/upload' => 'api/document/upload',
     'api/document/download' => 'api/document/download',

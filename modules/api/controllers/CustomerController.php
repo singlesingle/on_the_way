@@ -288,7 +288,11 @@ class CustomerController extends BaseController
                 $data[] = $one['apply_status'];
                 $data[] = $one['visa_status'];
                 $data[] = $one['close_case_status'];
-                $data[] = "<a type=\"button\" class=\"btn btn-sm btn-danger\" href=\"/page/customer/info?id={$one['id']}\">查看</a>";
+                $button = "<a type=\"button\" class=\"btn btn-sm btn-danger\" href=\"/page/customer/info?id={$one['id']}\">查看</a>";
+                if ($role == UserDao::$role['管理员']) {
+                    $button .= "<a type=\"button\" class=\"btn btn-sm btn-danger\" onclick=\"delete_customer({$one['id']})\">删除</a>";
+                }
+                $data[] = $button;
                 $customerList[] = $data;
             }
         }else {
@@ -828,6 +832,40 @@ class CustomerController extends BaseController
         $this->actionLog(self::LOGADD, self::OPOK, $this->params);
         $error = ErrorDict::getError(ErrorDict::SUCCESS);
         $ret = $this->outputJson('', $error);
+        return $ret;
+    }
+
+    //删除客户
+    public function actionDeletecustomer()
+    {
+        $this->defineMethod = 'POST';
+        $this->defineParams = array (
+            'customer_id' => array (
+                'require' => true,
+                'checker' => 'noCheck',
+            ),
+        );
+        if (false === $this->check()) {
+            $ret = $this->outputJson(array(), $this->err);
+            return $ret;
+        }
+        $customerId = $this->getParam('customer_id', '');
+        $role = $this->data['role'];
+        if ($role != UserDao::$role['管理员']) {
+            $error = ErrorDict::getError(ErrorDict::G_POWER);
+            $ret = $this->outputJson('', $error);
+            return $ret;
+        }
+        $customerService = new CustomerService();
+        $ret = $customerService->deleteCustomer($customerId);
+        $this->actionLog(self::LOGDEL, $ret ? self::OPOK : self::OPFAIL, $this->params);
+        if ($ret) {
+            $error = ErrorDict::getError(ErrorDict::SUCCESS);
+            $ret = $this->outputJson('', $error);
+        }else {
+            $error = ErrorDict::getError(ErrorDict::G_SYS_ERR);
+            $ret = $this->outputJson('', $error);
+        }
         return $ret;
     }
 }

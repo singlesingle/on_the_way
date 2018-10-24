@@ -247,4 +247,11 @@ class CustomerService
         $ret = $customerDao->updateVisaStatus($id, $visaStatus);
         return $ret;
     }
+
+    //删除客户
+    public function deleteCustomer($id) {
+        $customerDao = new CustomerDao();
+        $ret = $customerDao->deleteCustomer($id);
+        return $ret;
+    }
 }

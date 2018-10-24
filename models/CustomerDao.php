@@ -399,4 +399,13 @@ class CustomerDao extends ActiveRecord{
         $ret = $stmt->execute();
         return $ret;
     }
+
+    public function deleteCustomer($id) {
+        $sql = sprintf('UPDATE %s SET status = %d WHERE id = %d',
+            self::tableName(), self::$status['删除'], $id);
+        $stmt = self::getDb()->createCommand($sql);
+        $stmt->prepare();
+        $ret = $stmt->execute();
+        return $ret;
+    }
 }
